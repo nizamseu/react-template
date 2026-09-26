@@ -1,4 +1,5 @@
 import { HiArrowRight } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar05() {
     return (
         <header className="rounded-lg border-b border-[#d7e0da] bg-white px-5 py-4 text-[#132d3a]">
@@ -11,6 +12,8 @@ export default function Navbar05() {
                     <a href="#countryside">Countryside</a>
                     <a href="#city">City stays</a>
                     <a href="#host">Local hosts</a>
+
+                    <MegaMenu category="booking" accent="#b65f47" variant={5} />
                 </nav>
                 <a
                     href="#availability"

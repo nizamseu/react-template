@@ -1,4 +1,5 @@
 import { HiOutlineSearch } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar01() {
     return (
         <header className="rounded-lg bg-[#1a2826] px-5 py-4 text-white sm:px-8">
@@ -14,6 +15,12 @@ export default function Navbar01() {
                     <a href="#nearby">Near me</a>
                     <a href="#recommendations">Recommended</a>
                     <a href="#owners">For businesses</a>
+
+                    <MegaMenu
+                        category="directory"
+                        accent="#527354"
+                        variant={1}
+                    />
                 </nav>
                 <a
                     href="#search"

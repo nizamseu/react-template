@@ -1,4 +1,5 @@
 import { HiArrowRight } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar04() {
     return (
         <header className="rounded-lg bg-[#27201d] px-5 py-4 text-white">
@@ -11,6 +12,12 @@ export default function Navbar04() {
                     <a href="#food">Food</a>
                     <a href="#outdoors">Outdoors</a>
                     <a href="#makers">Makers</a>
+
+                    <MegaMenu
+                        category="community"
+                        accent="#a34c38"
+                        variant={4}
+                    />
                 </nav>
                 <a
                     href="#new-group"

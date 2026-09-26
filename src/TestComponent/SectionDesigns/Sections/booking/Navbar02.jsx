@@ -1,4 +1,5 @@
 import { HiArrowRight, HiOutlineGlobeAlt } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar02() {
     return (
         <header className="rounded-lg bg-[#132d3a] px-5 py-4 text-white sm:px-8">
@@ -11,6 +12,8 @@ export default function Navbar02() {
                     <a href="#places">Places</a>
                     <a href="#journal">Field notes</a>
                     <a href="#hosts">For hosts</a>
+
+                    <MegaMenu category="booking" accent="#b65f47" variant={2} />
                 </nav>
                 <div className="flex items-center gap-3 text-xs">
                     <button aria-label="Choose language">

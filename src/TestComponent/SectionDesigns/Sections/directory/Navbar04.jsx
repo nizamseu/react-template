@@ -1,4 +1,5 @@
 import { HiArrowRight, HiOutlineMenu } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar04() {
     return (
         <header className="rounded-lg bg-[#1a2826] px-5 py-4 text-white">
@@ -13,6 +14,12 @@ export default function Navbar04() {
                     <a href="#editors">Editor&apos;s picks</a>
                     <a href="#nearby">Nearby</a>
                     <a href="#categories">Categories</a>
+
+                    <MegaMenu
+                        category="directory"
+                        accent="#527354"
+                        variant={4}
+                    />
                 </nav>
                 <div className="flex items-center gap-3">
                     <button
@@ -28,6 +35,13 @@ export default function Navbar04() {
                         Add a listing <HiArrowRight />
                     </a>
                 </div>
+
+                <MegaMenu
+                    category="directory"
+                    accent="#527354"
+                    variant={4}
+                    className="md:hidden"
+                />
             </div>
         </header>
     )

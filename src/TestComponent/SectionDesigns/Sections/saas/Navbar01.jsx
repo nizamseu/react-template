@@ -1,4 +1,5 @@
 import { HiArrowRight, HiOutlineBell, HiOutlineMenu } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar01() {
     return (
         <header className="rounded-lg border border-gray-200 bg-white px-5 py-3 dark:border-gray-700 dark:bg-[#111a22] dark:text-white sm:px-7">
@@ -25,6 +26,8 @@ export default function Navbar01() {
                     <a href="#projects">Projects</a>
                     <a href="#reports">Reports</a>
                     <a href="#integrations">Integrations</a>
+
+                    <MegaMenu category="saas" accent="#17a878" variant={1} />
                 </nav>
                 <div className="flex items-center gap-4">
                     <button aria-label="Notifications">
@@ -37,6 +40,13 @@ export default function Navbar01() {
                         Start trial <HiArrowRight className="ml-1 inline" />
                     </a>
                 </div>
+
+                <MegaMenu
+                    category="saas"
+                    accent="#17a878"
+                    variant={1}
+                    className="lg:hidden"
+                />
             </div>
         </header>
     )

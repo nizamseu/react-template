@@ -1,4 +1,5 @@
 import { HiOutlineMenu } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar04() {
     return (
         <header className="rounded-lg bg-[#e5ede8] px-5 py-4 text-[#132d3a]">
@@ -19,6 +20,8 @@ export default function Navbar04() {
                     <a href="#guides">Guides</a>
                     <a href="#stays">Places to stay</a>
                     <a href="#experiences">Experiences</a>
+
+                    <MegaMenu category="booking" accent="#b65f47" variant={4} />
                 </nav>
                 <a
                     href="#trip"
@@ -26,6 +29,13 @@ export default function Navbar04() {
                 >
                     Plan a trip
                 </a>
+
+                <MegaMenu
+                    category="booking"
+                    accent="#b65f47"
+                    variant={4}
+                    className="md:hidden"
+                />
             </div>
         </header>
     )

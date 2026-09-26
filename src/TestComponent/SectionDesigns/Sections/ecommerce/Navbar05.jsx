@@ -3,6 +3,7 @@ import {
     HiOutlineMenu,
     HiOutlineShoppingBag,
 } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar05() {
     return (
         <header className="rounded-lg bg-[#f4ebe4] px-5 py-4 text-[#241f1b] dark:bg-gray-800 dark:text-white sm:px-8">
@@ -17,6 +18,12 @@ export default function Navbar05() {
                     <a href="#gifts">Gifts</a>
                     <a href="#home">Home</a>
                     <a href="#ritual">Ritual</a>
+
+                    <MegaMenu
+                        category="ecommerce"
+                        accent="#9a704b"
+                        variant={5}
+                    />
                 </nav>
                 <button
                     aria-label="Open basket"
@@ -29,6 +36,12 @@ export default function Navbar05() {
             </div>
             <div className="mt-3 flex justify-center border-t border-black/10 pt-3 text-[10px] uppercase tracking-[.16em] md:hidden">
                 A little something for someone
+                <MegaMenu
+                    category="ecommerce"
+                    accent="#9a704b"
+                    variant={5}
+                    className="md:hidden"
+                />
             </div>
         </header>
     )

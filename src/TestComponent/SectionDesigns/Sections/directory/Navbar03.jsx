@@ -1,4 +1,5 @@
 import { HiOutlineLocationMarker } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar03() {
     return (
         <header className="rounded-lg border border-[#d4ddd1] bg-white px-5 py-3 text-[#1a2826]">
@@ -11,6 +12,12 @@ export default function Navbar03() {
                     <a href="#food">Food & drink</a>
                     <a href="#shops">Shops</a>
                     <a href="#community">Community</a>
+
+                    <MegaMenu
+                        category="directory"
+                        accent="#527354"
+                        variant={3}
+                    />
                 </nav>
                 <a
                     href="#location"

@@ -1,4 +1,5 @@
 import { HiArrowRight, HiOutlineShoppingBag } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar02() {
     return (
         <header className="rounded-lg bg-[#211d18] px-5 py-3 text-white sm:px-8">
@@ -13,6 +14,12 @@ export default function Navbar02() {
                     <a href="#shop">Shop all</a>
                     <a href="#circular">Circular edit</a>
                     <a href="#studio">Our studio</a>
+
+                    <MegaMenu
+                        category="ecommerce"
+                        accent="#9a704b"
+                        variant={2}
+                    />
                 </nav>
                 <div className="flex items-center gap-4">
                     <a href="#search" className="hidden text-xs sm:block">
@@ -37,6 +44,8 @@ export default function Navbar02() {
                 <a href="#shop">Shop all</a>
                 <a href="#circular">Circular edit</a>
                 <a href="#studio">Our studio</a>
+
+                <MegaMenu category="ecommerce" accent="#9a704b" variant={2} />
             </nav>
         </header>
     )

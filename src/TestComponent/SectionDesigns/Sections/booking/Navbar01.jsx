@@ -1,4 +1,5 @@
 import { HiOutlineGlobeAlt, HiOutlineUserCircle } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar01() {
     return (
         <header className="rounded-lg bg-[#132d3a] px-5 py-4 text-white sm:px-8">
@@ -11,6 +12,8 @@ export default function Navbar01() {
                     <a href="#experiences">Experiences</a>
                     <a href="#journal">Field notes</a>
                     <a href="#hosts">Become a host</a>
+
+                    <MegaMenu category="booking" accent="#b65f47" variant={1} />
                 </nav>
                 <div className="flex items-center gap-4 text-sm">
                     <button aria-label="Choose language">

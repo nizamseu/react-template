@@ -23,6 +23,7 @@ const sectionTypes = [
     { key: 'cards', prefix: 'Card', label: 'Cards' },
     { key: 'navbars', prefix: 'Navbar', label: 'Navbars' },
     { key: 'footers', prefix: 'Footer', label: 'Footers' },
+    { key: 'ctas', prefix: 'CTA', label: 'Banner CTAs' },
 ]
 
 const SectionDesigns = () => {

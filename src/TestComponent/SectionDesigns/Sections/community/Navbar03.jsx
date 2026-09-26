@@ -1,4 +1,5 @@
 import { HiOutlineMenu, HiUserGroup } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar03() {
     return (
         <header className="rounded-lg bg-[#ffccad] px-5 py-4 text-[#27201d]">
@@ -16,6 +17,12 @@ export default function Navbar03() {
                     <a href="#discover">Discover</a>
                     <a href="#calendar">Calendar</a>
                     <a href="#hosts">Hosts</a>
+
+                    <MegaMenu
+                        category="community"
+                        accent="#a34c38"
+                        variant={3}
+                    />
                 </nav>
                 <div className="flex items-center gap-3 text-xs">
                     <a href="#signin">Sign in</a>
@@ -26,6 +33,13 @@ export default function Navbar03() {
                         Create a profile
                     </a>
                 </div>
+
+                <MegaMenu
+                    category="community"
+                    accent="#a34c38"
+                    variant={3}
+                    className="md:hidden"
+                />
             </div>
         </header>
     )

@@ -1,4 +1,5 @@
 import { HiArrowRight, HiOutlineSearch } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar02() {
     return (
         <header className="rounded-lg border-b border-[#e7d4c8] bg-[#f7ede6] px-5 py-4 text-[#27201d]">
@@ -11,6 +12,12 @@ export default function Navbar02() {
                     <a href="#events">Events</a>
                     <a href="#people">People</a>
                     <a href="#guidelines">Our values</a>
+
+                    <MegaMenu
+                        category="community"
+                        accent="#a34c38"
+                        variant={2}
+                    />
                 </nav>
                 <div className="flex items-center gap-3">
                     <button aria-label="Search communities">

@@ -3,6 +3,7 @@ import {
     HiOutlineSearch,
     HiOutlineShoppingCart,
 } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar04() {
     return (
         <header className="rounded-lg bg-[#d6f36a] px-5 py-4 text-[#202315] sm:px-8">
@@ -42,6 +43,7 @@ export default function Navbar04() {
                         Browse <HiArrowRight />
                     </a>
                 </div>
+                <MegaMenu category="ecommerce" accent="#d9b340" variant={4} />
             </div>
         </header>
     )

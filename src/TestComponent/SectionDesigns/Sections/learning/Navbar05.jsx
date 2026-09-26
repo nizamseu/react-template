@@ -1,4 +1,5 @@
 import { HiArrowRight } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar05() {
     return (
         <header className="rounded-lg bg-[#102d36] px-5 py-4 text-white">
@@ -17,6 +18,7 @@ export default function Navbar05() {
                 >
                     Find a mentor <HiArrowRight />
                 </a>
+                <MegaMenu category="learning" accent="#95c77b" variant={5} />
             </div>
         </header>
     )

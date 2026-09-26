@@ -1,4 +1,5 @@
 import { HiOutlineBell, HiOutlineSearch } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar03() {
     return (
         <header className="rounded-lg border border-[#263640] bg-[#111a22] px-5 py-3 text-white">
@@ -17,6 +18,8 @@ export default function Navbar03() {
                     <a href="#workspaces">Workspaces</a>
                     <a href="#reports">Reports</a>
                     <a href="#settings">Settings</a>
+
+                    <MegaMenu category="saas" accent="#17a878" variant={3} />
                 </nav>
                 <div className="flex gap-4 text-lg text-white/65">
                     <button aria-label="Search">
@@ -29,6 +32,13 @@ export default function Navbar03() {
                         AM
                     </span>
                 </div>
+
+                <MegaMenu
+                    category="saas"
+                    accent="#17a878"
+                    variant={3}
+                    className="md:hidden"
+                />
             </div>
         </header>
     )

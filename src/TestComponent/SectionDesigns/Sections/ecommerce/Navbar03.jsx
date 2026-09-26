@@ -1,4 +1,5 @@
 import { HiOutlineMenuAlt3, HiOutlineShoppingBag } from 'react-icons/hi'
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 export default function Navbar03() {
     return (
         <header className="rounded-lg border border-gray-200 bg-white px-5 py-4 dark:border-gray-700 dark:bg-gray-900">
@@ -28,6 +29,8 @@ export default function Navbar03() {
                 <a href="#wear">Wear</a>
                 <a href="#objects">Objects</a>
                 <a href="#stories">Stories</a>
+
+                <MegaMenu category="ecommerce" accent="#9a704b" variant={3} />
             </nav>
         </header>
     )
