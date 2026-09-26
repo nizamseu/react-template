@@ -66,7 +66,9 @@
             "grid": "Grid",
             "button": "Button",
             "typography": "Typography",
-            "icons": "Icons"
+            "icons": "Icons",
+            "sectionDesigns": "Section Designs",
+            "sectionDesignsDesc": "Website section design studio"
         },
         "uiComponentsFeedback": {
             "feedback": "Feedback",

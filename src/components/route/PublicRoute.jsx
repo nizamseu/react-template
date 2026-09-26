@@ -4,10 +4,14 @@ import { useAuth } from '@/auth'
 
 const { authenticatedEntryPath } = appConfig
 
-const PublicRoute = () => {
+const PublicRoute = ({ allowAuthenticated = false }) => {
     const { authenticated } = useAuth()
 
-    return authenticated ? <Navigate to={authenticatedEntryPath} /> : <Outlet />
+    return authenticated && !allowAuthenticated ? (
+        <Navigate to={authenticatedEntryPath} />
+    ) : (
+        <Outlet />
+    )
 }
 
 export default PublicRoute

@@ -4,7 +4,11 @@ import AuthorityGuard from './AuthorityGuard'
 import FallbackRoute from './FallbackRoute'
 import AppRoute from './AppRoute'
 import PageContainer from '@/components/template/PageContainer'
-import { protectedRoutes, publicRoutes } from '@/configs/routes.config'
+import {
+    protectedRoutes,
+    publicRoutes,
+    unrestrictedRoutes,
+} from '@/configs/routes.config'
 import appConfig from '@/configs/app.config'
 import { useAuth } from '@/auth'
 import { Routes, Route, Navigate } from 'react-router'
@@ -17,13 +21,25 @@ const AllRoutes = (props) => {
     return (
         <Routes>
             <Route path="/" element={<PublicRoute />}>
-                <Route
-                    index
-                    element={<FallbackRoute />}
-                />
+                <Route index element={<FallbackRoute />} />
                 {publicRoutes.map((route) => (
                     <Route
                         key={route.path}
+                        path={route.path}
+                        element={
+                            <AppRoute
+                                routeKey={route.key}
+                                component={route.component}
+                                {...route.meta}
+                            />
+                        }
+                    />
+                ))}
+            </Route>
+            <Route path="/" element={<PublicRoute allowAuthenticated />}>
+                {unrestrictedRoutes.map((route) => (
+                    <Route
+                        key={route.key}
                         path={route.path}
                         element={
                             <AppRoute

@@ -66,7 +66,9 @@
             "grid": "网格",
             "button": "按钮",
             "typography": "排版",
-            "icons": "图标"
+            "icons": "图标",
+            "sectionDesigns": "页面区块设计",
+            "sectionDesignsDesc": "网站区块设计工作室"
         },
         "uiComponentsFeedback": {
             "feedback": "反馈",

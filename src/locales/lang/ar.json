@@ -66,7 +66,9 @@
             "grid": "الشبكة",
             "button": "الزر",
             "typography": "الطباعة",
-            "icons": "الأيقونات"
+            "icons": "الأيقونات",
+            "sectionDesigns": "تصاميم الأقسام",
+            "sectionDesignsDesc": "استوديو تصميم أقسام المواقع"
         },
         "uiComponentsFeedback": {
             "feedback": "التعليقات",

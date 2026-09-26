@@ -104,6 +104,23 @@ const uiComponentNavigationConfig = [
                         },
                         subMenu: [],
                     },
+                    {
+                        key: 'uiComponent.common.sectionDesigns',
+                        path: '/design-studio',
+                        title: 'Section Designs',
+                        translateKey: 'nav.uiComponentsCommon.sectionDesigns',
+                        icon: 'uiCommonGrid',
+                        type: NAV_ITEM_TYPE_ITEM,
+                        authority: [ADMIN, USER],
+                        meta: {
+                            description: {
+                                translateKey:
+                                    'nav.uiComponentsCommon.sectionDesignsDesc',
+                                label: 'Website section design studio',
+                            },
+                        },
+                        subMenu: [],
+                    },
                 ],
             },
             {

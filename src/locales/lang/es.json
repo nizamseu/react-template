@@ -66,7 +66,9 @@
             "grid": "Cuadrícula",
             "button": "Botón",
             "typography": "Tipografía",
-            "icons": "Íconos"
+            "icons": "Íconos",
+            "sectionDesigns": "Diseños de secciones",
+            "sectionDesignsDesc": "Estudio de diseño de secciones web"
         },
         "uiComponentsFeedback": {
             "feedback": "Retroalimentación",
