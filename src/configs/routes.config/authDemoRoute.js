@@ -6,7 +6,7 @@ const authDemoRoute = [
     {
         key: 'authentication.signInSimple',
         path: `${AUTH_PREFIX_PATH}/sign-in-simple`,
-        component: lazy(() => import('@/views/auth-demo/SignInDemoSimple')),
+        component: lazy(() => import('@/TestComponent/SignInDemoSimple')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -17,7 +17,7 @@ const authDemoRoute = [
     {
         key: 'authentication.signInSide',
         path: `${AUTH_PREFIX_PATH}/sign-in-side`,
-        component: lazy(() => import('@/views/auth-demo/SignInDemoSide')),
+        component: lazy(() => import('@/TestComponent/SignInDemoSide')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -28,7 +28,7 @@ const authDemoRoute = [
     {
         key: 'authentication.signInSplit',
         path: `${AUTH_PREFIX_PATH}/sign-in-split`,
-        component: lazy(() => import('@/views/auth-demo/SignInDemoSplit')),
+        component: lazy(() => import('@/TestComponent/SignInDemoSplit')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -39,7 +39,7 @@ const authDemoRoute = [
     {
         key: 'authentication.signUpSimple',
         path: `${AUTH_PREFIX_PATH}/sign-up-simple`,
-        component: lazy(() => import('@/views/auth-demo/SignUpDemoSimple')),
+        component: lazy(() => import('@/TestComponent/SignUpDemoSimple')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -50,7 +50,7 @@ const authDemoRoute = [
     {
         key: 'authentication.signUpSide',
         path: `${AUTH_PREFIX_PATH}/sign-up-side`,
-        component: lazy(() => import('@/views/auth-demo/SignUpDemoSide')),
+        component: lazy(() => import('@/TestComponent/SignUpDemoSide')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -61,7 +61,7 @@ const authDemoRoute = [
     {
         key: 'authentication.signUpSplit',
         path: `${AUTH_PREFIX_PATH}/sign-up-split`,
-        component: lazy(() => import('@/views/auth-demo/SignUpDemoSplit')),
+        component: lazy(() => import('@/TestComponent/SignUpDemoSplit')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -72,9 +72,7 @@ const authDemoRoute = [
     {
         key: 'authentication.resetPasswordSimple',
         path: `${AUTH_PREFIX_PATH}/reset-password-simple`,
-        component: lazy(
-            () => import('@/views/auth-demo/ResetPasswordDemoSimple'),
-        ),
+        component: lazy(() => import('@/TestComponent/ResetPasswordDemoSimple')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -85,9 +83,7 @@ const authDemoRoute = [
     {
         key: 'authentication.resetPasswordSide',
         path: `${AUTH_PREFIX_PATH}/reset-password-side`,
-        component: lazy(
-            () => import('@/views/auth-demo/ResetPasswordDemoSide'),
-        ),
+        component: lazy(() => import('@/TestComponent/ResetPasswordDemoSide')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -98,9 +94,7 @@ const authDemoRoute = [
     {
         key: 'authentication.resetPasswordSplit',
         path: `${AUTH_PREFIX_PATH}/reset-password-split`,
-        component: lazy(
-            () => import('@/views/auth-demo/ResetPasswordDemoSplit'),
-        ),
+        component: lazy(() => import('@/TestComponent/ResetPasswordDemoSplit')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -111,9 +105,7 @@ const authDemoRoute = [
     {
         key: 'authentication.forgotPasswordSimple',
         path: `${AUTH_PREFIX_PATH}/forgot-password-simple`,
-        component: lazy(
-            () => import('@/views/auth-demo/ForgotPasswordDemoSimple'),
-        ),
+        component: lazy(() => import('@/TestComponent/ForgotPasswordDemoSimple')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -124,9 +116,7 @@ const authDemoRoute = [
     {
         key: 'authentication.forgotPasswordSide',
         path: `${AUTH_PREFIX_PATH}/forgot-password-side`,
-        component: lazy(
-            () => import('@/views/auth-demo/ForgotPasswordDemoSide'),
-        ),
+        component: lazy(() => import('@/TestComponent/ForgotPasswordDemoSide')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -137,9 +127,7 @@ const authDemoRoute = [
     {
         key: 'authentication.forgotPasswordSplit',
         path: `${AUTH_PREFIX_PATH}/forgot-password-split`,
-        component: lazy(
-            () => import('@/views/auth-demo/ForgotPasswordDemoSplit'),
-        ),
+        component: lazy(() => import('@/TestComponent/ForgotPasswordDemoSplit')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -150,9 +138,7 @@ const authDemoRoute = [
     {
         key: 'authentication.otpVerificationSplit',
         path: `${AUTH_PREFIX_PATH}/otp-verification-split`,
-        component: lazy(
-            () => import('@/views/auth-demo/OtpVerificationDemoSplit'),
-        ),
+        component: lazy(() => import('@/TestComponent/OtpVerificationDemoSplit')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -163,9 +149,7 @@ const authDemoRoute = [
     {
         key: 'authentication.otpVerificationSide',
         path: `${AUTH_PREFIX_PATH}/otp-verification-side`,
-        component: lazy(
-            () => import('@/views/auth-demo/OtpVerificationDemoSide'),
-        ),
+        component: lazy(() => import('@/TestComponent/OtpVerificationDemoSide')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
@@ -176,9 +160,7 @@ const authDemoRoute = [
     {
         key: 'authentication.otpVerificationSimple',
         path: `${AUTH_PREFIX_PATH}/otp-verification-simple`,
-        component: lazy(
-            () => import('@/views/auth-demo/OtpVerificationDemoSimple'),
-        ),
+        component: lazy(() => import('@/TestComponent/OtpVerificationDemoSimple')),
         authority: [ADMIN, USER],
         meta: {
             layout: 'blank',
