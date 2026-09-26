@@ -1,22 +1,33 @@
 import { HiArrowRight } from 'react-icons/hi'
+
 export default function CTA02() {
     return (
-        <section className="rounded-lg bg-[#121c2c] p-8 text-white sm:p-11">
-            <div className="flex flex-col justify-between gap-7 md:flex-row md:items-center">
+        <section className="rounded-xl border border-white/20 bg-[#0b111a] p-8 text-white sm:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 items-center">
                 <div>
-                    <p className="text-xs font-bold uppercase tracking-[.14em] text-[#84b9ff]">
-                        FOR LEADERS SHAPING WHAT&apos;S NEXT
-                    </p>
-                    <h2 className="mt-2 max-w-xl text-3xl font-semibold">
-                        Get perspective that makes the next decision clearer.
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#84b9ff]">
+                        2026 GLOBAL INVESTOR SYMPOSIUM &bull; ZURICH
+                    </span>
+                    <h2 className="mt-2 text-3xl sm:text-4xl font-bold leading-tight">
+                        Annual Institutional Partners & LP Summit
                     </h2>
+                    <p className="mt-3 text-sm leading-relaxed text-white/70">
+                        Join 250 sovereign wealth CIOs, private equity general partners, and Fortune 50 executives for two days of closed-door macroeconomic intelligence and direct bilateral dealmaking.
+                    </p>
                 </div>
-                <a
-                    href="#insights"
-                    className="inline-flex items-center gap-2 self-start rounded-md border border-[#84b9ff] px-5 py-3 text-sm"
-                >
-                    Read the latest insights <HiArrowRight />
-                </a>
+
+                <div className="flex flex-col gap-3 justify-end">
+                    <a
+                        href="#register-symposium"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#84b9ff] px-6 py-3.5 font-mono text-xs font-bold text-[#0b111a] hover:bg-white transition-colors"
+                    >
+                        <span>Request Institutional Delegate Invitation</span>
+                        <HiArrowRight />
+                    </a>
+                    <span className="font-mono text-[11px] text-white/50 text-center">
+                        Strict accreditation verification required
+                    </span>
+                </div>
             </div>
         </section>
     )

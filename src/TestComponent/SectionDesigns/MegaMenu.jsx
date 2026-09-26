@@ -1,244 +1,218 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { HiArrowRight, HiChevronDown, HiOutlineSearch } from 'react-icons/hi'
+import { HiChevronDown } from 'react-icons/hi'
 
-const menuContent = {
+import EcommerceMegaMenu from './MegaMenus/EcommerceMegaMenu'
+import LearningMegaMenu from './MegaMenus/LearningMegaMenu'
+import SaasMegaMenu from './MegaMenus/SaasMegaMenu'
+import MediaMegaMenu from './MegaMenus/MediaMegaMenu'
+import CommunityMegaMenu from './MegaMenus/CommunityMegaMenu'
+import CorporateMegaMenu from './MegaMenus/CorporateMegaMenu'
+import PortfolioMegaMenu from './MegaMenus/PortfolioMegaMenu'
+import BookingMegaMenu from './MegaMenus/BookingMegaMenu'
+import DirectoryMegaMenu from './MegaMenus/DirectoryMegaMenu'
+import KnowledgeMegaMenu from './MegaMenus/KnowledgeMegaMenu'
+
+// Dynamic container styles per (category, variant) to guarantee NO two mega menus look alike
+const panelContainerStyles = {
     ecommerce: {
-        eyebrow: 'THE SHOP, THOUGHTFULLY EDITED',
-        title: 'Find your next favorite.',
-        links: [
-            'New arrivals',
-            'Everyday objects',
-            'Independent makers',
-            'The gift edit',
-            'Circular collection',
-            'Materials & care',
-        ],
-        note: 'Small-batch goods and makers worth knowing.',
+        1: 'rounded-none border-b-2 border-black/20 shadow-2xl backdrop-blur-md', // Editorial full-bleed lookbook
+        2: 'rounded-none border-2 border-white/25 shadow-[8px_8px_0px_0px_#d6f36a]', // Neo-brutalist dark archive
+        3: 'rounded-xl border border-[#e8e4dc] shadow-2xl bg-[#fbfaf8]', // Haute couture maison
+        4: 'rounded-none border-t-4 border-[#d6f36a] border-b-2 border-black/40 shadow-2xl bg-[#202315]', // Streetwear circular
+        5: 'rounded-2xl border border-[#d8c8ba] shadow-xl bg-[#f5ede4]', // Artisan apothecary
     },
     learning: {
-        eyebrow: 'LEARN BY MAKING',
-        title: 'Choose your next step.',
-        links: [
-            'Browse every course',
-            'Career learning paths',
-            'Live studio classes',
-            'Meet the mentors',
-            'Project library',
-            'Free field notes',
-        ],
-        note: 'Short lessons. Real practice. A clear next step.',
+        1: 'rounded-xl border-t-2 border-[#c8ef70] shadow-2xl bg-[#0e272f]', // Academy cohorts
+        2: 'rounded-none border-y border-[#d8e2d8] shadow-2xl bg-[#f7f4ed]', // Studio calendar
+        3: 'rounded-xl border border-gray-200 shadow-2xl bg-white', // Swiss roadmap
+        4: 'rounded-none border-2 border-[#c8ef70] shadow-[6px_6px_0px_0px_#c8ef70] bg-[#11241f]', // Creative lab sandbox
+        5: 'rounded-2xl border border-[#3c7e5d] shadow-2xl bg-[#12282e]', // Mentor residency
     },
     saas: {
-        eyebrow: 'NORTHSTAR / PLATFORM',
-        title: 'A clearer way to move work.',
-        links: [
-            'Platform overview',
-            'Team workspaces',
-            'Automation & workflows',
-            'Integrations',
-            'Customer stories',
-            'Trust & security',
-        ],
-        note: 'One calm command center for focused teams.',
+        1: 'rounded-xl border-t-2 border-[#17a878] shadow-2xl bg-[#0b1319]', // Enterprise suite
+        2: 'rounded-none border border-[#263640] shadow-2xl bg-[#0e161c]', // Developer terminal
+        3: 'rounded-2xl border border-white/10 shadow-2xl bg-[#121c24]', // Cloud solutions matrix
+        4: 'rounded-3xl border border-black/10 backdrop-blur-xl shadow-2xl bg-[#edf3ee]', // Glassmorphism command
+        5: 'rounded-none border-y border-[#263640] shadow-2xl bg-[#17232c]', // Modular ecosystem
     },
     media: {
-        eyebrow: 'MARGIN / THE EDITION',
-        title: 'Follow a good question.',
-        links: [
-            'Latest stories',
-            'The long read',
-            'Culture & ideas',
-            'Audio conversations',
-            'Sunday edition',
-            'From the archive',
-        ],
-        note: 'Independent stories for people who look closer.',
+        1: 'rounded-none border-t-2 border-[#a8472b] border-b border-black/20 shadow-2xl bg-[#f2efe9]', // Sunday broadsheet
+        2: 'rounded-xl border border-white/20 shadow-2xl bg-[#191919]', // Broadcast audio player
+        3: 'rounded-none border-2 border-white shadow-2xl bg-[#121212]', // Gazette high contrast
+        4: 'rounded-lg border border-black/15 shadow-xl bg-[#f7f5f2]', // Breaking news wire
+        5: 'rounded-none border border-[#443e39] shadow-2xl bg-[#1a1816]', // Art book monograph
     },
     community: {
-        eyebrow: 'COMMONROOM / FIND YOUR PEOPLE',
-        title: 'There is room for your thing.',
-        links: [
-            'Discover groups',
-            'What is happening nearby',
-            'Member stories',
-            'Start a community',
-            'Community guidelines',
-            'Meet in real life',
-        ],
-        note: 'Curious, generous, and better together.',
+        1: 'rounded-2xl border-t-2 border-[#ffccad] shadow-2xl bg-[#241c19]', // Guilds & spaces
+        2: 'rounded-none border-b-2 border-[#a34c38] shadow-xl bg-[#fcf8f5]', // City chapters
+        3: 'rounded-xl border border-white/15 shadow-2xl bg-[#1e1715]', // Trending topic radar
+        4: 'rounded-lg border border-[#a34c38] shadow-2xl bg-[#291f1b]', // Peer Q&A
+        5: 'rounded-none border border-white/15 shadow-2xl bg-[#1b1513]', // Discord collective
     },
     corporate: {
-        eyebrow: 'NORTHSTAR / ADVISORY',
-        title: 'Perspective for what comes next.',
-        links: [
-            'Strategy & growth',
-            'Transformation',
-            'Organization design',
-            'Client outcomes',
-            'Ideas & insights',
-            'Meet the team',
-        ],
-        note: 'Independent thinking for complex moments.',
+        1: 'rounded-none border-t-2 border-[#84b9ff] border-b border-white/10 shadow-2xl bg-[#0e1724]', // Global advisory
+        2: 'rounded-lg border border-white/20 shadow-2xl bg-[#0b111a]', // Financial terminal
+        3: 'rounded-xl border border-white/10 shadow-2xl bg-[#101b2a]', // Quantified case studies
+        4: 'rounded-none border-t border-[#3476c5] shadow-2xl bg-[#0d1520]', // Research institute
+        5: 'rounded-none border-2 border-[#84b9ff]/40 shadow-2xl bg-[#0a0f17]', // Private capital
     },
     portfolio: {
-        eyebrow: 'JAMIE PARK / INDEPENDENT DESIGN',
-        title: 'A little more about the work.',
-        links: [
-            'Selected projects',
-            'Brand & identity',
-            'Digital products',
-            'Experiments',
-            'Studio notes',
-            'About Jamie',
-        ],
-        note: 'Useful things, made with feeling.',
+        1: 'rounded-none border-t-2 border-[#ef6a4b] shadow-2xl bg-[#1c1816]', // Case studies
+        2: 'rounded-none border-2 border-white/20 shadow-[6px_6px_0px_0px_#ef6a4b] bg-[#111]', // WebGL shader lab
+        3: 'rounded-xl border border-[#ded8cf] shadow-xl bg-[#f9f7f4]', // Typographic manifesto
+        4: 'rounded-2xl border border-[#ef6a4b]/50 shadow-2xl bg-[#241d1a]', // Retainer packages
+        5: 'rounded-none border border-white/20 shadow-2xl bg-[#181412]', // Contact sheet
     },
     booking: {
-        eyebrow: 'ELSEWHERE / PLACES & PEOPLE',
-        title: 'Find somewhere that stays with you.',
-        links: [
-            'Coastal stays',
-            'Cabins & countryside',
-            'City hideaways',
-            'Local experiences',
-            'Meet the hosts',
-            'Travel field notes',
-        ],
-        note: 'Go gently. Get to know the place.',
+        1: 'rounded-2xl border-t-2 border-[#e07d5b] shadow-2xl bg-[#102530]', // Sanctuaries
+        2: 'rounded-xl border border-[#d8e2e6] shadow-xl bg-[#f7f5f0]', // Travel search
+        3: 'rounded-none border-b-2 border-[#b65f47] shadow-2xl bg-[#14232c]', // Typologies
+        4: 'rounded-xl border border-[#e07d5b] shadow-2xl bg-[#1a2d36]', // Experiences
+        5: 'rounded-none border-2 border-[#e07d5b] shadow-2xl bg-[#0e1d24]', // Flash escapes
     },
     directory: {
-        eyebrow: 'GOOD NEIGHBOR / LOCAL INDEX',
-        title: 'Good work is closer than you think.',
-        links: [
-            'Home & repair',
-            'Food & independent shops',
-            'Health & care',
-            'Creative services',
-            'Verified listings',
-            'List your business',
-        ],
-        note: 'Independent people, useful details, no sponsored surprises.',
+        1: 'rounded-none border-t-2 border-[#d9f064] shadow-2xl bg-[#14201e]', // Verified guilds
+        2: 'rounded-xl border border-[#d5e0d7] shadow-xl bg-[#f5f8f5]', // Power filters
+        3: 'rounded-lg border border-[#527354] shadow-2xl bg-[#182622]', // Field guides
+        4: 'rounded-none border border-white/20 shadow-2xl bg-[#12201c]', // Creative studios
+        5: 'rounded-2xl border border-[#527354] shadow-2xl bg-[#1b2b27]', // District walks
     },
     knowledge: {
-        eyebrow: 'NORTHSTAR / DOCUMENTATION',
-        title: 'Get unstuck. Keep building.',
-        links: [
-            'Quickstart guides',
-            'Product handbook',
-            'API reference',
-            'SDKs & examples',
-            'Release notes',
-            'Get support',
-        ],
-        note: 'Clear answers, kept fresh by the people who know.',
+        1: 'rounded-xl border-t-2 border-[#9bd2a7] shadow-2xl bg-[#0f1a16]', // Developer docs
+        2: 'rounded-2xl border border-[#d1e2d7] shadow-xl bg-[#f4f8f5]', // Instant answers
+        3: 'rounded-none border-t border-[#41715d] shadow-2xl bg-[#121f1a]', // Trust architecture
+        4: 'rounded-lg border border-white/20 shadow-2xl bg-[#101c17]', // Cookbook recipes
+        5: 'rounded-none border-y border-[#41715d] shadow-2xl bg-[#172721]', // Support escalation
     },
 }
 
-const menuLabels = {
-    ecommerce: 'Shop',
-    learning: 'Learn',
-    saas: 'Platform',
-    media: 'Stories',
-    community: 'Community',
-    corporate: 'Expertise',
-    portfolio: 'Work',
-    booking: 'Places',
-    directory: 'Local index',
-    knowledge: 'Documentation',
-}
-
-const menuVisuals = {
+const defaultLabels = {
     ecommerce: {
-        surface: '#f3eee6',
-        ink: '#1c1b19',
-        photo: 'https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=900&q=85',
-        accents: ['#9a704b', '#d6f36a', '#a84f34', '#8b6243', '#d9ba98'],
+        1: 'Lookbook Drop',
+        2: 'Department Archive',
+        3: 'Maison Atelier',
+        4: 'Pre-Loved Market',
+        5: 'Artisan Provisions',
     },
     learning: {
-        surface: '#f5f1e8',
-        ink: '#102d36',
-        photo: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=85',
-        accents: ['#3c7e5d', '#c8ef70', '#41715d', '#7fac58', '#95c77b'],
+        1: 'Curriculum Tracks',
+        2: 'Live Studio',
+        3: 'Career Roadmap',
+        4: 'Experiment Lab',
+        5: 'Mentorship Residency',
     },
     saas: {
-        surface: '#edf3ee',
-        ink: '#111a22',
-        photo: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85',
-        accents: ['#17a878', '#65e6b4', '#375899', '#a8d5ff', '#4bc79a'],
+        1: 'Platform Suite',
+        2: 'Developers & API',
+        3: 'Solutions Matrix',
+        4: 'AI Command Center',
+        5: 'Integrations',
     },
     media: {
-        surface: '#f3eee5',
-        ink: '#28221e',
-        photo: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=85',
-        accents: ['#a84f34', '#e7a37c', '#b55b42', '#c57a56', '#8c3b2c'],
+        1: 'Sunday Edition',
+        2: 'Broadcast Audio',
+        3: 'Gazette Archive',
+        4: 'Live Wire Feed',
+        5: 'Visual Folios',
     },
     community: {
-        surface: '#f7ede6',
-        ink: '#27201d',
-        photo: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85',
-        accents: ['#a34c38', '#ffccad', '#d2785a', '#ed9b76', '#863a2b'],
+        1: 'Guilds & Spaces',
+        2: 'City Chapters',
+        3: 'Topic Radar',
+        4: 'Peer Q&A',
+        5: 'Discord Hub',
     },
     corporate: {
-        surface: '#e9edf1',
-        ink: '#121c2c',
-        photo: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85',
-        accents: ['#3476c5', '#84b9ff', '#4e8bd1', '#7aa8d9', '#285a98'],
+        1: 'Advisory Practices',
+        2: 'Investor Relations',
+        3: 'Quantified Impact',
+        4: 'Research Institute',
+        5: 'Private Capital',
     },
     portfolio: {
-        surface: '#f1e9de',
-        ink: '#241d1a',
-        photo: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=85',
-        accents: ['#ef6a4b', '#f1e9de', '#d45a3c', '#f29c7b', '#be472e'],
+        1: 'Selected Works',
+        2: 'Shader Laboratory',
+        3: 'Design Manifesto',
+        4: 'Services & Retainers',
+        5: 'Visual Notes',
     },
     booking: {
-        surface: '#e5ede8',
-        ink: '#132d3a',
-        photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85',
-        accents: ['#b65f47', '#f0aa8d', '#e07d5b', '#d5836c', '#93442f'],
+        1: 'Architectural Stays',
+        2: 'Destination Finder',
+        3: 'Stays by Typology',
+        4: 'Host Experiences',
+        5: 'Weekend Escapes',
     },
     directory: {
-        surface: '#edf1e6',
-        ink: '#1a2826',
-        photo: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=85',
-        accents: ['#527354', '#d9f064', '#72926d', '#a7c33d', '#365a3c'],
+        1: 'Local Guilds',
+        2: 'Power Search',
+        3: 'Curated Guides',
+        4: 'Verified Studios',
+        5: 'District Walks',
     },
     knowledge: {
-        surface: '#e8f0eb',
-        ink: '#17231f',
-        photo: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=85',
-        accents: ['#41715d', '#9bd2a7', '#5b8e76', '#78a88a', '#2f5b48'],
+        1: 'API & SDKs',
+        2: 'Self-Service Hub',
+        3: 'Trust & Security',
+        4: 'Cookbook Recipes',
+        5: 'Support SLA',
     },
 }
 
-const MegaMenu = ({ category, accent, variant = 1, className = '' }) => {
+const componentMap = {
+    ecommerce: EcommerceMegaMenu,
+    learning: LearningMegaMenu,
+    saas: SaasMegaMenu,
+    media: MediaMegaMenu,
+    community: CommunityMegaMenu,
+    corporate: CorporateMegaMenu,
+    portfolio: PortfolioMegaMenu,
+    booking: BookingMegaMenu,
+    directory: DirectoryMegaMenu,
+    knowledge: KnowledgeMegaMenu,
+}
+
+const MegaMenu = ({
+    category = 'ecommerce',
+    variant = 1,
+    label,
+    accent,
+    triggerClassName = '',
+    className = '',
+}) => {
     const [open, setOpen] = useState(false)
-    const [filter, setFilter] = useState('')
     const [panelPosition, setPanelPosition] = useState(null)
     const triggerRef = useRef(null)
     const panelRef = useRef(null)
     const closeTimerRef = useRef(null)
-    const content = menuContent[category] || menuContent.ecommerce
-    const visual = menuVisuals[category] || menuVisuals.ecommerce
-    const menuVariant = ((variant - 1) % 5) + 1
-    const menuAccent = visual.accents[menuVariant - 1] || accent
-    const filteredLinks = content.links.filter((link) =>
-        link.toLowerCase().includes(filter.toLowerCase()),
-    )
+
+    const normalizedVariant = ((variant - 1) % 5) + 1
+    const menuLabel =
+        label ||
+        defaultLabels[category]?.[normalizedVariant] ||
+        'Explore'
+
+    const Component = componentMap[category] || EcommerceMegaMenu
+    const containerStyle =
+        panelContainerStyles[category]?.[normalizedVariant] ||
+        'rounded-xl border border-black/10 shadow-2xl'
 
     const updatePanelPosition = () => {
         const header = triggerRef.current?.closest('header')
         if (!header) return
 
         const bounds = header.getBoundingClientRect()
-        const width = Math.min(bounds.width, window.innerWidth - 32)
-        const left = Math.min(
+        // If container is full-bleed sharp (like variant 1 or 2 in certain themes), make it flush
+        const isFlush = containerStyle.includes('rounded-none') && containerStyle.includes('border-b')
+        const width = isFlush ? Math.min(bounds.width, window.innerWidth) : Math.min(bounds.width, window.innerWidth - 32)
+        const left = isFlush ? bounds.left : Math.min(
             Math.max(bounds.left, 16),
             window.innerWidth - width - 16,
         )
 
         setPanelPosition({
-            top: bounds.bottom + 8,
+            top: isFlush ? bounds.bottom : bounds.bottom + 6,
             left,
             width,
         })
@@ -263,7 +237,7 @@ const MegaMenu = ({ category, accent, variant = 1, className = '' }) => {
 
     const scheduleClose = () => {
         cancelClose()
-        closeTimerRef.current = window.setTimeout(() => setOpen(false), 140)
+        closeTimerRef.current = window.setTimeout(() => setOpen(false), 160)
     }
 
     const closeMenu = () => {
@@ -284,246 +258,10 @@ const MegaMenu = ({ category, accent, variant = 1, className = '' }) => {
         if (event.key === 'Escape') closeMenu()
     }
 
-    const renderLink = (link, index, className = '') => (
-        <a
-            key={link}
-            href={`#${category}-menu-${index + 1}`}
-            className={className}
-            onClick={closeMenu}
-        >
-            {link}
-        </a>
-    )
-
-    const renderLayout = () => {
-        if (menuVariant === 1) {
-            return (
-                <div className="grid min-h-72 md:grid-cols-[.82fr_1.18fr]">
-                    <div className="relative flex min-h-56 flex-col justify-end overflow-hidden p-6 text-white sm:p-8">
-                        <img
-                            src={visual.photo}
-                            alt=""
-                            className="absolute inset-0 -z-10 h-full w-full object-cover"
-                        />
-                        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                        <p className="text-[10px] font-bold uppercase tracking-[.16em] text-white/80">
-                            {content.eyebrow}
-                        </p>
-                        <h2 className="mt-3 max-w-sm font-serif text-3xl leading-tight">
-                            {content.title}
-                        </h2>
-                        <p className="mt-3 max-w-xs text-xs leading-5 text-white/80">
-                            {content.note}
-                        </p>
-                    </div>
-                    <nav
-                        aria-label={`${menuLabels[category]} destinations`}
-                        className="grid grid-cols-1 content-center gap-x-5 px-5 py-4 sm:grid-cols-2 sm:px-7"
-                    >
-                        {content.links.map((link, index) =>
-                            renderLink(
-                                link,
-                                index,
-                                'group flex min-h-12 items-center justify-between gap-3 border-t border-gray-200/80 py-3 text-sm font-medium text-gray-800 transition-colors hover:text-gray-500 dark:border-gray-700 dark:text-gray-100 dark:hover:text-gray-300',
-                            ),
-                        )}
-                    </nav>
-                </div>
-            )
-        }
-
-        if (menuVariant === 2) {
-            return (
-                <div
-                    className="grid gap-8 p-6 text-white sm:p-9 lg:grid-cols-[.8fr_1.2fr]"
-                    style={{ backgroundColor: visual.ink }}
-                >
-                    <div className="flex flex-col justify-between gap-7">
-                        <div>
-                            <p
-                                className="text-[10px] font-bold uppercase tracking-[.16em]"
-                                style={{ color: menuAccent }}
-                            >
-                                {content.eyebrow}
-                            </p>
-                            <h2 className="mt-4 max-w-sm text-3xl font-semibold leading-tight sm:text-4xl">
-                                {content.title}
-                            </h2>
-                        </div>
-                        <p className="max-w-xs text-xs leading-5 text-white/65">
-                            {content.note}
-                        </p>
-                    </div>
-                    <nav
-                        aria-label={`${menuLabels[category]} destinations`}
-                        className="grid grid-cols-1 gap-x-5 sm:grid-cols-2"
-                    >
-                        {content.links.map((link, index) =>
-                            renderLink(
-                                link,
-                                index,
-                                'group flex min-h-14 items-center justify-between gap-3 border-t border-white/15 py-3 text-base font-medium text-white transition-colors hover:text-white/60',
-                            ),
-                        )}
-                    </nav>
-                </div>
-            )
-        }
-
-        if (menuVariant === 3) {
-            return (
-                <div
-                    className="p-6 sm:p-8"
-                    style={{
-                        backgroundColor: visual.surface,
-                        color: visual.ink,
-                    }}
-                >
-                    <div className="flex flex-col justify-between gap-5 border-b border-black/10 pb-6 sm:flex-row sm:items-end">
-                        <div>
-                            <p
-                                className="text-[10px] font-bold uppercase tracking-[.16em]"
-                                style={{ color: menuAccent }}
-                            >
-                                {content.eyebrow}
-                            </p>
-                            <h2 className="mt-3 max-w-3xl font-serif text-3xl leading-tight sm:text-4xl">
-                                {content.title}
-                            </h2>
-                        </div>
-                        <p className="max-w-xs text-xs leading-5 opacity-70">
-                            {content.note}
-                        </p>
-                    </div>
-                    <nav
-                        aria-label={`${menuLabels[category]} destinations`}
-                        className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
-                    >
-                        {content.links.map((link, index) =>
-                            renderLink(
-                                link,
-                                index,
-                                'group flex min-h-20 flex-col justify-between rounded-md border border-black/10 bg-white/60 p-4 text-sm font-semibold transition-all duration-200 hover:-translate-y-1 hover:bg-white',
-                            ),
-                        )}
-                    </nav>
-                </div>
-            )
-        }
-
-        if (menuVariant === 4) {
-            return (
-                <div
-                    className="p-6 sm:p-8"
-                    style={{
-                        backgroundColor: visual.surface,
-                        color: visual.ink,
-                    }}
-                >
-                    <div className="grid gap-6 md:grid-cols-[.8fr_1.2fr]">
-                        <div>
-                            <p
-                                className="text-[10px] font-bold uppercase tracking-[.16em]"
-                                style={{ color: menuAccent }}
-                            >
-                                {content.eyebrow}
-                            </p>
-                            <h2 className="mt-3 max-w-xs text-3xl font-semibold leading-tight">
-                                {content.title}
-                            </h2>
-                            <p className="mt-3 max-w-xs text-xs leading-5 opacity-70">
-                                {content.note}
-                            </p>
-                        </div>
-                        <div>
-                            <label className="flex min-h-12 items-center gap-3 rounded-md border border-black/15 bg-white px-4">
-                                <HiOutlineSearch aria-hidden="true" />
-                                <input
-                                    type="search"
-                                    value={filter}
-                                    placeholder={`Search ${menuLabels[category].toLowerCase()}...`}
-                                    className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-gray-500"
-                                    onChange={(event) =>
-                                        setFilter(event.target.value)
-                                    }
-                                />
-                            </label>
-                            <nav
-                                aria-label={`${menuLabels[category]} search results`}
-                                className="mt-3 grid grid-cols-1 gap-x-5 sm:grid-cols-2"
-                            >
-                                {filteredLinks.length ? (
-                                    filteredLinks.map((link) => {
-                                        const index =
-                                            content.links.indexOf(link)
-                                        return renderLink(
-                                            link,
-                                            index,
-                                            'flex min-h-10 items-center border-b border-black/10 py-2 text-sm transition-colors hover:opacity-60',
-                                        )
-                                    })
-                                ) : (
-                                    <p className="py-4 text-sm opacity-65">
-                                        No matches. Try another search.
-                                    </p>
-                                )}
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-
-        return (
-            <div className="grid gap-3 bg-[#111a22] p-5 text-white sm:grid-cols-3 sm:p-7">
-                <div className="relative min-h-52 overflow-hidden rounded-md sm:row-span-2">
-                    <img
-                        src={visual.photo}
-                        alt=""
-                        className="absolute inset-0 h-full w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 p-5">
-                        <p className="text-[10px] font-bold uppercase tracking-[.16em] text-white/80">
-                            {content.eyebrow}
-                        </p>
-                        <h2 className="mt-2 font-serif text-2xl">
-                            {content.title}
-                        </h2>
-                    </div>
-                </div>
-                {content.links.map((link, index) => (
-                    <a
-                        key={link}
-                        href={`#${category}-menu-${index + 1}`}
-                        className="group flex min-h-20 items-end justify-between gap-3 rounded-md p-4 text-sm font-semibold transition-transform duration-200 hover:-translate-y-1"
-                        style={{
-                            backgroundColor:
-                                index % 2 ? visual.surface : menuAccent,
-                            color: visual.ink,
-                        }}
-                        onClick={closeMenu}
-                    >
-                        <span>
-                            <span className="mb-2 block font-mono text-[10px] opacity-65">
-                                0{index + 1}
-                            </span>
-                            {link}
-                        </span>
-                        <HiArrowRight
-                            aria-hidden="true"
-                            className="mb-1 transition-transform group-hover:translate-x-1"
-                        />
-                    </a>
-                ))}
-            </div>
-        )
-    }
-
     return (
         <div
             ref={triggerRef}
-            className={`relative z-40 w-fit ${className}`}
+            className={`relative z-40 inline-flex items-center self-center ${className}`}
             onMouseEnter={cancelClose}
             onMouseLeave={scheduleClose}
             onFocusCapture={() => {
@@ -538,19 +276,25 @@ const MegaMenu = ({ category, accent, variant = 1, className = '' }) => {
                 aria-expanded={open}
                 aria-haspopup="true"
                 aria-controls={`mega-menu-${category}-${variant}`}
-                className="inline-flex min-h-9 items-center gap-2 rounded-full border border-current/15 px-3 text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
-                style={{ outlineColor: accent }}
+                className={
+                    triggerClassName ||
+                    'group inline-flex items-center gap-1 leading-normal transition-colors cursor-pointer hover:opacity-75 focus-visible:outline-none'
+                }
+                style={accent ? { '--accent-color': accent } : undefined}
                 onClick={() => {
                     cancelClose()
                     setOpen((value) => !value)
                 }}
             >
-                Explore {menuLabels[category] || 'the collection'}
+                <span>{menuLabel}</span>
                 <HiChevronDown
                     aria-hidden="true"
-                    className={`transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+                    className={`h-3 w-3 shrink-0 transition-transform duration-300 ease-out ${
+                        open ? 'rotate-180' : ''
+                    }`}
                 />
             </button>
+
             {open &&
                 panelPosition &&
                 createPortal(
@@ -558,7 +302,7 @@ const MegaMenu = ({ category, accent, variant = 1, className = '' }) => {
                         ref={panelRef}
                         id={`mega-menu-${category}-${variant}`}
                         aria-hidden={!open}
-                        className="fixed z-[9999] overflow-auto rounded-xl border border-black/10 shadow-2xl transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none"
+                        className={`fixed z-[9999] overflow-auto transition-[opacity,transform] duration-300 ease-out ${containerStyle}`}
                         style={{
                             top: panelPosition.top,
                             left: panelPosition.left,
@@ -566,7 +310,6 @@ const MegaMenu = ({ category, accent, variant = 1, className = '' }) => {
                             maxHeight: `calc(100vh - ${panelPosition.top}px - 16px)`,
                             transformOrigin: 'top center',
                         }}
-                        inert={!open}
                         onMouseEnter={() => {
                             cancelClose()
                             setOpen(true)
@@ -575,7 +318,11 @@ const MegaMenu = ({ category, accent, variant = 1, className = '' }) => {
                         onBlurCapture={handleBlur}
                         onKeyDown={handleKeyDown}
                     >
-                        {renderLayout()}
+                        <Component
+                            variant={normalizedVariant}
+                            closeMenu={closeMenu}
+                            accent={accent}
+                        />
                     </div>,
                     document.body,
                 )}

@@ -1,31 +1,64 @@
 import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar03() {
     return (
-        <header className="rounded-lg bg-[#28221e] px-5 py-4 text-[#f3eee5]">
-            <div className="grid grid-cols-[1fr_auto_1fr] items-center">
-                <div className="flex items-center gap-3 justify-self-start">
-                    <a
-                        href="#menu"
-                        className="text-xs uppercase tracking-widest"
-                    >
-                        Menu
-                    </a>
-                    <MegaMenu category="media" accent="#c57a56" variant={3} />
-                </div>
-                <a href="#home" className="font-serif text-xl">
-                    The Sunday Paper
+        <header className="rounded-none border-y-2 border-black bg-[#f6f3eb] text-[#1e1e1a]">
+            {/* Top Micro-Ticker */}
+            <div className="border-b border-black/15 px-5 py-1.5 font-mono text-[10px] text-black/60 flex items-center justify-between sm:px-8">
+                <span>THE DAILY MARGINALIAN &bull; EST. 2004 &bull; GLOBAL CRITICISM</span>
+                <span className="hidden sm:inline">PRINT EDITION AVAILABLE IN LONDON, TOKYO & NEW YORK</span>
+                <span>VOL. 22 &bull; NO. 842</span>
+            </div>
+
+            {/* Middle Main Masthead */}
+            <div className="px-5 py-5 text-center sm:px-8 flex items-center justify-between">
+                <span className="hidden sm:block font-mono text-[10px] text-black/40 uppercase">
+                    PRICE: $4.00 USD
+                </span>
+                <a
+                    href="#home"
+                    className="font-serif text-3xl sm:text-5xl font-black tracking-tight uppercase hover:opacity-85 transition-opacity mx-auto sm:mx-0"
+                >
+                    The Margin Journal
                 </a>
                 <a
-                    href="#join"
-                    className="flex items-center gap-1 justify-self-end text-xs"
+                    href="#patron"
+                    className="hidden sm:inline-flex items-center gap-1 font-mono text-xs font-bold text-[#a8472b] hover:underline"
                 >
-                    Join <HiArrowRight />
+                    <span>Patron Pledge &rarr;</span>
                 </a>
             </div>
-            <p className="mt-3 border-t border-white/15 pt-3 text-center text-[9px] uppercase tracking-[.2em] text-white/45">
-                Independent stories for a curious life
-            </p>
+
+            {/* Bottom Shelf Navigation */}
+            <div className="border-t-2 border-black bg-[#efeae0] px-5 py-2.5 sm:px-8">
+                <nav className="flex items-center justify-between text-xs font-serif font-bold uppercase tracking-wider">
+                    <div className="flex items-center gap-8 overflow-x-auto">
+                        <MegaMenu
+                            category="media"
+                            accent="#a8472b"
+                            variant={3}
+                            label="Gazette Archive"
+                            triggerClassName="inline-flex items-center gap-1 font-serif text-xs font-bold uppercase tracking-wider text-[#a8472b] hover:text-black transition-colors cursor-pointer"
+                        />
+                        <a href="#culture" className="text-black/70 hover:text-black transition-colors">
+                            Culture & Art
+                        </a>
+                        <a href="#architecture" className="text-black/70 hover:text-black transition-colors">
+                            Architecture
+                        </a>
+                        <a href="#philosophy" className="text-black/70 hover:text-black transition-colors">
+                            Philosophy
+                        </a>
+                        <a href="#critical-reading" className="text-black/70 hover:text-black transition-colors">
+                            Critical Reading
+                        </a>
+                    </div>
+                    <span className="font-mono text-[10px] text-black/50 hidden lg:inline">
+                        100% INDEPENDENT JOURNALISM
+                    </span>
+                </nav>
+            </div>
         </header>
     )
 }

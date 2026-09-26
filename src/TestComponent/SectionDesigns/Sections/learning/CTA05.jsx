@@ -1,24 +1,27 @@
 import { HiArrowRight } from 'react-icons/hi'
+
 export default function CTA05() {
     return (
-        <section className="rounded-lg border border-[#dce5dc] bg-white p-7 text-[#102d36] sm:p-9">
-            <div className="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
-                <div>
-                    <p className="text-xs font-bold uppercase tracking-[.14em] text-[#3c7e5d]">
-                        THE FIELDNOTE LETTER
-                    </p>
-                    <h2 className="mt-2 font-serif text-3xl">
-                        One useful idea for your week.
+        <section className="rounded-2xl border border-[#3c7e5d]/30 bg-[#12282e] p-8 text-white sm:p-12 shadow-2xl">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="max-w-xl">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#c8ef70]">
+                        PRIVATE MENTOR RESIDENCY &bull; Q4 APPLICATION WINDOW
+                    </span>
+                    <h2 className="mt-2 font-serif text-3xl font-bold leading-tight">
+                        Six Months of Dedicated 1-on-1 Direction
                     </h2>
-                    <p className="mt-2 text-sm text-gray-600">
-                        New classes, thoughtful mentors, and small sparks.
+                    <p className="mt-2 text-sm leading-relaxed text-white/70">
+                        Paired with a design director suited to your career trajectory. Bi-weekly project feedback, portfolio re-architecture, and direct partner intros.
                     </p>
                 </div>
+
                 <a
-                    href="#letter"
-                    className="inline-flex items-center gap-2 rounded-md bg-[#102d36] px-5 py-3 text-sm text-white"
+                    href="#apply-residency"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#c8ef70] px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-[#12282e] hover:bg-white transition-colors shrink-0"
                 >
-                    Get the letter <HiArrowRight />
+                    <span>Apply for 1-on-1 Cohort</span>
+                    <HiArrowRight />
                 </a>
             </div>
         </section>

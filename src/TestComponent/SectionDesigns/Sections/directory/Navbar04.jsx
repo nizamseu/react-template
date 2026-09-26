@@ -1,47 +1,46 @@
-import { HiArrowRight, HiOutlineMenu } from 'react-icons/hi'
+import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar04() {
     return (
-        <header className="rounded-lg bg-[#1a2826] px-5 py-4 text-white">
-            <div className="flex items-center justify-between gap-4">
+        <header className="py-2 px-3">
+            <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-white/10 bg-[#1a2826] px-6 py-2.5 text-white shadow-xl">
+                {/* Micro Brand */}
                 <a
                     href="#home"
-                    className="font-black uppercase tracking-[.12em]"
+                    className="font-mono text-xs font-black uppercase tracking-[.18em] shrink-0"
                 >
-                    THE LOCAL LIST
+                    LOCAL<span className="text-[#d9f064]">/</span>LIST
                 </a>
-                <nav className="hidden gap-6 text-xs text-white/65 md:flex">
-                    <a href="#editors">Editor&apos;s picks</a>
-                    <a href="#nearby">Nearby</a>
-                    <a href="#categories">Categories</a>
 
+                {/* Pill Links & MegaMenu */}
+                <nav className="hidden items-center gap-6 text-xs text-white/70 md:flex">
                     <MegaMenu
                         category="directory"
-                        accent="#527354"
+                        accent="#d9f064"
                         variant={4}
+                        label="Creative Studios"
+                        triggerClassName="inline-flex items-center gap-1 text-xs text-[#d9f064] hover:text-white transition-colors cursor-pointer"
                     />
-                </nav>
-                <div className="flex items-center gap-3">
-                    <button
-                        aria-label="Open menu"
-                        className="text-xl md:hidden"
-                    >
-                        <HiOutlineMenu />
-                    </button>
-                    <a
-                        href="#listing"
-                        className="flex items-center gap-1 text-xs text-[#d9f064]"
-                    >
-                        Add a listing <HiArrowRight />
+                    <a href="#agencies" className="hover:text-white transition-colors">
+                        Design Agencies
                     </a>
-                </div>
+                    <a href="#architects" className="hover:text-white transition-colors">
+                        Architects
+                    </a>
+                    <a href="#workshops" className="hover:text-white transition-colors">
+                        Craft Guilds
+                    </a>
+                </nav>
 
-                <MegaMenu
-                    category="directory"
-                    accent="#527354"
-                    variant={4}
-                    className="md:hidden"
-                />
+                {/* Pill Action */}
+                <a
+                    href="#agency-index"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-[#d9f064] px-4 py-1.5 font-mono text-xs font-bold text-[#1a2826] hover:bg-white transition-colors shrink-0"
+                >
+                    <span>Studio Index</span>
+                    <HiArrowRight />
+                </a>
             </div>
         </header>
     )

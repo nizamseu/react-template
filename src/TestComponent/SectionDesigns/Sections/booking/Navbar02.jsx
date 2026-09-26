@@ -1,30 +1,42 @@
-import { HiArrowRight, HiOutlineGlobeAlt } from 'react-icons/hi'
+import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar02() {
     return (
-        <header className="rounded-lg bg-[#132d3a] px-5 py-4 text-white sm:px-8">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-                <a href="#home" className="font-serif text-2xl">
-                    elsewhere.
+        <header className="rounded-none border-b border-[#d8e2e6] bg-[#f7f5f0] px-5 py-4 text-[#1c2c34] sm:px-8">
+            <div className="flex items-center justify-between gap-6">
+                {/* Brand Far Left */}
+                <a href="#home" className="font-serif text-2xl font-bold tracking-tight shrink-0">
+                    ELSEWHERE <span className="text-[#b65f47]">/ DESTINATIONS</span>
                 </a>
-                <nav className="order-3 flex w-full gap-6 border-t border-white/15 pt-3 text-xs text-white/70 sm:order-none sm:w-auto sm:border-0 sm:pt-0">
-                    <a href="#stays">Find a stay</a>
-                    <a href="#places">Places</a>
-                    <a href="#journal">Field notes</a>
-                    <a href="#hosts">For hosts</a>
 
-                    <MegaMenu category="booking" accent="#b65f47" variant={2} />
-                </nav>
-                <div className="flex items-center gap-3 text-xs">
-                    <button aria-label="Choose language">
-                        <HiOutlineGlobeAlt />
-                    </button>
-                    <a href="#account">Sign in</a>
+                {/* Right-Flush Navigation & Reserve Group */}
+                <div className="flex items-center gap-8 ml-auto">
+                    <nav className="hidden items-center gap-7 text-xs font-medium md:flex">
+                        <MegaMenu
+                            category="booking"
+                            accent="#b65f47"
+                            variant={2}
+                            label="Destination Finder"
+                            triggerClassName="inline-flex items-center gap-1 text-xs font-semibold text-[#b65f47] hover:text-[#1c2c34] transition-colors cursor-pointer"
+                        />
+                        <a href="#typology" className="hover:text-[#b65f47] transition-colors">
+                            Typologies
+                        </a>
+                        <a href="#experiences" className="hover:text-[#b65f47] transition-colors">
+                            Experiences
+                        </a>
+                        <a href="#private-key" className="hover:text-[#b65f47] transition-colors">
+                            Private Key
+                        </a>
+                    </nav>
+
                     <a
-                        href="#plan"
-                        className="flex items-center gap-1 rounded-full bg-[#e07d5b] px-4 py-2"
+                        href="#reserve"
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-[#b65f47] px-4 py-2 font-mono text-xs font-bold text-white hover:bg-[#1c2c34] transition-colors shrink-0"
                     >
-                        Plan a trip <HiArrowRight />
+                        <span>Reserve Villa</span>
+                        <HiArrowRight />
                     </a>
                 </div>
             </div>

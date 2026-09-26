@@ -1,46 +1,46 @@
-import { HiArrowRight, HiOutlineMenu } from 'react-icons/hi'
+import { HiOutlineCode } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
 
 export default function Navbar04() {
     return (
-        <header className="rounded-lg bg-[#e8f0eb] px-5 py-4 text-[#17231f]">
-            <div className="flex items-center justify-between gap-4">
-                <a href="#handbook" className="font-semibold">
-                    handbook<span className="text-[#41715d]">/</span>team
+        <header className="py-2 px-3">
+            <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-[#cde0d3] bg-[#e8f0eb] px-6 py-2.5 text-[#17231f] shadow-xl">
+                {/* Micro Brand */}
+                <a
+                    href="#home"
+                    className="font-mono text-xs font-bold uppercase tracking-[.18em] shrink-0"
+                >
+                    HANDBOOK<span className="text-[#41715d]">/</span>TEAM
                 </a>
-                <nav className="hidden gap-6 text-xs md:flex">
-                    <a href="#people">People</a>
-                    <a href="#how-we-work">How we work</a>
-                    <a href="#policies">Policies</a>
-                    <a href="#tools">Tools</a>
 
+                {/* Pill Links & MegaMenu */}
+                <nav className="hidden items-center gap-6 text-xs font-semibold md:flex">
                     <MegaMenu
                         category="knowledge"
                         accent="#41715d"
                         variant={4}
+                        label="Cookbook Recipes"
+                        triggerClassName="inline-flex items-center gap-1 text-xs font-semibold text-[#41715d] hover:text-black transition-colors cursor-pointer"
                     />
-                </nav>
-                <div className="flex items-center gap-3">
-                    <button
-                        aria-label="Open handbook menu"
-                        className="text-xl md:hidden"
-                    >
-                        <HiOutlineMenu />
-                    </button>
-                    <a
-                        href="#contribute"
-                        className="inline-flex items-center gap-1 rounded-full bg-[#17231f] px-4 py-2 text-xs text-white"
-                    >
-                        Add knowledge <HiArrowRight />
+                    <a href="#standards" className="text-[#17231f]/75 hover:text-[#17231f] transition-colors">
+                        Engineering Standards
                     </a>
-                </div>
+                    <a href="#onboarding" className="text-[#17231f]/75 hover:text-[#17231f] transition-colors">
+                        Day-One Setup
+                    </a>
+                    <a href="#ci-cd" className="text-[#17231f]/75 hover:text-[#17231f] transition-colors">
+                        CI/CD Pipelines
+                    </a>
+                </nav>
 
-                <MegaMenu
-                    category="knowledge"
-                    accent="#41715d"
-                    variant={4}
-                    className="md:hidden"
-                />
+                {/* Pill Action */}
+                <a
+                    href="#git-clone"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-[#17231f] px-4 py-1.5 font-mono text-xs font-bold text-white hover:bg-[#41715d] transition-colors shrink-0"
+                >
+                    <HiOutlineCode />
+                    <span>Clone Template</span>
+                </a>
             </div>
         </header>
     )

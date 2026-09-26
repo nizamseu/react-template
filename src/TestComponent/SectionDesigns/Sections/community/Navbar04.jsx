@@ -1,29 +1,45 @@
 import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar04() {
     return (
-        <header className="rounded-lg bg-[#27201d] px-5 py-4 text-white">
-            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-                <a href="#home" className="text-xl font-black">
-                    COMMONROOM
+        <header className="py-2 px-3">
+            <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-[#a34c38] bg-[#291f1b] px-6 py-2.5 text-white shadow-xl">
+                {/* Micro Brand */}
+                <a
+                    href="#home"
+                    className="font-mono text-xs font-black uppercase tracking-[.18em] shrink-0"
+                >
+                    COMMON<span className="text-[#ffccad]">/</span>Q&A
                 </a>
-                <nav className="flex gap-5 overflow-x-auto text-xs text-white/60">
-                    <a href="#photography">Photography</a>
-                    <a href="#food">Food</a>
-                    <a href="#outdoors">Outdoors</a>
-                    <a href="#makers">Makers</a>
 
+                {/* Pill Links & MegaMenu */}
+                <nav className="hidden items-center gap-6 text-xs font-semibold md:flex">
                     <MegaMenu
                         category="community"
-                        accent="#a34c38"
+                        accent="#ffccad"
                         variant={4}
+                        label="Peer Q&A"
+                        triggerClassName="inline-flex items-center gap-1 text-xs font-semibold text-[#ffccad] hover:text-white transition-colors cursor-pointer"
                     />
+                    <a href="#unanswered" className="text-white/70 hover:text-white transition-colors">
+                        Unanswered (14)
+                    </a>
+                    <a href="#bounties" className="text-white/70 hover:text-white transition-colors">
+                        Active Bounties
+                    </a>
+                    <a href="#karma" className="text-white/70 hover:text-white transition-colors">
+                        Leaderboard
+                    </a>
                 </nav>
+
+                {/* Pill Action */}
                 <a
-                    href="#new-group"
-                    className="flex items-center gap-2 self-start text-xs text-[#ffccad]"
+                    href="#ask"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-[#ffccad] px-4 py-1.5 font-mono text-xs font-bold text-[#291f1b] hover:bg-white transition-colors shrink-0"
                 >
-                    Start a group <HiArrowRight />
+                    <span>Ask Question</span>
+                    <HiArrowRight />
                 </a>
             </div>
         </header>

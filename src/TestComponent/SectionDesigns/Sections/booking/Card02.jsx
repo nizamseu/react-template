@@ -1,37 +1,54 @@
-import { HiArrowRight, HiStar } from 'react-icons/hi'
 export default function Card02() {
     return (
-        <article className="overflow-hidden rounded-lg bg-[#f0e6d8] text-[#132d3a]">
-            <div className="relative">
-                <img
-                    className="h-44 w-full object-cover"
-                    src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=850&q=85"
-                    alt="Lake and mountains from a quiet cabin"
-                />
-                <span className="absolute bottom-3 left-3 bg-white px-3 py-1 text-[10px] font-bold uppercase">
-                    Host&apos;s pick
-                </span>
+        <article className="overflow-hidden rounded-xl border border-[#d8e2e6] bg-[#f7f5f0] text-[#1c2c34] shadow-md">
+            <div className="bg-[#1c2c34] p-4 text-white flex items-center justify-between">
+                <span className="font-serif text-sm font-bold tracking-tight">ELSEWHERE AIRLINES &bull; FIRST SUITE</span>
+                <span className="font-mono text-xs text-[#e07d5b]">FLIGHT EW-842</span>
             </div>
-            <div className="p-5">
-                <p className="text-xs uppercase tracking-wide text-[#b65f47]">
-                    LAKE DISTRICT / ENGLAND
-                </p>
-                <h3 className="mt-2 font-serif text-2xl">
-                    The little house at water&apos;s edge
-                </h3>
-                <div className="mt-4 flex justify-between text-xs">
-                    <span>2 guests · 2 nights</span>
-                    <span className="flex items-center gap-1">
-                        <HiStar className="text-[#d28b42]" />
-                        4.97
-                    </span>
+
+            <div className="p-5 font-mono">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <span className="text-2xl sm:text-3xl font-black">HND</span>
+                        <span className="block text-[10px] text-gray-500 font-sans">Tokyo Haneda</span>
+                    </div>
+                    <div className="text-center text-xs text-gray-400">
+                        <span>11h 45m</span>
+                        <div className="w-16 border-t border-gray-400 my-1" />
+                        <span>Direct</span>
+                    </div>
+                    <div className="text-right">
+                        <span className="text-2xl sm:text-3xl font-black">KEF</span>
+                        <span className="block text-[10px] text-gray-500 font-sans">Reykjavik Island</span>
+                    </div>
                 </div>
-                <div className="mt-4 flex justify-between border-t border-[#d9cbb9] pt-4">
-                    <b>
-                        $320{' '}
-                        <span className="font-normal text-gray-500">total</span>
-                    </b>
-                    <HiArrowRight className="text-[#b65f47]" />
+
+                <div className="mt-4 grid grid-cols-3 gap-2 border-y border-gray-200 py-3 text-xs">
+                    <div>
+                        <span className="block text-[9px] text-gray-400">SEAT</span>
+                        <span className="font-bold">02A (Suite)</span>
+                    </div>
+                    <div>
+                        <span className="block text-[9px] text-gray-400">GATE</span>
+                        <span className="font-bold">Gate 14B</span>
+                    </div>
+                    <div>
+                        <span className="block text-[9px] text-gray-400">BOARDING</span>
+                        <span className="font-bold text-[#b65f47]">22:15 JST</span>
+                    </div>
+                </div>
+
+                {/* Barcode Graphic */}
+                <div className="mt-4 flex items-center justify-between pt-1">
+                    <div className="text-[10px] text-gray-400">
+                        ||| | |||| | ||| || |||| | ||| || |
+                    </div>
+                    <a
+                        href="#boarding-pass"
+                        className="rounded bg-[#b65f47] px-3 py-1 text-xs font-sans font-bold text-white hover:bg-[#1c2c34] transition-colors"
+                    >
+                        View Itinerary
+                    </a>
                 </div>
             </div>
         </article>

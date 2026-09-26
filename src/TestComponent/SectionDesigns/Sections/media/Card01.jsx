@@ -1,31 +1,43 @@
-import { HiArrowRight } from 'react-icons/hi'
+import { HiArrowRight, HiOutlineBookmark } from 'react-icons/hi'
+
 export default function Card01() {
     return (
-        <article className="group grid overflow-hidden rounded-lg bg-[#f1eee6] text-[#1f201c] sm:grid-cols-[.9fr_1.1fr]">
-            <img
-                className="h-52 w-full object-cover transition duration-500 group-hover:scale-[1.02] sm:h-full"
-                src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=800&q=85"
-                alt="City skyline after sunset"
-            />
-            <div className="flex flex-col justify-between p-5">
-                <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[.15em] text-[#a8472b]">
-                        City / Essay / 8 min
-                    </p>
-                    <h3 className="mt-3 font-serif text-3xl leading-tight">
-                        A quieter kind of city after dark.
-                    </h3>
-                    <p className="mt-3 text-sm leading-6 text-[#626159]">
-                        The late walkers, tiny kitchens, and third places that
-                        keep a neighborhood awake.
-                    </p>
+        <article className="overflow-hidden rounded-xl border border-[#ded8cb] bg-[#f2efe9] p-6 text-[#1c1d1a] shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between text-[11px] font-mono border-b border-[#ded8cb] pb-3">
+                <span className="font-bold text-[#a8472b] uppercase tracking-widest">
+                    COVER ESSAY &bull; ISSUE NO. 48
+                </span>
+                <div className="flex items-center gap-3">
+                    <span className="text-black/50">14 MIN READ</span>
+                    <button aria-label="Bookmark essay" className="hover:text-[#a8472b] transition-colors">
+                        <HiOutlineBookmark className="text-sm" />
+                    </button>
                 </div>
-                <a
-                    href="#story"
-                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"
-                >
-                    Read the story <HiArrowRight />
-                </a>
+            </div>
+
+            <div className="mt-4">
+                <h3 className="font-serif text-2xl font-normal leading-tight hover:text-[#a8472b] transition-colors cursor-pointer">
+                    The Architecture of Silence: In Praise of Tokyo’s Third Places
+                </h3>
+                <p className="mt-1 font-mono text-[11px] text-[#787163]">
+                    BY DR. HARUKI TANAKA &bull; PHOTOGRAPHY BY TADAO SHIN
+                </p>
+
+                {/* Excerpt with drop cap styling */}
+                <div className="mt-4 text-xs leading-relaxed text-[#45423a]">
+                    <span className="float-left mr-2 font-serif text-3xl font-bold leading-none text-[#a8472b]">
+                        W
+                    </span>
+                    hen the Yamanote train slows to a halt at 01:14 AM, the city sheds its metallic skin. What remains are the cedar-lined kissaten counters and five-seat jazz bars that shelter Tokyo’s late-night solitary thinkers.
+                </div>
+
+                <div className="mt-6 flex items-center justify-between pt-3 border-t border-[#ded8cb] text-xs">
+                    <span className="font-mono text-[10px] text-black/50 uppercase">ANTHROPOLOGY &bull; CITIES</span>
+                    <a href="#read" className="inline-flex items-center gap-1 font-bold text-[#a8472b] hover:underline">
+                        <span>Read Full Essay</span>
+                        <HiArrowRight />
+                    </a>
+                </div>
             </div>
         </article>
     )

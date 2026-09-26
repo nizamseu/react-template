@@ -1,45 +1,49 @@
-import { HiArrowRight, HiOutlineMenu } from 'react-icons/hi'
+import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar01() {
     return (
-        <header className="rounded-lg bg-[#121c2c] px-5 py-4 text-white sm:px-8">
-            <div className="flex items-center justify-between gap-4">
-                <a href="#home" className="text-sm font-bold tracking-[.12em]">
-                    NORTHSTAR<span className="text-[#84b9ff]">/</span>
-                </a>
-                <nav className="hidden gap-7 text-xs text-white/70 md:flex">
-                    <a href="#services">What we do</a>
-                    <a href="#work">Our work</a>
-                    <a href="#people">People</a>
-                    <a href="#insights">Insights</a>
-
-                    <MegaMenu
-                        category="corporate"
-                        accent="#3476c5"
-                        variant={1}
-                    />
-                </nav>
-                <div className="flex items-center gap-4">
-                    <button
-                        aria-label="Open menu"
-                        className="text-xl md:hidden"
-                    >
-                        <HiOutlineMenu />
-                    </button>
-                    <a
-                        href="#contact"
-                        className="inline-flex items-center gap-2 border-b border-[#84b9ff] pb-1 text-xs"
-                    >
-                        Let&apos;s talk <HiArrowRight />
+        <header className="rounded-none border-b border-white/10 bg-[#0e1724] px-5 py-4 text-white sm:px-8">
+            <div className="flex items-center justify-between gap-6">
+                {/* Brand & Left-Flush Navigation Group */}
+                <div className="flex items-center gap-10">
+                    <a href="#home" className="text-sm font-bold tracking-[.18em] shrink-0">
+                        NORTHSTAR<span className="text-[#84b9ff]">/</span>ADVISORY
                     </a>
+
+                    <nav className="hidden items-center gap-7 text-xs font-medium text-white/75 md:flex">
+                        <MegaMenu
+                            category="corporate"
+                            accent="#84b9ff"
+                            variant={1}
+                            label="Advisory Practices"
+                            triggerClassName="inline-flex items-center gap-1 text-xs font-semibold text-[#84b9ff] hover:text-white transition-colors cursor-pointer"
+                        />
+                        <a href="#capabilities" className="hover:text-white transition-colors">
+                            Capabilities
+                        </a>
+                        <a href="#case-studies" className="hover:text-white transition-colors">
+                            Case Studies
+                        </a>
+                        <a href="#partners" className="hover:text-white transition-colors">
+                            Senior Partners
+                        </a>
+                    </nav>
                 </div>
 
-                <MegaMenu
-                    category="corporate"
-                    accent="#3476c5"
-                    variant={1}
-                    className="md:hidden"
-                />
+                {/* Right Client Portal & Consultation Action */}
+                <div className="flex items-center gap-5">
+                    <a href="#portal" className="hidden sm:inline font-mono text-xs text-white/60 hover:text-white transition-colors">
+                        Client Portal
+                    </a>
+                    <a
+                        href="#consultation"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-[#84b9ff] px-4 py-2 font-mono text-xs font-bold text-[#0e1724] hover:bg-white transition-colors"
+                    >
+                        <span>Schedule Advisory</span>
+                        <HiArrowRight />
+                    </a>
+                </div>
             </div>
         </header>
     )

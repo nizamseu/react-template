@@ -1,39 +1,45 @@
 import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar02() {
     return (
-        <header className="rounded-lg bg-[#f5f1e8] px-5 py-4 text-[#102d36]">
-            <div className="grid grid-cols-[1fr_auto] items-center gap-4 sm:grid-cols-[auto_1fr_auto]">
-                <a href="#home" className="font-serif text-2xl">
-                    Fieldnote Class
+        <header className="rounded-none border-b border-[#dce5dc] bg-[#f5f1e8] px-5 py-4 text-[#102d36] sm:px-8">
+            <div className="flex items-center justify-between gap-6">
+                {/* Brand Far Left */}
+                <a href="#home" className="font-serif text-2xl font-bold tracking-tight shrink-0">
+                    FIELDNOTE CLASS
                 </a>
-                <nav className="hidden justify-center gap-6 text-xs sm:flex">
-                    <a href="#learn">Learn</a>
-                    <a href="#teach">Teach</a>
-                    <a href="#community">Community</a>
-                    <a href="#stories">Stories</a>
 
-                    <MegaMenu
-                        category="learning"
-                        accent="#3c7e5d"
-                        variant={2}
-                    />
-                </nav>
-                <a
-                    href="#join"
-                    className="justify-self-end rounded-full bg-[#102d36] px-4 py-2 text-xs font-semibold text-white"
-                >
-                    Join the studio <HiArrowRight className="ml-1 inline" />
-                </a>
+                {/* Right-Flush Navigation & Student Portal Group */}
+                <div className="flex items-center gap-8 ml-auto">
+                    <nav className="hidden items-center gap-7 text-xs font-semibold md:flex">
+                        <MegaMenu
+                            category="learning"
+                            accent="#3c7e5d"
+                            variant={2}
+                            label="Live Studio"
+                            triggerClassName="inline-flex items-center gap-1 text-xs font-semibold text-[#3c7e5d] hover:text-[#102d36] transition-colors cursor-pointer"
+                        />
+                        <a href="#workshops" className="text-[#102d36]/75 hover:text-[#102d36] transition-colors">
+                            Workshops
+                        </a>
+                        <a href="#syllabus" className="text-[#102d36]/75 hover:text-[#102d36] transition-colors">
+                            Syllabus Index
+                        </a>
+                        <a href="#mentors" className="text-[#102d36]/75 hover:text-[#102d36] transition-colors">
+                            Mentorship
+                        </a>
+                    </nav>
+
+                    <a
+                        href="#portal"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-[#102d36] px-4 py-1.5 text-xs font-semibold text-[#102d36] hover:bg-[#102d36] hover:text-white transition-colors shrink-0"
+                    >
+                        <span>Student Portal</span>
+                        <HiArrowRight />
+                    </a>
+                </div>
             </div>
-            <nav className="mt-3 flex gap-5 overflow-x-auto border-t border-[#dce5dc] pt-3 text-xs text-gray-600 sm:hidden">
-                <a href="#learn">Learn</a>
-                <a href="#teach">Teach</a>
-                <a href="#community">Community</a>
-                <a href="#stories">Stories</a>
-
-                <MegaMenu category="learning" accent="#3c7e5d" variant={2} />
-            </nav>
         </header>
     )
 }

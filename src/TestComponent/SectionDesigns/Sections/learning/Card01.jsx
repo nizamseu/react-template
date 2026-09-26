@@ -1,36 +1,54 @@
-import { HiArrowRight, HiPlay } from 'react-icons/hi'
+import { HiArrowRight, HiOutlineClock, HiOutlineUserGroup } from 'react-icons/hi'
+
 export default function Card01() {
     return (
-        <article className="group overflow-hidden rounded-lg bg-[#f1f0e8] text-[#102d36]">
-            <div className="relative h-44 bg-[#c8ef70]">
-                <img
-                    className="h-full w-full object-cover mix-blend-multiply"
-                    src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=85"
-                    alt="Course notes and open notebook"
-                />
-                <span className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#102d36] text-white">
-                    <HiPlay />
+        <article className="overflow-hidden rounded-2xl border border-white/10 bg-[#0e272f] p-5 text-[#e8f3ea] shadow-xl">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#c8ef70]">
+                    10-WEEK INTENSIVE &bull; COHORT 04
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-[#1b3e49] px-2.5 py-0.5 text-[10px] text-white">
+                    <HiOutlineUserGroup /> 18 Students Max
                 </span>
             </div>
-            <div className="p-5">
-                <p className="text-[10px] font-bold uppercase tracking-[.15em]">
-                    DESIGN / BEGINNER
-                </p>
-                <h3 className="mt-2 font-serif text-2xl">
-                    Make a portfolio that feels like you.
+
+            <div className="mt-4">
+                <h3 className="font-serif text-2xl font-bold text-white leading-tight">
+                    Creative Direction & Systems for Modern Brands
                 </h3>
-                <div className="mt-4 h-1.5 rounded-full bg-[#d8d9ce]">
-                    <div className="h-1.5 w-2/5 rounded-full bg-[#3c7e5d]" />
-                </div>
-                <p className="mt-2 text-xs text-gray-600">
-                    2 of 5 lessons completed
+                <p className="mt-2 text-xs text-white/70">
+                    Lead by former design directors from Pentagram and Apple. Transition from senior craftsperson into visionary design leadership.
                 </p>
-                <a
-                    href="#course"
-                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold"
-                >
-                    Continue learning <HiArrowRight />
-                </a>
+
+                {/* 4-Week Milestone Roadmap */}
+                <div className="mt-4 space-y-2 rounded-xl bg-white/5 p-3 text-xs border border-white/5">
+                    <div className="flex items-center justify-between">
+                        <span className="font-mono text-[10px] text-[#c8ef70]">W01 &bull; STRATEGY</span>
+                        <span className="text-white/80">Cultural Positioning & Voice</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <span className="font-mono text-[10px] text-[#c8ef70]">W03 &bull; IDENTITY</span>
+                        <span className="text-white/80">Kinetic Typography Systems</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <span className="font-mono text-[10px] text-[#c8ef70]">W06 &bull; SPATIAL</span>
+                        <span className="text-white/80">3D Interactive Environments</span>
+                    </div>
+                </div>
+
+                <div className="mt-5 flex items-center justify-between pt-3 border-t border-white/10">
+                    <div className="flex items-center gap-1.5 font-mono text-xs text-white/60">
+                        <HiOutlineClock />
+                        <span>Starts Oct 15 &bull; $1,450</span>
+                    </div>
+                    <a
+                        href="#cohort-detail"
+                        className="inline-flex items-center gap-1 rounded-full bg-[#c8ef70] px-4 py-1.5 font-mono text-xs font-bold text-[#0e272f] hover:bg-white transition-colors"
+                    >
+                        <span>Syllabus</span>
+                        <HiArrowRight />
+                    </a>
+                </div>
             </div>
         </article>
     )

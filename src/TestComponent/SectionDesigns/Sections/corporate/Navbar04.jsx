@@ -1,48 +1,46 @@
-import { HiArrowRight, HiOutlineMenu } from 'react-icons/hi'
+import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar04() {
     return (
-        <header className="rounded-lg bg-[#dce9f6] px-5 py-4 text-[#121c2c]">
-            <div className="flex items-center justify-between gap-4">
-                <a href="#home" className="font-semibold">
-                    NORTHSTAR<span className="ml-1 text-[#3476c5]">/</span>
+        <header className="py-2 px-3">
+            <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-[#3476c5]/30 bg-[#0d1520] px-6 py-2.5 text-white shadow-xl backdrop-blur-md">
+                {/* Micro Brand */}
+                <a
+                    href="#home"
+                    className="font-mono text-xs font-bold uppercase tracking-[.18em] text-[#84b9ff] shrink-0"
+                >
+                    NORTHSTAR<span className="text-white/40">/</span>INSTITUTE
                 </a>
-                <nav className="hidden gap-6 text-xs md:flex">
-                    <a href="#who">Who we are</a>
-                    <a href="#work">What we do</a>
-                    <a href="#impact">Impact</a>
-                    <a href="#news">News</a>
 
+                {/* Pill Links & MegaMenu */}
+                <nav className="hidden items-center gap-6 text-xs font-mono text-white/70 md:flex">
                     <MegaMenu
                         category="corporate"
-                        accent="#3476c5"
+                        accent="#84b9ff"
                         variant={4}
+                        label="Research Institute"
+                        triggerClassName="inline-flex items-center gap-1 font-mono text-xs text-[#84b9ff] hover:text-white transition-colors cursor-pointer"
                     />
+                    <a href="#macro" className="hover:text-white transition-colors">
+                        Macro Outlook
+                    </a>
+                    <a href="#geopolitics" className="hover:text-white transition-colors">
+                        Geopolitical Risk
+                    </a>
+                    <a href="#quarterly" className="hover:text-white transition-colors">
+                        Whitepapers
+                    </a>
                 </nav>
-                <div className="flex items-center gap-3">
-                    <button
-                        aria-label="Open menu"
-                        className="text-xl md:hidden"
-                    >
-                        <HiOutlineMenu />
-                    </button>
-                    <a href="#careers" className="hidden text-xs sm:block">
-                        Careers
-                    </a>
-                    <a
-                        href="#contact"
-                        className="flex items-center gap-1 rounded bg-[#121c2c] px-4 py-2 text-xs text-white"
-                    >
-                        Contact <HiArrowRight />
-                    </a>
-                </div>
 
-                <MegaMenu
-                    category="corporate"
-                    accent="#3476c5"
-                    variant={4}
-                    className="md:hidden"
-                />
+                {/* Pill Action */}
+                <a
+                    href="#subscribe-research"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-[#84b9ff] px-4 py-1.5 font-mono text-xs font-bold text-[#0d1520] hover:bg-white transition-colors shrink-0"
+                >
+                    <span>Subscribe to Dispatch</span>
+                    <HiArrowRight />
+                </a>
             </div>
         </header>
     )

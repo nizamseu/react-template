@@ -1,45 +1,47 @@
-import { HiHeart, HiStar } from 'react-icons/hi'
+import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
+
 export default function Card01() {
     return (
-        <article className="overflow-hidden rounded-lg bg-[#f4f0e9]">
-            <div className="relative">
+        <article className="group overflow-hidden rounded-2xl border border-white/10 bg-[#102530] p-5 text-[#e3edf2] shadow-2xl">
+            <div className="relative h-64 overflow-hidden rounded-xl bg-black">
                 <img
-                    className="h-52 w-full object-cover"
-                    src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=850&q=85"
-                    alt="Quiet coastal house with a private pool"
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
+                    alt="The Clifftop Monolith Villa"
                 />
-                <span className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-[10px] font-semibold">
-                    Guest favorite
+                <span className="absolute bottom-3 left-3 rounded bg-black/80 px-2.5 py-1 font-mono text-xs font-bold text-[#e07d5b] backdrop-blur-sm">
+                    $680 / night
                 </span>
-                <button
-                    aria-label="Save stay"
-                    className="absolute right-3 top-3 rounded-full bg-white p-2"
-                >
-                    <HiHeart />
-                </button>
+                <span className="absolute top-3 right-3 flex items-center gap-1 rounded bg-black/70 px-2 py-0.5 font-mono text-[10px] text-amber-300 backdrop-blur-sm">
+                    <HiStar className="fill-amber-400" /> 4.98 (42 stays)
+                </span>
             </div>
-            <div className="p-5 text-[#182833]">
-                <div className="flex justify-between text-xs">
-                    <span className="uppercase tracking-wide">
-                        Comporta · Portugal
-                    </span>
-                    <span className="flex items-center gap-1">
-                        <HiStar className="text-[#e07d5b]" />
-                        4.96
-                    </span>
+
+            <div className="mt-4">
+                <div className="flex items-center gap-1.5 text-xs text-white/50">
+                    <HiOutlineLocationMarker className="text-[#e07d5b]" />
+                    <span>Big Sur, California &bull; Ocean Bluff</span>
                 </div>
-                <h3 className="mt-2 font-serif text-2xl">
-                    The house among the pines
+
+                <h3 className="mt-1 font-serif text-xl font-bold text-white group-hover:text-[#e07d5b] transition-colors">
+                    The Clifftop Monolith Sanctuary
                 </h3>
-                <p className="mt-1 text-sm text-gray-600">
-                    2 guests · 1 bedroom · Sea nearby
+                <p className="mt-1 text-xs text-white/70 leading-relaxed">
+                    Designed by Studio Olson Kundig. 100% off-grid solar, private heated saltwater infinity pool, and dedicated private chef on call.
                 </p>
-                <p className="mt-4 text-sm font-semibold">
-                    $184{' '}
-                    <span className="font-normal text-gray-500">
-                        / night · free cancellation
-                    </span>
-                </p>
+
+                <div className="mt-4 grid grid-cols-3 gap-1 rounded-lg bg-white/5 p-2 text-center font-mono text-[10px] text-white/70 border border-white/5">
+                    <div>4 GUESTS</div>
+                    <div>2 SUITES</div>
+                    <div>PRIVATE SPA</div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                    <span className="text-white/40">Verified Architecture</span>
+                    <a href="#reserve-villa" className="font-bold text-[#e07d5b] hover:underline">
+                        Reserve Villa &rarr;
+                    </a>
+                </div>
             </div>
         </article>
     )

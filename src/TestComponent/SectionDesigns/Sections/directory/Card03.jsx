@@ -1,27 +1,48 @@
-import { HiArrowRight, HiLocationMarker } from 'react-icons/hi'
+import { HiOutlineClock, HiOutlineMap } from 'react-icons/hi'
+
 export default function Card03() {
     return (
-        <article className="overflow-hidden rounded-lg bg-[#1a2826] text-white">
-            <div className="flex items-center justify-between bg-[#d9f064] p-4 text-[#1a2826]">
-                <span className="text-xs font-bold uppercase tracking-[.12em]">
-                    OPEN NOW / 0.8 MI
+        <article className="overflow-hidden rounded-2xl border border-[#527354] bg-[#182622] p-5 text-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#d9f064] font-bold">
+                    <HiOutlineMap /> CURATED WALKING ROUTE #06
                 </span>
-                <HiLocationMarker />
+                <span className="flex items-center gap-1 font-mono text-xs text-white/50">
+                    <HiOutlineClock /> 2.5 HOURS
+                </span>
             </div>
-            <div className="p-5">
-                <p className="text-[10px] text-white/45">HOME / BIKE REPAIR</p>
-                <h3 className="mt-2 text-xl font-semibold">
-                    Good Wheel Workshop
+
+            <div className="mt-4">
+                <span className="font-mono text-[10px] text-white/40 uppercase">TOKYO &bull; CHIYODA-KU</span>
+                <h3 className="mt-1 font-serif text-xl font-bold text-white">
+                    The Antiquarian Bookstores of Kanda-Jinbocho
                 </h3>
-                <p className="mt-2 text-sm text-white/60">
-                    Same-day tune-ups · Family owned since 1994
+                <p className="mt-1 text-xs text-white/70">
+                    A quiet afternoon trail traversing century-old woodblock print shops, Taisho-era kissaten coffee houses, and architectural monograph archives.
                 </p>
-                <a
-                    href="#shop"
-                    className="mt-5 inline-flex items-center gap-2 text-sm text-[#d9f064]"
-                >
-                    View hours & details <HiArrowRight />
-                </a>
+
+                {/* Waypoint timeline */}
+                <div className="mt-4 space-y-2 rounded-xl bg-black/40 p-3 font-mono text-xs border border-white/5">
+                    <div className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-[#d9f064]" />
+                        <span className="text-white/80">Stop 1: Komiyama Book Store (Photography)</span>
+                    </div>
+                    <div className="flex items-center gap-2 pl-1 border-l border-white/10 ml-1">
+                        <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
+                        <span className="text-white/60">Stop 2: Saboru Kissaten (1955 Hand-Drip)</span>
+                    </div>
+                    <div className="flex items-center gap-2 pl-1 border-l border-white/10 ml-1">
+                        <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
+                        <span className="text-white/60">Stop 3: Ohya Shobo (Edo Maps & Scrolls)</span>
+                    </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                    <span className="font-mono text-white/40">Includes offline GPS map</span>
+                    <a href="#open-route" className="font-bold text-[#d9f064] hover:underline">
+                        Start Route on Mobile &rarr;
+                    </a>
+                </div>
             </div>
         </article>
     )

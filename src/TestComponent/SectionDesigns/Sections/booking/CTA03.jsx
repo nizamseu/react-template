@@ -1,24 +1,27 @@
 import { HiArrowRight } from 'react-icons/hi'
+
 export default function CTA03() {
     return (
-        <section className="grid overflow-hidden rounded-lg bg-[#f0e6d8] text-[#132d3a] sm:grid-cols-[1fr_auto]">
-            <div className="p-7 sm:p-9">
-                <p className="text-xs font-bold uppercase tracking-[.14em] text-[#b65f47]">
-                    FLEXIBLE PLANS / CLEAR PRICES
-                </p>
-                <h2 className="mt-2 font-serif text-3xl">
-                    Find a stay you can book with confidence.
-                </h2>
-                <p className="mt-2 text-sm text-gray-600">
-                    See cancellation terms and the real total before checkout.
-                </p>
-            </div>
-            <div className="flex items-center p-7 pt-0 sm:p-8">
+        <section className="rounded-none border-y-2 border-[#b65f47] bg-[#14232c] p-8 text-[#dce7ee] sm:p-12">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+                <div className="max-w-xl">
+                    <span className="font-mono text-xs text-[#e07d5b] uppercase tracking-wider font-bold">
+                        BESPOKE EXPEDITIONS &bull; PRIVATE RESIDENCE ODYSSEYS
+                    </span>
+                    <h2 className="mt-2 font-serif text-3xl sm:text-4xl font-normal text-white">
+                        Curate a 30-Day Architectural Journey Across Three Continents
+                    </h2>
+                    <p className="mt-2 text-sm text-white/70">
+                        Our regional scouts design bespoke multi-residence expeditions: from modernist post-and-beam desert homes in Palm Springs to volcanic hot spring sanctuaries in Hakone.
+                    </p>
+                </div>
+
                 <a
-                    href="#flexible"
-                    className="inline-flex items-center gap-2 rounded-md bg-[#132d3a] px-5 py-3 text-sm text-white"
+                    href="#custom-itinerary"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#e07d5b] px-6 py-3.5 font-mono text-xs font-bold text-white hover:bg-white hover:text-[#14232c] transition-colors shrink-0"
                 >
-                    Browse flexible stays <HiArrowRight />
+                    <span>Design Custom Odyssey</span>
+                    <HiArrowRight />
                 </a>
             </div>
         </section>

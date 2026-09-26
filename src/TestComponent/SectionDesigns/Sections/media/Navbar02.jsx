@@ -1,29 +1,42 @@
-import { HiOutlineSearch } from 'react-icons/hi'
+import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar02() {
     return (
-        <header className="rounded-lg border-y border-[#bdb3a4] bg-[#f3eee5] px-5 py-4 text-[#28221e]">
-            <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-                <a href="#home" className="font-serif text-3xl font-bold">
-                    MARGIN
+        <header className="rounded-none border-y-2 border-[#191919] bg-[#191919] px-5 py-3.5 text-[#e0e0e0] sm:px-8">
+            <div className="flex items-center justify-between gap-6">
+                {/* Brand Far Left */}
+                <a href="#home" className="font-serif text-2xl font-bold tracking-widest text-white shrink-0">
+                    MARGIN / BROADCAST
                 </a>
-                <nav className="flex gap-5 overflow-x-auto text-[10px] font-bold uppercase tracking-[.13em]">
-                    <a href="#culture">Culture</a>
-                    <a href="#ideas">Ideas</a>
-                    <a href="#people">People</a>
-                    <a href="#places">Places</a>
 
-                    <MegaMenu category="media" accent="#a84f34" variant={2} />
-                </nav>
-                <div className="flex items-center gap-3 text-xs">
-                    <button aria-label="Search">
-                        <HiOutlineSearch className="text-lg" />
-                    </button>
+                {/* Right-Flush Navigation & Subscriber Group */}
+                <div className="flex items-center gap-8 ml-auto">
+                    <nav className="hidden items-center gap-6 text-[11px] font-mono uppercase tracking-[.15em] md:flex">
+                        <MegaMenu
+                            category="media"
+                            accent="#e7a37c"
+                            variant={2}
+                            label="Broadcast Audio"
+                            triggerClassName="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[.15em] text-[#e7a37c] hover:text-white transition-colors cursor-pointer"
+                        />
+                        <a href="#episodes" className="hover:text-white transition-colors">
+                            Episodes (48)
+                        </a>
+                        <a href="#transcripts" className="hover:text-white transition-colors">
+                            Transcripts
+                        </a>
+                        <a href="#patron" className="hover:text-white transition-colors">
+                            Patron Feed
+                        </a>
+                    </nav>
+
                     <a
                         href="#subscribe"
-                        className="border-b border-[#a84f34] pb-1"
+                        className="inline-flex items-center gap-1.5 rounded-none border border-[#e7a37c] px-3.5 py-1.5 font-mono text-xs font-bold text-[#e7a37c] hover:bg-[#e7a37c] hover:text-[#191919] transition-colors shrink-0"
                     >
-                        Subscribe
+                        <span>Listen Live</span>
+                        <HiArrowRight />
                     </a>
                 </div>
             </div>

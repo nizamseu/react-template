@@ -1,24 +1,32 @@
 import { HiArrowRight } from 'react-icons/hi'
+
 export default function CTA01() {
     return (
-        <section className="flex flex-col justify-between gap-5 rounded-lg bg-[#dce9f6] p-7 text-[#121c2c] sm:flex-row sm:items-center sm:p-9">
-            <div>
-                <p className="text-xs font-bold uppercase tracking-[.14em] text-[#3476c5]">
-                    A CLEARER WAY FORWARD
-                </p>
-                <h2 className="mt-2 text-3xl font-semibold">
-                    Bring us the question your team is working through.
+        <section className="relative overflow-hidden rounded-none border-t-2 border-[#84b9ff] border-b border-white/10 bg-[#0e1724] p-8 text-white sm:p-12 shadow-2xl">
+            <div className="relative z-10 max-w-2xl">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#84b9ff]">
+                    CONFIDENTIAL ADVISORY MANDATES &bull; BOARD LEVEL
+                </span>
+                <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-light text-white leading-tight">
+                    Strategic Counsel for Defining Moments in Enterprise History.
                 </h2>
-                <p className="mt-2 text-sm text-gray-600">
-                    We&apos;ll help you find the practical first step.
+                <p className="mt-3 text-sm leading-relaxed text-white/70">
+                    Direct engagement with our senior managing partners in London, Zurich, and New York. Strictly confidential discussions regarding acquisitions, recapitalizations, and sovereign alignment.
                 </p>
+
+                <div className="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <a
+                        href="#request-consultation"
+                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#84b9ff] px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-[#0e1724] hover:bg-white transition-colors"
+                    >
+                        <span>Schedule Confidential Advisory Call</span>
+                        <HiArrowRight />
+                    </a>
+                    <span className="font-mono text-xs text-white/50 text-center sm:text-left">
+                        Signed mutual NDA guaranteed prior to call
+                    </span>
+                </div>
             </div>
-            <a
-                href="#contact"
-                className="inline-flex items-center gap-2 self-start rounded-md bg-[#121c2c] px-5 py-3 text-sm text-white"
-            >
-                Start a conversation <HiArrowRight />
-            </a>
         </section>
     )
 }

@@ -1,47 +1,46 @@
-import { HiArrowRight, HiOutlineMenu } from 'react-icons/hi'
+import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar04() {
     return (
-        <header className="rounded-lg bg-[#edf3ee] px-5 py-4 text-[#111a22]">
-            <div className="flex items-center justify-between gap-4">
+        <header className="py-2 px-3">
+            <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-black/10 bg-[#edf3ee] px-6 py-2.5 text-[#111a22] shadow-xl backdrop-blur-md">
+                {/* Micro Brand */}
                 <a
                     href="#home"
-                    className="text-sm font-bold uppercase tracking-[.12em]"
+                    className="font-mono text-xs font-bold uppercase tracking-[.18em] shrink-0"
                 >
-                    FLOWSTATE / AI
+                    FLOWSTATE<span className="text-[#17a878]">/</span>AI
                 </a>
-                <nav className="hidden gap-7 text-xs md:flex">
-                    <a href="#product">Product</a>
-                    <a href="#use-cases">Use cases</a>
-                    <a href="#resources">Resources</a>
-                    <a href="#company">Company</a>
 
-                    <MegaMenu category="saas" accent="#17a878" variant={4} />
+                {/* Pill Links & MegaMenu */}
+                <nav className="hidden items-center gap-6 text-xs font-semibold md:flex">
+                    <MegaMenu
+                        category="saas"
+                        accent="#17a878"
+                        variant={4}
+                        label="AI Command Center"
+                        triggerClassName="inline-flex items-center gap-1 text-xs font-semibold text-[#17a878] hover:text-black transition-colors cursor-pointer"
+                    />
+                    <a href="#models" className="text-gray-600 hover:text-black transition-colors">
+                        Model Router
+                    </a>
+                    <a href="#evals" className="text-gray-600 hover:text-black transition-colors">
+                        Live Evals
+                    </a>
+                    <a href="#agents" className="text-gray-600 hover:text-black transition-colors">
+                        Agent Mesh
+                    </a>
                 </nav>
-                <div className="flex items-center gap-3">
-                    <a href="#signin" className="hidden text-xs sm:block">
-                        Sign in
-                    </a>
-                    <button
-                        aria-label="Open menu"
-                        className="text-xl md:hidden"
-                    >
-                        <HiOutlineMenu />
-                    </button>
-                    <a
-                        href="#demo"
-                        className="flex items-center gap-2 rounded-md bg-[#111a22] px-4 py-2 text-xs text-white"
-                    >
-                        Book a demo <HiArrowRight />
-                    </a>
-                </div>
 
-                <MegaMenu
-                    category="saas"
-                    accent="#17a878"
-                    variant={4}
-                    className="md:hidden"
-                />
+                {/* Pill Action */}
+                <a
+                    href="#sandbox"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-[#111a22] px-4 py-1.5 font-mono text-xs font-bold text-white hover:bg-[#17a878] transition-colors shrink-0"
+                >
+                    <span>Launch Sandbox</span>
+                    <HiArrowRight />
+                </a>
             </div>
         </header>
     )

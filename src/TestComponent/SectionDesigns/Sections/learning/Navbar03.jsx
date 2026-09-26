@@ -1,41 +1,57 @@
-import { HiArrowRight, HiOutlineSearch } from 'react-icons/hi'
+import { HiArrowRight } from 'react-icons/hi'
 import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+
 export default function Navbar03() {
     return (
-        <header className="rounded-lg border border-[#dce5dc] bg-white px-5 py-3 text-[#102d36]">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-                <a
-                    href="#home"
-                    className="flex items-center gap-2 font-semibold"
-                >
-                    <span className="h-3 w-3 rounded-full bg-[#3c7e5d]" />{' '}
-                    FIELDNOTE / SCHOOL
-                </a>
-                <nav className="order-3 flex w-full gap-6 border-t pt-3 text-xs sm:order-none sm:w-auto sm:border-0 sm:pt-0">
-                    <a href="#catalog">Course catalog</a>
-                    <a href="#mentors">Mentors</a>
-                    <a href="#about">Our approach</a>
+        <header className="rounded-none border-y border-gray-200 bg-white text-[#102d36] shadow-sm">
+            {/* Top Micro-Ticker */}
+            <div className="border-b border-gray-100 px-5 py-1.5 font-mono text-[10px] text-gray-500 flex items-center justify-between sm:px-8">
+                <span>FALL 2026 ADMISSIONS OPEN &bull; ACCREDITED CERTIFICATION</span>
+                <span className="hidden sm:inline">94% GRADUATE PLACEMENT AT TOP TIER STUDIOS</span>
+                <span>BERLIN & ONLINE</span>
+            </div>
 
-                    <MegaMenu
-                        category="learning"
-                        accent="#3c7e5d"
-                        variant={3}
-                    />
+            {/* Middle Main Masthead */}
+            <div className="px-5 py-4 flex items-center justify-between sm:px-8">
+                <a href="#home" className="font-serif text-2xl sm:text-3xl font-bold tracking-tight">
+                    Fieldnote Academy of Practical Craft
+                </a>
+                <a
+                    href="#scholarship"
+                    className="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs font-bold text-[#3c7e5d] hover:underline"
+                >
+                    <span>Tuition Assistance &rarr;</span>
+                </a>
+            </div>
+
+            {/* Bottom Shelf Navigation */}
+            <div className="border-t border-gray-200 bg-gray-50 px-5 py-2.5 sm:px-8">
+                <nav className="flex items-center justify-between text-xs font-semibold">
+                    <div className="flex items-center gap-8 overflow-x-auto">
+                        <MegaMenu
+                            category="learning"
+                            accent="#3c7e5d"
+                            variant={3}
+                            label="Career Roadmap"
+                            triggerClassName="inline-flex items-center gap-1 text-xs font-semibold text-[#3c7e5d] hover:text-[#102d36] transition-colors cursor-pointer"
+                        />
+                        <a href="#design-systems" className="text-gray-600 hover:text-black transition-colors">
+                            Design Systems
+                        </a>
+                        <a href="#creative-coding" className="text-gray-600 hover:text-black transition-colors">
+                            Creative Coding
+                        </a>
+                        <a href="#typography" className="text-gray-600 hover:text-black transition-colors">
+                            Spatial & Type
+                        </a>
+                        <a href="#alumni" className="text-gray-600 hover:text-black transition-colors">
+                            Alumni Work
+                        </a>
+                    </div>
+                    <span className="font-mono text-[10px] text-gray-400 hidden lg:inline">
+                        12-WEEK IMMERSIVES
+                    </span>
                 </nav>
-                <div className="flex items-center gap-3">
-                    <button aria-label="Search classes">
-                        <HiOutlineSearch />
-                    </button>
-                    <a href="#account" className="text-xs">
-                        Sign in
-                    </a>
-                    <a
-                        href="#start"
-                        className="rounded bg-[#3c7e5d] px-3 py-2 text-xs text-white"
-                    >
-                        Start here <HiArrowRight className="ml-1 inline" />
-                    </a>
-                </div>
             </div>
         </header>
     )

@@ -1,24 +1,32 @@
 import { HiArrowRight } from 'react-icons/hi'
+
 export default function CTA01() {
     return (
-        <section className="flex flex-col justify-between gap-5 rounded-lg bg-[#e5ede8] p-7 text-[#132d3a] sm:flex-row sm:items-center sm:p-9">
-            <div>
-                <p className="text-xs font-bold uppercase tracking-[.14em] text-[#346a62]">
-                    MAKE A LITTLE ROOM
-                </p>
-                <h2 className="mt-2 font-serif text-3xl">
-                    Your next story starts with somewhere.
+        <section className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#102530] p-8 text-white sm:p-12 shadow-2xl">
+            <div className="relative z-10 max-w-2xl">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#e07d5b]">
+                    PRIVATE ISLAND & RESIDENCE BUYOUTS &bull; BESPOKE ACCESS
+                </span>
+                <h2 className="mt-3 font-serif text-3xl sm:text-5xl font-normal leading-tight">
+                    Exclusive Solitude for What Matters Most.
                 </h2>
-                <p className="mt-2 text-sm">
-                    Find a stay that fits the dates you have.
+                <p className="mt-3 text-sm leading-relaxed text-white/70">
+                    Complete sanctuary buyouts for multi-generational sabbaticals, executive summits, and creative retreats. Dedicated private aviation liaisons and discrete on-site staff.
                 </p>
+
+                <div className="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <a
+                        href="#inquire-concierge"
+                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#e07d5b] px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-white hover:bg-white hover:text-[#102530] transition-colors"
+                    >
+                        <span>Inquire with Private Concierge</span>
+                        <HiArrowRight />
+                    </a>
+                    <span className="font-mono text-xs text-white/50 text-center sm:text-left">
+                        Responses within 4 hours &bull; Strict confidentiality
+                    </span>
+                </div>
             </div>
-            <a
-                href="#search"
-                className="inline-flex items-center gap-2 self-start rounded-full bg-[#132d3a] px-5 py-3 text-sm text-white"
-            >
-                Check availability <HiArrowRight />
-            </a>
         </section>
     )
 }

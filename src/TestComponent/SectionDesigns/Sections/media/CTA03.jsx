@@ -1,26 +1,33 @@
-import { HiArrowRight } from 'react-icons/hi'
+import { HiArrowRight, HiOutlineMail } from 'react-icons/hi'
+
 export default function CTA03() {
     return (
-        <section className="grid overflow-hidden rounded-lg bg-[#f3eee5] text-[#28221e] sm:grid-cols-[1fr_auto]">
-            <div className="p-7 sm:p-9">
-                <p className="text-xs font-bold uppercase tracking-[.14em] text-[#a84f34]">
-                    HAVE A STORY IN MIND?
-                </p>
-                <h2 className="mt-2 font-serif text-3xl">
-                    We want to hear the part nobody&apos;s written yet.
+        <section className="rounded-xl border border-black/15 bg-white p-8 text-black sm:p-12 shadow-sm">
+            <div className="max-w-2xl">
+                <span className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-[#a8472b]">
+                    <HiOutlineMail className="text-sm" /> THE 7:00 AM MORNING DISPATCH
+                </span>
+                <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-normal leading-tight">
+                    Three Remarkable Essays Delivered to Your Inbox Every Sunrise
                 </h2>
-                <p className="mt-2 text-sm text-gray-600">
-                    Pitch a perspective, a person, or a place worth a closer
-                    look.
+                <p className="mt-2 text-sm text-black/70 leading-relaxed">
+                    Zero news cycle outrage. Just three longform reflections on architecture, philosophy, and cultural anthropology curated by our editors. Read by 85,000 thinkers daily.
                 </p>
-            </div>
-            <div className="flex items-center p-7 pt-0 sm:p-8">
-                <a
-                    href="#pitch"
-                    className="inline-flex items-center gap-2 rounded-md bg-[#a84f34] px-5 py-3 text-sm text-white"
-                >
-                    Pitch the editors <HiArrowRight />
-                </a>
+
+                <form onSubmit={(e) => e.preventDefault()} className="mt-6 flex flex-col sm:flex-row gap-3">
+                    <input
+                        type="email"
+                        placeholder="Enter email for morning dispatch..."
+                        className="rounded-full border border-black/20 bg-neutral-50 px-5 py-3 text-xs text-black outline-none focus:border-[#a8472b] flex-1"
+                    />
+                    <button
+                        type="submit"
+                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1c1d1a] px-6 py-3 font-serif text-xs font-bold text-white hover:bg-[#a8472b] transition-colors shrink-0"
+                    >
+                        <span>Subscribe Free</span>
+                        <HiArrowRight />
+                    </button>
+                </form>
             </div>
         </section>
     )

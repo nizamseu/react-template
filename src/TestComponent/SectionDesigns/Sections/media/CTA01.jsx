@@ -1,24 +1,34 @@
 import { HiArrowRight } from 'react-icons/hi'
+
 export default function CTA01() {
     return (
-        <section className="flex flex-col justify-between gap-5 rounded-lg bg-[#e7d9c7] p-7 text-[#28221e] sm:flex-row sm:items-center sm:p-9">
-            <div>
-                <p className="text-xs font-bold uppercase tracking-[.14em] text-[#a84f34]">
-                    THE SUNDAY EDITION
-                </p>
-                <h2 className="mt-2 font-serif text-3xl">
-                    One letter. A few stories worth keeping.
-                </h2>
-                <p className="mt-2 text-sm text-gray-600">
-                    Our editors&apos; best reads, once a week.
-                </p>
+        <section className="rounded-none border-y-2 border-black bg-[#f2efe9] p-8 text-[#1c1d1a] sm:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 items-center">
+                <div>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[.25em] text-[#a8472b]">
+                        WEEKEND PRINT EDITION &bull; HOME DELIVERY
+                    </span>
+                    <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-normal leading-tight">
+                        Hold the Sunday Broadsheet in Your Hands.
+                    </h2>
+                    <p className="mt-3 text-sm leading-relaxed text-[#59554d]">
+                        Printed every Friday evening on 90gsm uncoated Swedish broadsheet paper. Hand-delivered to subscribers across 14 cities in North America, Europe, and Japan.
+                    </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
+                    <a
+                        href="#subscribe-print"
+                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1c1d1a] px-6 py-3.5 font-serif text-xs font-bold text-white hover:bg-[#a8472b] transition-colors"
+                    >
+                        <span>Subscribe for $12 / Month</span>
+                        <HiArrowRight />
+                    </a>
+                    <span className="font-mono text-[11px] text-black/50 text-center">
+                        Includes unmetered digital vault access & audio feeds
+                    </span>
+                </div>
             </div>
-            <a
-                href="#subscribe"
-                className="inline-flex items-center gap-2 self-start border-b border-[#a84f34] pb-2 text-sm font-semibold"
-            >
-                Subscribe to Margin <HiArrowRight />
-            </a>
         </section>
     )
 }
