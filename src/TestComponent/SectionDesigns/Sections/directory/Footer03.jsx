@@ -1,7 +1,70 @@
-import { HiArrowRight } from 'react-icons/hi'
-export default function Footer03() {
+// ThreeColumnBrandFooter
+
+// Footer03 · Directories & Search Aggregators › Footers
+
+// Description:
+// Classic dark site footer for the Good Neighbor Index: brand name with the
+// tagline "A local directory that puts people before placements.", a 2×2 grid
+// of site links, a "Stay local" Instagram link and a copyright line ("Local
+// discovery, done thoughtfully.").
+
+// Design:
+// - Grid md:grid-cols-[1fr_1fr_1fr] (gap-8): brand / links / social, then a
+//   border-t copyright row
+// - Deep green #1a2826 background, white text (white/55–60 body, white/40
+//   legal), lime #d9f064 "Stay local" label, white/15 divider
+// - Brand text-sm font-black uppercase; links text-sm; label text-xs bold
+//   uppercase; rounded-lg footer
+// - Columns stack below md; padding p-7 → sm:p-10
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - Links: brand → #home, Categories → #categories, For owners → #owners,
+//   Recommend → #recommend, Trust & safety → #trust, Instagram → #instagram
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <footer> with cn()
+// - ...props: spread onto the root <footer> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import ThreeColumnBrandFooter from '@/TestComponent/SectionDesigns/Sections/directory/Footer03';
+
+// const AppShell = ({ children }) => (
+//     <>
+//         <main className="space-y-6">{children}</main>
+//         <ThreeColumnBrandFooter />
+//     </>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function ThreeColumnBrandFooter({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <footer className="rounded-lg bg-[#1a2826] p-7 text-white sm:p-10">
+        <footer
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-lg bg-[#1a2826] p-7 text-white sm:p-10',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid gap-8 md:grid-cols-[1fr_1fr_1fr]">
                 <div>
                     <a href="#home" className="text-sm font-black uppercase">
@@ -35,3 +98,5 @@ export default function Footer03() {
         </footer>
     )
 }
+
+export default ThreeColumnBrandFooter

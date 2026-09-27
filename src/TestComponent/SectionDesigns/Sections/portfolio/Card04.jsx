@@ -1,8 +1,71 @@
-import { HiCheck } from 'react-icons/hi'
+// DesignSprintRetainerPricingCard
 
-export default function Card04() {
+// Card04 · Portfolios & Personal Websites › Cards
+
+// Description:
+// Dark service/pricing card for a two-week "Sprint Retainer" with Jamie Park:
+// a "1 SLOT LEFT FOR Q4" badge, the title "Brand Identity & Digital
+// Foundation" priced at $14,000, a short pitch, a four-item deliverables
+// checklist and a full-width "Apply for Next Available Sprint" button.
+
+// Design:
+// - Header row (border-b), title and price on one baseline row, description,
+//   checklist panel (bg-black/40, rounded-xl) and a full-width button.
+// - Dark palette: surface #241d1a, white text, coral #ef6a4b (border at /40,
+//   label, badge on #ef6a4b/20, price, check icons, button), secondary text
+//   white/60-80.
+// - font-serif text-2xl bold title; font-mono xl bold price and mono checklist;
+//   rounded-2xl card with shadow-2xl; rounded-full button.
+// - No breakpoint classes: title and price share one flex row at all widths.
+
+// What it does:
+// - No content props, no state; the button hovers to a white background with black
+//   text but has no onClick or link, so it does nothing yet.
+// - Four hard-coded checklist rows with HiCheck icons (design system tokens,
+//   WebGL/motion concept, Figma file and guidelines, video handover).
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import DesignSprintRetainerPricingCard from '@/TestComponent/SectionDesigns/Sections/portfolio/Card04';
+
+// const ServicesGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <DesignSprintRetainerPricingCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiCheck } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function DesignSprintRetainerPricingCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-[#ef6a4b]/40 bg-[#241d1a] p-6 text-white shadow-2xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-[#ef6a4b]/40 bg-[#241d1a] p-6 text-white shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-[#ef6a4b] font-bold">
                     SPRINT RETAINER &bull; 2-WEEK IMMERSIVE
@@ -53,3 +116,5 @@ export default function Card04() {
         </article>
     )
 }
+
+export default DesignSprintRetainerPricingCard

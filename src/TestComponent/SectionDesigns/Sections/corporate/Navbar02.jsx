@@ -1,9 +1,77 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// InvestorRelationsTickerNavbar
 
-export default function Navbar02() {
+// Navbar02 · Corporate & Business › Navbars
+
+// Description:
+// Dark investor-relations header for "NORTHSTAR / IR" with a share-price badge
+// ("NYSE: NST $148.60 ▲ +3.2%"). A right-aligned nav holds an "Investor Relations" mega
+// menu plus Q3 Earnings, Board & ESG and SEC Filings links, followed by an outlined
+// "2026 Annual Report" button.
+
+// Design:
+// - flex justify-between: brand + ticker on the left, nav + report button pushed right
+//   with ml-auto (gap-8)
+// - Very dark #0b111a background with a white/10 bottom border; sky-blue #84b9ff for
+//   brand, trigger and button outline (#84b9ff/40, hover fills #84b9ff with #0b111a text);
+//   ticker in emerald-400 on emerald-500/10; nav links white/70 -> hover white
+// - Everything font-mono text-xs (ticker text-[10px]); brand tracking-[.18em]; small
+//   rounded ticker badge and button; square header
+// - Below sm the ticker hides; below md the nav (mega menu included) hides with no mobile
+//   menu, leaving brand + report button; padding px-5 -> sm:px-8
+
+// What it does:
+// - No content props or local state; MegaMenu (category="corporate", variant={2}, accent #84b9ff)
+//   toggles on trigger click, opens on keyboard focus, and closes on Escape, focus loss,
+//   ~160 ms after the pointer leaves, or when a panel link is clicked
+// - Its panel (portalled, fixed just below this header) shows a ticker banner, earnings
+//   call notice, regulatory filings and corporate governance lists, and an Investor Day
+//   webcast card; the header ticker itself is static text, not live data
+// - Anchors: #home, #earnings, #governance, #filings and the CTA #annual-report (with
+//   HiArrowRight)
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import InvestorRelationsTickerNavbar from '@/TestComponent/SectionDesigns/Sections/corporate/Navbar02';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <InvestorRelationsTickerNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function InvestorRelationsTickerNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-b border-white/10 bg-[#0b111a] px-5 py-3.5 text-white sm:px-8">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-b border-white/10 bg-[#0b111a] px-5 py-3.5 text-white sm:px-8',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between gap-6">
                 {/* Brand Far Left with Stock Ticker */}
                 <div className="flex items-center gap-4 shrink-0">
@@ -48,3 +116,5 @@ export default function Navbar02() {
         </header>
     )
 }
+
+export default InvestorRelationsTickerNavbar

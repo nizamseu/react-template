@@ -1,11 +1,75 @@
+// GoodNeighborSplitSearchHero
+
+// Hero01 · Directories & Search Aggregators › Hero sections
+
+// Description:
+// Lime split-screen hero for the "Good Neighbor / Local Index" directory. The
+// left column pairs the headline "Find good work nearby." and a short pitch
+// with a white search bar (service input, "Your area" button, Search link);
+// the right column shows a full-bleed photo of an independent neighborhood shop.
+
+// Design:
+// - Two-column grid md:grid-cols-[1fr_.8fr], min-h-[390px]; the text column uses
+//   flex justify-between to pin the eyebrow top and the trust line bottom
+// - Lime #d9f064 background with deep green #1a2826 text, a white search bar and
+//   a #1a2826 Search button with white text: bright, light feel
+// - Eyebrow text-xs bold uppercase tracking-[.16em]; headline text-5xl →
+//   sm:text-7xl font-black leading-[.92]; rounded-lg section, rounded-md button
+// - Below md the photo column is hidden (hidden md:block); below sm the search
+//   bar stacks vertically (flex-col → sm:flex-row); padding p-7 → sm:p-11
+
+// What it does:
+// - Purely presentational: no content props, no state; the search input is uncontrolled
+//   and the "Your area" button has no handler
+// - "Search" is an anchor to #search; icons from react-icons/hi (search,
+//   location marker, arrow); photo loaded from Unsplash
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import GoodNeighborSplitSearchHero from '@/TestComponent/SectionDesigns/Sections/directory/Hero01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <GoodNeighborSplitSearchHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineLocationMarker,
     HiOutlineSearch,
-} from 'react-icons/hi'
-export default function Hero01() {
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function GoodNeighborSplitSearchHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="overflow-hidden rounded-lg bg-[#d9f064] text-[#1a2826]">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-lg bg-[#d9f064] text-[#1a2826]',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid min-h-[390px] md:grid-cols-[1fr_.8fr]">
                 <div className="flex flex-col justify-between p-7 sm:p-11">
                     <p className="text-xs font-bold uppercase tracking-[.16em]">
@@ -54,3 +118,5 @@ export default function Hero01() {
         </section>
     )
 }
+
+export default GoodNeighborSplitSearchHero

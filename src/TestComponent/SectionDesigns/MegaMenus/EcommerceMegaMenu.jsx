@@ -1,3 +1,56 @@
+// EcommerceMegaMenuCollection
+
+// EcommerceMegaMenu · Section designs › Mega menus
+
+// Description:
+// The panel content for online-store navbars, normally rendered by MegaMenu (category="ecommerce").
+// It shows one of five storefront designs: shop departments with item counts, featured products
+// with prices, a luxury fashion atelier, a pre-loved auction and trade-in market, or artisan
+// product bundles. Every link is a hash anchor that closes the menu when clicked.
+
+// Design:
+// - Self-contained Tailwind layouts with hard-coded palettes, Unsplash images and static demo data; each variant sets its own background and uses a responsive grid (one column on small screens, several at md/lg).
+// - Variant 1 — "Editorial Lookbook Drop": cream #f9f7f4 (the only variant with dark: styles); 3 columns with a campaign image banner ("Shop the Lookbook"), two department lists (Living & Home, Wear & Utility) with badges and item counts, and a "Curators' Pick" product card with rating and "View Cart" link.
+// - Variant 2 — "Neo-Brutalist Department Archive": dark #181614 with lime #d6f36a mono labels; status ticker header and a 4-column matrix (Raw Materials, The Archive, Makers in Residence, brass lamp card with "Acquire Piece").
+// - Variant 3 — "Maison Haute Couture Atelier": ivory #fbfaf8 with bronze #9a704b; Roman-numeral collection list (I.–IV.), two-image lookbook diptych and a bespoke services box (salon appointment, WhatsApp atelier).
+// - Variant 4 — "Circular Pre-Loved Market": olive-black #202315 with lime; live impact/carbon banner, auction card (countdown, current bid, "Place Bid"), condition-grade category links and a trade-in estimator CTA.
+// - Variant 5 — "Artisan Provisions (Sunday Supply)": warm beige #f5ede4; serif header with a maker quote, two priced product bundles with "View Details" links and a maker spotlight card.
+
+// What it does:
+// - variant selects the layout through if (variant === 1..4); any other value (5, 0, 6, ...) renders the Variant 5 design.
+// - Every <a> (hash links such as #drop-04, #cart, #bid, #sell-trade) calls closeMenu on click; there is no state, effect or other event handling.
+// - Variant 1 department links build their hash from the item name (lower-cased, spaces replaced by dashes).
+// - Colours are hard-coded; the accent prop is accepted but not used anywhere in the markup.
+
+// @param {object} props
+// @param {number} [props.variant=1] Design to render: 1–4, any other value falls back to Variant 5.
+// @param {Function} props.closeMenu Called when any link in the panel is clicked (MegaMenu passes its own close handler).
+// @param {string} [props.accent='#9a704b'] Accepted for API consistency with the other category menus; currently unused.
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Merged onto the root <div> of every variant with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, ref, handlers) are spread onto the root <div> of every variant.
+
+// Usage example:
+// ```jsx
+// import { useState } from 'react';
+// import EcommerceMegaMenuCollection from '@/TestComponent/SectionDesigns/MegaMenus/EcommerceMegaMenu';
+
+// // Normally rendered for you by <MegaMenu category="ecommerce" variant={3} />
+// export default function ShopMenuPreview() {
+//     const [open, setOpen] = useState(true)
+//     if (!open) return null
+//     return (
+//         <div className="rounded-xl border border-[#e8e4dc] shadow-2xl">
+//             <EcommerceMegaMenuCollection variant={3} closeMenu={() => setOpen(false)} />
+//         </div>
+//     )
+// }
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineShoppingBag,
@@ -7,13 +60,32 @@ import {
     HiOutlineRefresh,
     HiOutlineSearch,
     HiOutlineHeart,
-} from 'react-icons/hi'
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
-export default function EcommerceMegaMenu({ variant = 1, closeMenu, accent = '#9a704b' }) {
+export function EcommerceMegaMenuCollection({
+    variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
+    closeMenu,
+    accent = '#9a704b',
+    className,
+    ...props
+}) {
     // VARIANT 1: Editorial Lookbook & Curated Drops (Awwwards SOTD Lookbook Style)
     if (variant === 1) {
         return (
-            <div className="bg-[#f9f7f4] text-[#1c1b19] dark:bg-[#1c1b19] dark:text-[#f3eee6]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#f9f7f4] text-[#1c1b19] dark:bg-[#1c1b19] dark:text-[#f3eee6]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.3fr_0.9fr]">
                     {/* Featured Campaign Banner */}
                     <div className="relative flex min-h-[360px] flex-col justify-end overflow-hidden p-8 text-white">
@@ -173,7 +245,13 @@ export default function EcommerceMegaMenu({ variant = 1, closeMenu, accent = '#9
     // VARIANT 2: Dark Luxury Boutique & Neo-Brutalist Matrix (MATERIAL/MATTERS)
     if (variant === 2) {
         return (
-            <div className="bg-[#181614] text-[#ece7df] p-8">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn('bg-[#181614] text-[#ece7df] p-8', className)}
+                {...props}
+            >
                 {/* Header ticker bar */}
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/15 pb-5">
                     <div className="flex items-center gap-3">
@@ -291,7 +369,16 @@ export default function EcommerceMegaMenu({ variant = 1, closeMenu, accent = '#9
     // VARIANT 3: Maison 08 Luxury Fashion Atelier & Split Haute Couture Grid
     if (variant === 3) {
         return (
-            <div className="bg-[#fbfaf8] text-[#1e1c1a] p-8 border-t border-[#e8e4dc]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#fbfaf8] text-[#1e1c1a] p-8 border-t border-[#e8e4dc]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left: Numbered Collections */}
                     <div className="lg:col-span-4 space-y-6 border-r border-[#e8e4dc] pr-8">
@@ -396,7 +483,16 @@ export default function EcommerceMegaMenu({ variant = 1, closeMenu, accent = '#9
     // VARIANT 4: Circular & Pre-Loved Marketplace (GOOD CIRCULAR)
     if (variant === 4) {
         return (
-            <div className="bg-[#202315] text-[#f4f7ea] p-8 border-t-2 border-[#d6f36a]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#202315] text-[#f4f7ea] p-8 border-t-2 border-[#d6f36a]',
+                    className,
+                )}
+                {...props}
+            >
                 {/* Top Live Impact Banner */}
                 <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg bg-[#2a301c] px-5 py-3 border border-[#d6f36a]/20">
                     <div className="flex items-center gap-3">
@@ -508,7 +604,16 @@ export default function EcommerceMegaMenu({ variant = 1, closeMenu, accent = '#9
 
     // VARIANT 5: Sunday Supply - Artisan Market & Sensory Goods
     return (
-        <div className="bg-[#f5ede4] text-[#2d2520] p-8 border-t border-[#d8c8ba]">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'bg-[#f5ede4] text-[#2d2520] p-8 border-t border-[#d8c8ba]',
+                className,
+            )}
+            {...props}
+        >
             {/* Header banner */}
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#d8c8ba] pb-4 gap-4">
                 <div>
@@ -621,3 +726,5 @@ export default function EcommerceMegaMenu({ variant = 1, closeMenu, accent = '#9
         </div>
     )
 }
+
+export default EcommerceMegaMenuCollection

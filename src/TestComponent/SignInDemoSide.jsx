@@ -1,11 +1,86 @@
-import { useState } from 'react'
-import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi'
+// SignInPageSideImageLayout
 
-const SignInDemoSide = () => {
+// SignInDemoSide · Authentication page demo (Side layout)
+
+// Description:
+// Full-page sign-in screen with the form on the left and a large rounded
+// background image on the right. The form shows the Ecme logo, "Welcome
+// back!" heading, pre-filled email + password, a "Forgot password" link,
+// a Sign In button, Google / Github buttons and a "Sign up" link.
+
+// Design:
+// - Full-screen flex row (min-h-screen, gap-6, p-6): form column on the
+//   left (flex-1, centered, content max-w-[450px] px-8) and an image panel
+//   on the right (flex-1, max-w-[720px], rounded-3xl, overflow-hidden)
+//   showing /img/others/auth-side-bg.png with object-cover
+// - bg-white / dark:bg-gray-800, text-gray-900 / dark:text-gray-100; brand
+//   blue #2a85ff for the primary button and input focus border; inputs
+//   have gray-300 borders (dark:border-gray-600)
+// - 60px logo that swaps per theme (dark:hidden / dark:block); h1 text-2xl
+//   bold, rounded-sm inputs and buttons, "or countinue with" divider
+// - Responsive: the image panel is hidden below lg (hidden lg:block), so
+//   small screens show only the form
+
+// What it does:
+// - useState(showPassword) toggles the password input between "password"
+//   and "text" via an eye / eye-off icon button with an aria-label
+// - Inputs are uncontrolled (defaultValue "admin-01@ecme.com" / "123Qwe")
+//   and required; form submit is prevented (demo only, no API call)
+// - Google / Github buttons have no click handler
+// - Links (plain anchors, full page load): "Forgot password" goes to
+//   /auth/forgot-password-side, "Sign up" goes to /auth/sign-up-side
+// - No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <main> with cn()
+// - ...props: spread onto the root <main> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// // src/configs/routes.config/authDemoRoute.js
+// {
+//     key: 'authentication.signInSide',
+//     path: `${AUTH_PREFIX_PATH}/sign-in-side`,
+//     component: lazy(() => import('@/TestComponent/SignInDemoSide')),
+//     authority: [ADMIN, USER],
+//     meta: {
+//         layout: 'blank',
+//         pageContainerType: 'gutterless',
+//         footer: false,
+//     },
+// }
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function SignInPageSideImageLayout({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-        <main className="flex min-h-screen gap-6 bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
+        <main
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'flex min-h-screen gap-6 bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100',
+                className,
+            )}
+            {...props}
+        >
             <section className="flex flex-1 flex-col items-center justify-center">
                 <div className="w-full max-w-[450px] px-8">
                     <div className="mb-8 flex justify-center">
@@ -52,4 +127,4 @@ const SignInDemoSide = () => {
     )
 }
 
-export default SignInDemoSide
+export default SignInPageSideImageLayout

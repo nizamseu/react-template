@@ -1,7 +1,71 @@
-import { HiArrowRight, HiPlay } from 'react-icons/hi'
-export default function Hero05() {
+// StudioClassMentorLedDualCTAHero
+
+// Hero05 · Learning Management & EdTech › Hero sections
+
+// Description:
+// Two-column hero on a soft sage background for "THE STUDIO CLASS". It shows the
+// serif headline "Turn a good idea into something real.", a line about following
+// a mentor through the work, and two CTAs ("Explore classes" and "Preview a
+// lesson"), next to a photo of an instructor guiding a hands-on class.
+
+// Design:
+// - Equal grid `md:grid-cols-[1fr_1fr]`; the image is a direct grid child
+//   (not absolutely positioned) with object-cover
+// - Light palette: sage #dce8df background, dark teal #102d36 text and primary
+//   button, forest green #3c7e5d eyebrow, white button label
+// - Serif text-5xl headline (leading .96), xs bold uppercase eyebrow (.14em
+//   tracking), rounded-full primary pill plus a plain-text secondary link;
+//   rounded-lg wrapper with overflow-hidden
+// - Stacks below md; image is h-64 on mobile and md:h-full beside the text;
+//   CTA row uses flex-wrap; padding p-7 -> sm:p-11
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - Anchors: "Explore classes" -> #class (HiArrowRight) and "Preview a lesson"
+//   -> #preview (HiPlay); neither plays media, they are plain links
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import StudioClassMentorLedDualCTAHero from '@/TestComponent/SectionDesigns/Sections/learning/Hero05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <StudioClassMentorLedDualCTAHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiPlay } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function StudioClassMentorLedDualCTAHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="grid overflow-hidden rounded-lg bg-[#dce8df] text-[#102d36] md:grid-cols-[1fr_1fr]">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'grid overflow-hidden rounded-lg bg-[#dce8df] text-[#102d36] md:grid-cols-[1fr_1fr]',
+                className,
+            )}
+            {...props}
+        >
             <div className="p-7 sm:p-11">
                 <p className="text-xs font-bold uppercase tracking-[.14em] text-[#3c7e5d]">
                     THE STUDIO CLASS
@@ -36,3 +100,5 @@ export default function Hero05() {
         </section>
     )
 }
+
+export default StudioClassMentorLedDualCTAHero

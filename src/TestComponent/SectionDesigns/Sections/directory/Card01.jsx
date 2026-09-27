@@ -1,8 +1,70 @@
-import { HiOutlineCheck, HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
+// SpecialtyCafeFieldNotesCard
 
-export default function Card01() {
+// Card01 · Directories & Search Aggregators › Cards
+
+// Description:
+// Dark venue listing card for Fuglen Tokyo (Tomigaya, Shibuya-ku), a Nordic
+// roastery, vintage-furniture showroom and vinyl cocktail salon. Shows a photo
+// with a category badge and a 4.9 (184 reviews) rating, a short blurb, a
+// work-friendly spec box (acoustic level, Wi-Fi & power) and a verified footer.
+
+// Design:
+// - Stacked card: h-56 image with overlay badges, location row, title, blurb,
+//   2-column spec grid, then a border-t footer row (justify-between)
+// - Dark #14201e surface with #e3ece9 / white text, lime #d9f064 accents,
+//   amber-300/400 star rating, emerald-400 "Verified Anonymous Critique" tick
+// - rounded-2xl card with border-white/10 and shadow-2xl, rounded-xl image,
+//   rounded-full backdrop-blur badge; title text-xl bold; metadata in
+//   font-mono at 10–11px
+// - No breakpoints: fills its grid cell; the photo zooms on hover
+//   (hover:scale-105, duration-700)
+
+// What it does:
+// - Purely presentational: no content props, no state; all content is hard-coded
+// - "View Field Notes →" links to #place
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import SpecialtyCafeFieldNotesCard from '@/TestComponent/SectionDesigns/Sections/directory/Card01';
+
+// const ListingGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <SpecialtyCafeFieldNotesCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineCheck, HiOutlineLocationMarker, HiStar } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function SpecialtyCafeFieldNotesCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-white/10 bg-[#14201e] p-5 text-[#e3ece9] shadow-2xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-white/10 bg-[#14201e] p-5 text-[#e3ece9] shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="relative h-56 overflow-hidden rounded-xl bg-black">
                 <img
                     className="h-full w-full object-cover transition duration-700 hover:scale-105"
@@ -54,3 +116,5 @@ export default function Card01() {
         </article>
     )
 }
+
+export default SpecialtyCafeFieldNotesCard

@@ -1,9 +1,76 @@
-import { HiOutlineBookOpen } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// FolioPrintEditionGridNavbar
 
-export default function Navbar05() {
+// Navbar05 · Blogs & Digital Media › Navbars
+
+// Description:
+// A dark, ruled three-column header for "MARGIN FOLIO", a photography and
+// art-book imprint. It shows the wordmark and issue "NO. 018", a strip with
+// a "Visual Folios" mega menu and links to Photo Essays, Documentary and
+// Interviews, and a print-run panel ("1,000 COPIES") with an "ORDER" link.
+
+// Design:
+// - Grid `md:grid-cols-[240px_1fr_200px]` with 2px dividers between cells:
+//   brand cell, navigation cell, print-order cell
+// - Dark archival palette: background #1a1816, text #e8e4df (links white/70
+//   → white on hover), border and dividers #443e39, peach accent #e7a37c
+// - Serif text-xl wide-tracked wordmark with a monospace "FOLIO" tag;
+//   monospace xs uppercase nav; square corners with a 2px outer border
+// - Below md the three cells stack as rows with horizontal dividers (vertical
+//   dividers from md); the nav stays visible and scrolls horizontally
+//   (overflow-x-auto); "PRINTED ARCHIVE" shows only from lg
+
+// What it does:
+// - Renders `MegaMenu` (category "media", variant 5, label "Visual
+//   Folios"): opens on click or keyboard focus, stays open while hovered,
+//   closes 160ms after the pointer leaves, on blur, or on Escape. The panel
+//   is portalled to document.body, fixed just below this header at its
+//   width, and shows a dark art-book menu of photographic folios
+// - Plain anchor links: `#home`, `#photography`, `#documentary`,
+//   `#interviews`, `#order-print`
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import FolioPrintEditionGridNavbar from '@/TestComponent/SectionDesigns/Sections/media/Navbar05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <FolioPrintEditionGridNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineBookOpen } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function FolioPrintEditionGridNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-2 border-[#443e39] bg-[#1a1816] text-[#e8e4df]">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-2 border-[#443e39] bg-[#1a1816] text-[#e8e4df]',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid grid-cols-1 md:grid-cols-[240px_1fr_200px] divide-y-2 md:divide-y-0 md:divide-x-2 divide-[#443e39]">
                 {/* Column 1: Monospace Index */}
                 <div className="p-3.5 flex items-center justify-between">
@@ -53,3 +120,5 @@ export default function Navbar05() {
         </header>
     )
 }
+
+export default FolioPrintEditionGridNavbar

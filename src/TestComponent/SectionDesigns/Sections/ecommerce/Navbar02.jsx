@@ -1,9 +1,74 @@
-import { HiOutlineShoppingBag } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// MaterialMattersBrutalistDarkNavbar
 
-export default function Navbar02() {
+// Navbar02 · E-commerce & Marketplaces › Navbars
+
+// Description:
+// Dark monospace header for the "MATERIAL/MATTERS [FW26]" store. The brand sits far left;
+// on the right are the nav (a "Department Archive" mega menu, Shop All, Circular Trade,
+// Atelier Lab) and a lime "BAG [3] $420" button. On mobile a second row shows the mega
+// menu trigger plus short Shop and Circular links.
+
+// Design:
+// - flex justify-between row with the right group pushed by ml-auto (gap-8); a separate
+//   mobile nav row below with border-t white/15.
+// - Always dark: #181614 background, white text (white/75, white/70, white/40), lime
+//   accent #d6f36a for the brand slash, mega trigger and bag; border-2 border-white/20.
+// - Mono uppercase type: brand text-xs font-black tracking-[.2em]; square corners
+//   (rounded-none) everywhere; the bag inverts to white on hover.
+// - Desktop nav shown from md; the mobile nav row is md:hidden; the "[FW26]" tag is
+//   hidden below sm; padding px-5 → sm:px-8.
+
+// What it does:
+// - Renders MegaMenu (category "ecommerce", variant 2, "Department Archive", accent
+//   #d6f36a) twice, once in the desktop nav and once in the mobile row; each opens on
+//   click or focus and closes on pointer leave (about 160ms), blur or Escape, showing the
+//   neo-brutalist archive panel portalled below the header.
+// - Anchors #home, #shop, #circular, #studio and #bag (aria-label "Open shopping bag").
+//   No content props, no local state.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import MaterialMattersBrutalistDarkNavbar from '@/TestComponent/SectionDesigns/Sections/ecommerce/Navbar02';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <MaterialMattersBrutalistDarkNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineShoppingBag } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function MaterialMattersBrutalistDarkNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-2 border-white/20 bg-[#181614] px-5 py-3.5 text-white sm:px-8">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-2 border-white/20 bg-[#181614] px-5 py-3.5 text-white sm:px-8',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between gap-6">
                 {/* Brand Far Left */}
                 <a
@@ -60,3 +125,5 @@ export default function Navbar02() {
         </header>
     )
 }
+
+export default MaterialMattersBrutalistDarkNavbar

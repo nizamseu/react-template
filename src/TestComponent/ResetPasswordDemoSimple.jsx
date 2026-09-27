@@ -1,7 +1,72 @@
-import { useState } from 'react'
-import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi'
+// ResetPasswordPageSimpleCenteredLayout
 
-const ResetPasswordDemoSimple = () => {
+// ResetPasswordDemoSimple · Authentication page demo (Simple layout)
+
+// Description:
+// Full-page "Set new password" screen in one centered column with a
+// Password and a Confirm Password field (each with a show / hide toggle)
+// and a Submit button. If both match, the page switches to "Reset done"
+// with a Continue button; otherwise an inline error is shown.
+
+// Design:
+// - Full-screen main (min-h-screen, flex, centered, px-5 py-10) with one
+//   column (w-full, min-w-[320px], max-w-[400px]); no logo, no side panel,
+//   no card border or shadow
+// - bg-white / dark:bg-gray-800, text-gray-900 / dark:text-gray-100; brand
+//   blue #2a85ff for Submit / Continue and input focus border; gray-300
+//   input borders (dark:border-gray-600); error text text-sm text-red-500
+// - h1 text-2xl bold with a semibold gray subtitle; rounded-sm controls;
+//   eye icons positioned absolutely inside the inputs (pr-10)
+// - No responsive breakpoints; the column simply shrinks to 320px minimum
+
+// What it does:
+// - State: complete, error, showPassword, showConfirmation, password,
+//   confirmation (both inputs are controlled)
+// - Eye / eye-off buttons toggle each input between "password" and "text"
+// - submit() prevents the default submit; if the two values differ it sets
+//   "Your passwords do not match" (role="alert"), otherwise it clears the
+//   error and sets complete to true (demo only, no API call)
+// - Links (plain anchors, full page load): "Continue" and "Sign in" both
+//   go to /auth/sign-in-simple
+// - No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <main> with cn()
+// - ...props: spread onto the root <main> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// // src/configs/routes.config/authDemoRoute.js
+// {
+//     key: 'authentication.resetPasswordSimple',
+//     path: `${AUTH_PREFIX_PATH}/reset-password-simple`,
+//     component: lazy(() => import('@/TestComponent/ResetPasswordDemoSimple')),
+//     authority: [ADMIN, USER],
+//     meta: {
+//         layout: 'blank',
+//         pageContainerType: 'gutterless',
+//         footer: false,
+//     },
+// }
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function ResetPasswordPageSimpleCenteredLayout({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [complete, setComplete] = useState(false)
     const [error, setError] = useState('')
     const [showPassword, setShowPassword] = useState(false)
@@ -20,7 +85,16 @@ const ResetPasswordDemoSimple = () => {
     }
 
     return (
-        <main className="flex min-h-screen items-center justify-center bg-white px-5 py-10 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
+        <main
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'flex min-h-screen items-center justify-center bg-white px-5 py-10 text-gray-900 dark:bg-gray-800 dark:text-gray-100',
+                className,
+            )}
+            {...props}
+        >
             <section className="w-full min-w-[320px] max-w-[400px]">
                 <header className="mb-6">
                     <h1 className="mb-1 text-2xl font-bold">{complete ? 'Reset done' : 'Set new password'}</h1>
@@ -52,4 +126,4 @@ const ResetPasswordDemoSimple = () => {
     )
 }
 
-export default ResetPasswordDemoSimple
+export default ResetPasswordPageSimpleCenteredLayout

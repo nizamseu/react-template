@@ -1,8 +1,75 @@
-import { HiArrowRight, HiCalendar, HiClock, HiOutlineVideoCamera } from 'react-icons/hi'
+// EngineeringOfficeHoursRSVPBanner
 
-export default function CTA02() {
+// CTA02 · Knowledge Bases & Documentation › Banner CTAs
+
+// Description:
+// A dark event banner promoting weekly "LIVE ENGINEERING OFFICE HOURS": a
+// "Deep-Dive Architecture AMA with Core Systems Maintainers". It lists the
+// schedule (Every Wed @ 11:00 AM PT, 45 minutes, Google Meet / YouTube Live) and
+// offers a side panel to submit a question and RSVP with an email.
+
+// Design:
+// - Relative section with a blurred mint glow top-right; flex column that
+//   becomes lg:flex-row: copy block (max-w-2xl) on the left, RSVP panel
+//   (w-full lg:w-96) on the right.
+// - Dark palette: background #12201a, border #41715d/40, glow #9bd2a7/10; mint
+//   accent #9bd2a7 (eyebrow, icons, input focus border, button background with
+//   #12201a text, hover white); emerald-400/500 live dot; panel black/40 with
+//   backdrop-blur-sm, inputs black/60.
+// - Monospace uppercase tracking-widest eyebrow; headline text-2xl → sm:text-4xl
+//   bold tracking-tight; text-sm body; text-xs inputs/buttons with rounded-lg;
+//   rounded-2xl section, rounded-xl panel, shadow-2xl.
+// - Padding p-8 → sm:p-12; the RSVP panel stacks full-width below the copy until
+//   lg; the schedule row uses flex-wrap.
+
+// What it does:
+// - No content props or state. The "live" dot animates with animate-ping (CSS only).
+// - The question (text) and email inputs are uncontrolled, not inside a form and
+//   have no labels; "RSVP & Add to Calendar" is a type="button" with no onClick,
+//   so nothing is submitted and no .ics invite is actually sent. No links.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import EngineeringOfficeHoursRSVPBanner from '@/TestComponent/SectionDesigns/Sections/knowledge/CTA02';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <EngineeringOfficeHoursRSVPBanner />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiCalendar, HiClock, HiOutlineVideoCamera } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function EngineeringOfficeHoursRSVPBanner({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="relative overflow-hidden rounded-2xl border border-[#41715d]/40 bg-[#12201a] p-8 text-white sm:p-12 shadow-2xl">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'relative overflow-hidden rounded-2xl border border-[#41715d]/40 bg-[#12201a] p-8 text-white sm:p-12 shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="absolute top-0 right-0 w-80 h-80 bg-[#9bd2a7]/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
@@ -68,3 +135,5 @@ export default function CTA02() {
         </section>
     )
 }
+
+export default EngineeringOfficeHoursRSVPBanner

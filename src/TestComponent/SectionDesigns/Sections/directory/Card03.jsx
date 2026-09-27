@@ -1,8 +1,70 @@
-import { HiOutlineClock, HiOutlineMap } from 'react-icons/hi'
+// CuratedWalkingRouteCard
 
-export default function Card03() {
+// Card03 · Directories & Search Aggregators › Cards
+
+// Description:
+// Dark guide card for "Curated Walking Route #06": The Antiquarian Bookstores
+// of Kanda-Jinbocho (Tokyo, Chiyoda-ku), a 2.5-hour trail. Lists three stops
+// (Komiyama Book Store, Saboru Kissaten, Ohya Shobo) as a mini timeline and
+// invites the visitor to start the route on mobile.
+
+// Design:
+// - Stacked card: header row (route number + duration), location kicker,
+//   title, blurb, waypoint timeline box, border-t footer row
+// - Dark #182622 surface with a #527354 border, white text (white/40–80
+//   secondary), lime #d9f064 accents; timeline box on black/40
+// - rounded-2xl card with shadow-2xl, rounded-xl timeline box; font-serif
+//   text-xl bold title; metadata and stops in font-mono; lime dot for the first
+//   stop, smaller white/40 dots with a left rule for the others
+// - No breakpoints and no image: fills its grid cell
+
+// What it does:
+// - Purely presentational: no content props, no state; the three stops are hard-coded
+// - "Start Route on Mobile →" links to #open-route; footer note "Includes
+//   offline GPS map"
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import CuratedWalkingRouteCard from '@/TestComponent/SectionDesigns/Sections/directory/Card03';
+
+// const ListingGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <CuratedWalkingRouteCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineClock, HiOutlineMap } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function CuratedWalkingRouteCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-[#527354] bg-[#182622] p-5 text-white shadow-2xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-[#527354] bg-[#182622] p-5 text-white shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#d9f064] font-bold">
                     <HiOutlineMap /> CURATED WALKING ROUTE #06
@@ -47,3 +109,5 @@ export default function Card03() {
         </article>
     )
 }
+
+export default CuratedWalkingRouteCard

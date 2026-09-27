@@ -1,11 +1,70 @@
-import { HiCheck } from 'react-icons/hi'
+// BasicHorizontalStepper
 
-const BasicStepper = () => {
+// BasicStepper · Steps demo
+
+// Description:
+// A static 4-step horizontal progress indicator made only of numbered
+// circles joined by connector lines (no titles). Step 1 is shown as
+// complete (check icon), step 2 is the current step and steps 3-4 are
+// pending. It is display-only; the user cannot interact with it.
+
+// Design:
+// - Row layout (flex, justify-between); every step except the last takes
+//   basis-1/3 and draws a connector line, the last step is max-w-[25%]
+// - Complete: filled brand blue #2a85ff circle with a white HiCheck icon;
+//   current: 2px #2a85ff border with blue number (dark:text-gray-100);
+//   pending: gray-300 border (dark:border-gray-600)
+// - Connector is h-0.5 and blue after a complete step, otherwise gray-200
+//   (dark:bg-gray-600)
+// - Circles are 36px (h-9 w-9), rounded-full, text-lg font-semibold
+// - No responsive breakpoints; the row always stays horizontal
+
+// What it does:
+// - currentStep is a hard-coded local constant (1), not state
+// - isComplete / isCurrent are derived per step from its index
+// - No state, no event handlers
+// - No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <div> with cn()
+// - ...props: spread onto the root <div> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import BasicHorizontalStepper from '@/TestComponent/BasicStepper';
+
+// const Basic = () => {
+//     return <BasicHorizontalStepper />
+// }
+// ```
+
+'use client'
+
+import { HiCheck } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function BasicHorizontalStepper({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const currentStep = 1
     const steps = [0, 1, 2, 3]
 
     return (
-        <div className="flex items-center justify-between">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn('flex items-center justify-between', className)}
+            {...props}
+        >
             {steps.map((step, index) => {
                 const isComplete = index < currentStep
                 const isCurrent = index === currentStep
@@ -38,4 +97,4 @@ const BasicStepper = () => {
     )
 }
 
-export default BasicStepper
+export default BasicHorizontalStepper

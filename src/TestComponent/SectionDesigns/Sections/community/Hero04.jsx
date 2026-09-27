@@ -1,7 +1,68 @@
-import { HiArrowRight } from 'react-icons/hi'
-export default function Hero04() {
+// FrontPorchLocalMeetupsHero
+
+// Hero04 · Social Networks & Communities › Hero sections
+
+// Description:
+// An editorial split hero for "COMMUNITY / IN REAL LIFE", pitching the platform as "The internet,
+// with a front porch." It promotes welcoming local meetups around interests people already love,
+// links to "See what's happening", and pairs the copy with a photo of friends gathering outside.
+
+// Design:
+// - Two equal columns (md:grid-cols-[1fr_1fr]): text block left, cover photo right
+// - Palette: cream #f7ede6 background, dark brown #27201d text, rust #a34c38 eyebrow and link
+//   underline, gray-600 body copy; light and warm
+// - Typography & shapes: serif headline (font-serif, text-5xl, leading .95, regular weight) with
+//   a line break; uppercase tracked eyebrow; underlined text link (border-b) instead of a button;
+//   rounded-lg section
+// - Responsive: stacks below md with the photo underneath at h-64; from md the photo stretches to
+//   the full column height; padding p-7 → sm:p-11
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - Text link "See what's happening" → #events (HiArrowRight icon); Unsplash photo with alt text
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import FrontPorchLocalMeetupsHero from '@/TestComponent/SectionDesigns/Sections/community/Hero04';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <FrontPorchLocalMeetupsHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function FrontPorchLocalMeetupsHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="overflow-hidden rounded-lg bg-[#f7ede6] text-[#27201d]">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-lg bg-[#f7ede6] text-[#27201d]',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid md:grid-cols-[1fr_1fr]">
                 <div className="p-7 sm:p-11">
                     <p className="text-xs font-bold uppercase tracking-[.15em] text-[#a34c38]">
@@ -32,3 +93,5 @@ export default function Hero04() {
         </section>
     )
 }
+
+export default FrontPorchLocalMeetupsHero

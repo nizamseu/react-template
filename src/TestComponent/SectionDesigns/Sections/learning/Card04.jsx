@@ -1,8 +1,70 @@
-import { HiStar } from 'react-icons/hi'
+// StudentCapstoneShowcaseCard
 
-export default function Card04() {
+// Card04 · Learning Management & EdTech › Cards
+
+// Description:
+// Light card spotlighting a graduate capstone, "Kinetic Type Engine for Sound
+// Synthesizers" by Maya Lin (Cohort 03 graduate, now at Studio Dumbar). It shows
+// an "A+ EVALUATION" star badge, the project image, a three-score rubric
+// (Concept 98, Systems 95, Execution 100), a short pull-quote and a critique link.
+
+// Design:
+// - Single <article>: header row (label + badge, border-b), h-48 image frame,
+//   title and byline, grid-cols-3 scorecard, footer row (quote + link, border-t)
+// - Light palette: white background, #102d36 text, forest green #3c7e5d label,
+//   scores and link, amber-400/500 star badge, gray-50 to gray-500 neutrals
+// - Mono 9-10px labels, serif text-lg bold title, italic serif quote;
+//   rounded-2xl card with gray-200 border and shadow-md, rounded-xl image,
+//   rounded-lg scorecard
+// - No breakpoint classes: fluid width; image zooms (hover:scale-105, 700ms)
+
+// What it does:
+// - Purely presentational: no content props, no state (the image zoom is CSS only)
+// - Single anchor "View Critique" -> #view-crit (hover:underline); scorecard
+//   cells are hard-coded, not mapped from an array
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import StudentCapstoneShowcaseCard from '@/TestComponent/SectionDesigns/Sections/learning/Card04';
+
+// const ShowcaseGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <StudentCapstoneShowcaseCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiStar } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function StudentCapstoneShowcaseCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 text-[#102d36] shadow-md">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 text-[#102d36] shadow-md',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-gray-100 pb-3">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-[#3c7e5d] font-bold">
                     STUDENT CAPSTONE SHOWCASE
@@ -54,3 +116,5 @@ export default function Card04() {
         </article>
     )
 }
+
+export default StudentCapstoneShowcaseCard

@@ -1,7 +1,70 @@
-import { HiArrowRight, HiCalendar } from 'react-icons/hi'
-export default function Hero03() {
+// CabinSplitScreenHero
+
+// Hero03 · Booking & Reservations › Hero sections
+
+// Description:
+// A split-screen hero promoting small stays. The left panel carries the
+// eyebrow "PLAN LESS / FEEL MORE", the two-line headline "Find the place.
+// Leave the rest." and a "See the stays" link; the right panel shows a cabin
+// among trees with a white "Dates open through November" availability badge.
+
+// Design:
+// - Two-column grid md:grid-cols-[.8fr_1.2fr]: a text column (flex column,
+//   justify-between) and an image column (relative, min-h-64, photo
+//   absolutely filling it with object-cover)
+// - Dark teal #132d3a background with white text, peach #f0aa8d eyebrow,
+//   white/65 body copy; the badge is white with #132d3a text
+// - Serif headline text-5xl at leading-[.95] with a manual line break; bold
+//   uppercase text-xs eyebrow with tracking-[.15em]; rounded-lg shell with
+//   overflow-hidden, square-cornered badge with a HiCalendar icon
+// - Padding p-7 → sm:p-11; below md the columns stack (text first, image below)
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - "See the stays" (HiArrowRight) is an anchor to #stays
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import CabinSplitScreenHero from '@/TestComponent/SectionDesigns/Sections/booking/Hero03';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <CabinSplitScreenHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiCalendar } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function CabinSplitScreenHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="grid overflow-hidden rounded-lg bg-[#132d3a] text-white md:grid-cols-[.8fr_1.2fr]">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'grid overflow-hidden rounded-lg bg-[#132d3a] text-white md:grid-cols-[.8fr_1.2fr]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col justify-between p-7 sm:p-11">
                 <p className="text-xs font-bold uppercase tracking-[.15em] text-[#f0aa8d]">
                     PLAN LESS / FEEL MORE
@@ -35,3 +98,5 @@ export default function Hero03() {
         </section>
     )
 }
+
+export default CabinSplitScreenHero

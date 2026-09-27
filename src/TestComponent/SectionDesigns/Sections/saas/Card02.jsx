@@ -1,7 +1,64 @@
-import { useState } from 'react'
-import { HiCheck, HiOutlineClipboardCopy } from 'react-icons/hi'
+// SignalEmbeddingsAPIEndpointCard
 
-export default function Card02() {
+// Card02 · SaaS Platforms › Cards
+
+// Description:
+// A developer-focused API reference card for the `POST /v1/embeddings` endpoint of
+// api.signal.dev. It shows a syntax-coloured cURL request, a "Copy cURL" button, a
+// "200 OK · 28ms latency" response footer and a "Test in Playground" link.
+
+// Design:
+// - <article> with three parts separated by #263640 borders: a header row (POST
+//   method badge + path, copy button), a code block, and a footer row (status +
+//   link).
+// - Dark base #0e161c with a #263640 border and #e3edf2 text. The code block is
+//   black/60, with syntax colours purple-400 (curl), emerald-300 (header) and
+//   amber-300 (JSON body). The badge and status are emerald, and the link is mint
+//   #65e6b4.
+// - Typography: font-mono throughout, with 10-11px code and labels and a bold path.
+//   The card is rounded-xl with shadow-2xl, and the code block rounded-lg.
+// - Responsive: no breakpoint classes. The fixed layout fills its grid cell.
+
+// What it does:
+// - `copied` state: "Copy cURL" writes a cURL command through
+//   navigator.clipboard?.writeText, swaps the icon to HiCheck and the label to
+//   "Copied cURL", then resets after 2 s with setTimeout.
+// - The copied command's JSON input is "Awwwards SOTD", which differs from the
+//   "Query" shown in the displayed snippet.
+// - One link to `#test-api` ("Test in Playground →"). No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import SignalEmbeddingsAPIEndpointCard from '@/TestComponent/SectionDesigns/Sections/saas/Card02';
+
+// const CardGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <SignalEmbeddingsAPIEndpointCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiCheck, HiOutlineClipboardCopy } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function SignalEmbeddingsAPIEndpointCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [copied, setCopied] = useState(false)
 
     const copyCode = () => {
@@ -13,7 +70,16 @@ export default function Card02() {
     }
 
     return (
-        <article className="overflow-hidden rounded-xl border border-[#263640] bg-[#0e161c] text-[#e3edf2] p-5 shadow-2xl font-mono">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-xl border border-[#263640] bg-[#0e161c] text-[#e3edf2] p-5 shadow-2xl font-mono',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-[#263640] pb-3">
                 <div className="flex items-center gap-2">
                     <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
@@ -50,3 +116,5 @@ export default function Card02() {
         </article>
     )
 }
+
+export default SignalEmbeddingsAPIEndpointCard

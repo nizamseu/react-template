@@ -1,7 +1,73 @@
-import { useState } from 'react'
-import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi'
+// ResetPasswordPageSideImageLayout
 
-const ResetPasswordDemoSide = () => {
+// ResetPasswordDemoSide · Authentication page demo (Side layout)
+
+// Description:
+// Full-page "Set new password" screen with the form on the left and a
+// large rounded background image on the right. The form has Password and
+// Confirm Password fields (each with a show / hide toggle) and Submit; on
+// a match it switches to "Reset done" with a Continue button.
+
+// Design:
+// - Full-screen flex row (min-h-screen, gap-6, p-6): form column on the
+//   left (flex-1, centered, content max-w-[450px] px-8) and an image panel
+//   on the right (flex-1, max-w-[720px], rounded-3xl, overflow-hidden)
+//   showing /img/others/auth-side-bg.png with object-cover; no logo
+// - bg-white / dark:bg-gray-800, text-gray-900 / dark:text-gray-100; brand
+//   blue #2a85ff for Submit / Continue and input focus border; gray-300
+//   input borders (dark:border-gray-600); error text text-sm text-red-500
+// - h1 text-2xl bold; rounded-sm controls; eye icons inside the inputs
+// - Responsive: the image panel is hidden below lg (hidden lg:block), so
+//   small screens show only the form
+
+// What it does:
+// - State: complete, error, showPassword, showConfirmation, password,
+//   confirmation (both inputs are controlled)
+// - Eye / eye-off buttons toggle each input between "password" and "text"
+// - submit() prevents the default submit; if the two values differ it sets
+//   "Your passwords do not match" (role="alert"), otherwise it clears the
+//   error and sets complete to true (demo only, no API call)
+// - Links (plain anchors, full page load): "Continue" and "Sign in" both
+//   go to /auth/sign-in-side
+// - No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <main> with cn()
+// - ...props: spread onto the root <main> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// // src/configs/routes.config/authDemoRoute.js
+// {
+//     key: 'authentication.resetPasswordSide',
+//     path: `${AUTH_PREFIX_PATH}/reset-password-side`,
+//     component: lazy(() => import('@/TestComponent/ResetPasswordDemoSide')),
+//     authority: [ADMIN, USER],
+//     meta: {
+//         layout: 'blank',
+//         pageContainerType: 'gutterless',
+//         footer: false,
+//     },
+// }
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function ResetPasswordPageSideImageLayout({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [complete, setComplete] = useState(false)
     const [error, setError] = useState('')
     const [showPassword, setShowPassword] = useState(false)
@@ -20,7 +86,16 @@ const ResetPasswordDemoSide = () => {
     }
 
     return (
-        <main className="flex min-h-screen gap-6 bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
+        <main
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'flex min-h-screen gap-6 bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100',
+                className,
+            )}
+            {...props}
+        >
             <section className="flex flex-1 flex-col items-center justify-center">
                 <div className="w-full max-w-[450px] px-8">
                     <header className="mb-6">
@@ -55,4 +130,4 @@ const ResetPasswordDemoSide = () => {
     )
 }
 
-export default ResetPasswordDemoSide
+export default ResetPasswordPageSideImageLayout

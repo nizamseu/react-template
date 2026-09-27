@@ -1,7 +1,76 @@
-import { HiArrowRight, HiPlay } from 'react-icons/hi'
-export default function Hero05() {
+// PlanMakeShipProductTourHero
+
+// Hero05 · SaaS Platforms › Hero sections
+
+// Description:
+// A light split hero inviting visitors to a two-minute product tour. It has the
+// eyebrow "A product tour, not a pitch", the headline "See your work take shape.",
+// short copy and a "Watch the product tour" text link. On the right, a dark
+// video-style panel shows three numbered steps (01 Plan, 02 Make, 03 Ship) and a
+// round mint play button.
+
+// Design:
+// - Grid <section> `lg:grid-cols-[.8fr_1.2fr]` (gap-7). The copy column is
+//   vertically centred. The right panel (relative, min-h-60) holds a 3-column step
+//   grid, and the play button is absolutely positioned at the bottom right.
+// - Light sage background #edf3ee with ink #111a22 text, a green #137d62 eyebrow
+//   and gray-600 body copy. The dark panel is #111a22, with white/10 step tiles and
+//   mint #65e6b4 step numbers and play button.
+// - Typography: xs bold uppercase eyebrow, tracking-[.15em]; headline
+//   text-4xl -> sm:text-5xl semibold, leading-none. The section and panel are
+//   rounded-lg, the step tiles rounded, and the play button a rounded-full h-12
+//   w-12 circle.
+// - Responsive: the copy and panel stack below lg and sit side by side from lg.
+//   Padding goes p-6 -> sm:p-9, and the step grid stays 3 columns.
+
+// What it does:
+// - No content props, no state. The play <button> (aria-label "Play product tour",
+//   HiPlay icon) has no onClick handler, so it is decorative only.
+// - One text link to `#tour` with a HiArrowRight icon. Steps are mapped from
+//   ['Plan', 'Make', 'Ship'] with zero-padded indices (01-03).
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import PlanMakeShipProductTourHero from '@/TestComponent/SectionDesigns/Sections/saas/Hero05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <PlanMakeShipProductTourHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiPlay } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function PlanMakeShipProductTourHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="grid gap-7 rounded-lg bg-[#edf3ee] p-6 text-[#111a22] sm:p-9 lg:grid-cols-[.8fr_1.2fr]">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'grid gap-7 rounded-lg bg-[#edf3ee] p-6 text-[#111a22] sm:p-9 lg:grid-cols-[.8fr_1.2fr]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col justify-center">
                 <p className="text-xs font-bold uppercase tracking-[.15em] text-[#137d62]">
                     A PRODUCT TOUR, NOT A PITCH
@@ -42,3 +111,5 @@ export default function Hero05() {
         </section>
     )
 }
+
+export default PlanMakeShipProductTourHero

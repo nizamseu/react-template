@@ -1,8 +1,73 @@
-import { HiArrowRight, HiOutlineExclamationCircle, HiOutlineCode } from 'react-icons/hi'
+// BreakingReleaseMigrationNoticeCard
 
-export default function Card05() {
+// Card05 · Knowledge Bases & Documentation › Cards
+
+// Description:
+// An amber-accented changelog card flagging a "BREAKING RELEASE" (v4.18.0 · OCT
+// 2026, Node ≥ 20.0): "Async Storage Engine Migration & TLS 1.3 Strict Mandate".
+// It explains that getSync()/setSync() were removed, shows the CLI upgrade
+// command "npm i @platform/sdk@latest" and links to a migration guide.
+
+// Design:
+// - Single article: header row (breaking badge + version | Node requirement
+//   chip), title and explanation with inline code, a CLI box, and a footer row
+//   with a top border.
+// - Warm dark palette: background #16120b, border amber-500/30, white text;
+//   amber-500/20 badge with amber-400 text, amber-300 inline code on black/40,
+//   CLI box black/60 with an emerald-400 command; amber-500 button with black text
+//   (hover amber-400). This amber theme departs from the folder's green palette.
+// - text-base bold tracking-tight title, text-xs leading-relaxed body, monospace
+//   meta and code; rounded-2xl card, rounded-full badge, rounded-xl CLI box,
+//   rounded-lg button; shadow-xl.
+// - No breakpoint classes: the card is fluid and fills its grid cell.
+
+// What it does:
+// - Purely presentational: no content props, no state. The CLI command uses select-all
+//   so one click selects it (CSS only, no copy handler).
+// - One CTA anchor, "Migration Guide" (HiArrowRight) → #migration-guide.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import BreakingReleaseMigrationNoticeCard from '@/TestComponent/SectionDesigns/Sections/knowledge/Card05';
+
+// const DocsGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <BreakingReleaseMigrationNoticeCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiOutlineExclamationCircle, HiOutlineCode } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function BreakingReleaseMigrationNoticeCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-amber-500/30 bg-[#16120b] p-6 text-white shadow-xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-amber-500/30 bg-[#16120b] p-6 text-white shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-amber-500/20 pb-4">
                 <div className="flex items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2.5 py-0.5 text-[11px] font-bold tracking-wide text-amber-400 border border-amber-500/30">
@@ -43,3 +108,5 @@ export default function Card05() {
         </article>
     )
 }
+
+export default BreakingReleaseMigrationNoticeCard

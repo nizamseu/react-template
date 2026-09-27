@@ -1,9 +1,66 @@
-import { useState } from 'react'
-import { HiCheck } from 'react-icons/hi'
+// ControlledStepperWithPreviousNextButtons
+
+// ControlledStepper · Steps demo
+
+// Description:
+// A 4-step horizontal stepper with titles (Login, Order Placed, In Review,
+// Approved), a placeholder content panel ("Step N content") and
+// Previous / Next buttons. The user moves through the steps with the
+// buttons; it starts on step 1.
+
+// Design:
+// - Stepper row (flex, justify-between; basis-1/3 per step, last step
+//   max-w-[25%]) above a content panel and a right-aligned button bar
+// - Complete: filled brand blue #2a85ff circle with white HiCheck;
+//   current: 2px #2a85ff border (dark:text-gray-100); pending: gray-300
+//   border (dark:border-gray-600); connector blue after complete steps,
+//   otherwise gray-200 (dark:bg-gray-600)
+// - Content panel: mt-6, h-40, rounded-sm, bg-gray-50 (dark:bg-gray-700)
+//   with a centered h6
+// - Previous: outlined gray-300 border (dark:border-gray-600); Next:
+//   filled #2a85ff with white text; disabled buttons use opacity-50 and
+//   cursor-not-allowed
+// - No responsive breakpoints
+
+// What it does:
+// - useState(currentStep), initial value 0
+// - changeStep(nextStep) clamps the value to the range 0..steps.length - 1
+// - Previous is disabled on the first step; Next is disabled on the last
+//   step and its label changes from "Next" to "Completed"
+// - No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <div> with cn()
+// - ...props: spread onto the root <div> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import ControlledStepperWithPreviousNextButtons from '@/TestComponent/ControlledStepper';
+
+// const Controlled = () => {
+//     return <ControlledStepperWithPreviousNextButtons />
+// }
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiCheck } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
 const steps = ['Login', 'Order Placed', 'In Review', 'Approved']
 
-const ControlledStepper = () => {
+export function ControlledStepperWithPreviousNextButtons({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [currentStep, setCurrentStep] = useState(0)
 
     const changeStep = (nextStep) => {
@@ -11,7 +68,13 @@ const ControlledStepper = () => {
     }
 
     return (
-        <div>
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(className)}
+            {...props}
+        >
             <div className="flex items-center justify-between">
                 {steps.map((title, index) => {
                     const isComplete = index < currentStep
@@ -72,4 +135,4 @@ const ControlledStepper = () => {
     )
 }
 
-export default ControlledStepper
+export default ControlledStepperWithPreviousNextButtons

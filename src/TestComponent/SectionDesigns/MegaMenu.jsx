@@ -1,17 +1,85 @@
-import { useLayoutEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
-import { HiChevronDown } from 'react-icons/hi'
+// CategoryMegaMenuDropdown
 
-import EcommerceMegaMenu from './MegaMenus/EcommerceMegaMenu'
-import LearningMegaMenu from './MegaMenus/LearningMegaMenu'
-import SaasMegaMenu from './MegaMenus/SaasMegaMenu'
-import MediaMegaMenu from './MegaMenus/MediaMegaMenu'
-import CommunityMegaMenu from './MegaMenus/CommunityMegaMenu'
-import CorporateMegaMenu from './MegaMenus/CorporateMegaMenu'
-import PortfolioMegaMenu from './MegaMenus/PortfolioMegaMenu'
-import BookingMegaMenu from './MegaMenus/BookingMegaMenu'
-import DirectoryMegaMenu from './MegaMenus/DirectoryMegaMenu'
-import KnowledgeMegaMenu from './MegaMenus/KnowledgeMegaMenu'
+// MegaMenu · Section designs › Mega menus
+
+// Description:
+// A navbar dropdown trigger (label + chevron) that opens a wide mega menu panel directly
+// below the surrounding <header>. It chooses one of ten category menus (ecommerce, learning,
+// saas, media, community, corporate, portfolio, booking, directory, knowledge) and one of
+// that menu's five designs, and renders the panel into document.body through a portal.
+
+// Design:
+// - Trigger is a plain <button> with the label and a HiChevronDown that rotates 180° while open; its look comes from triggerClassName or a neutral default class string.
+// - The panel frame (radius, border, shadow, background) comes from panelContainerStyles[category][variant], so every category/variant pair has its own frame; unknown pairs fall back to 'rounded-xl border border-black/10 shadow-2xl'.
+// - The panel content is delegated to the category component (e.g. EcommerceMegaMenu) with the normalised variant.
+// - Frames containing both 'rounded-none' and 'border-b' render flush (header width, directly under the header); all other frames are inset 16px from the viewport edges with a 6px gap below the header.
+// - Variant 1 — "Lookbook Drop" (ecommerce default label): other categories → Curriculum Tracks, Platform Suite, Sunday Edition, Guilds & Spaces, Advisory Practices, Selected Works, Architectural Stays, Local Guilds, API & SDKs.
+// - Variant 2 — "Department Archive": other categories → Live Studio, Developers & API, Broadcast Audio, City Chapters, Investor Relations, Shader Laboratory, Destination Finder, Power Search, Self-Service Hub.
+// - Variant 3 — "Maison Atelier": other categories → Career Roadmap, Solutions Matrix, Gazette Archive, Topic Radar, Quantified Impact, Design Manifesto, Stays by Typology, Curated Guides, Trust & Security.
+// - Variant 4 — "Pre-Loved Market": other categories → Experiment Lab, AI Command Center, Live Wire Feed, Peer Q&A, Research Institute, Services & Retainers, Host Experiences, Verified Studios, Cookbook Recipes.
+// - Variant 5 — "Artisan Provisions": other categories → Mentorship Residency, Integrations, Visual Folios, Discord Hub, Private Capital, Visual Notes, Weekend Escapes, District Walks, Support SLA.
+
+// What it does:
+// - category picks the component from componentMap (unknown category → EcommerceMegaMenu); variant is normalised with ((variant - 1) % 5) + 1, so 6 → 1, 7 → 2, and so on.
+// - Trigger text is the label prop, else defaultLabels[category][variant] (the names listed above), else "Explore".
+// - Opens when the button is clicked (toggle) or when focus enters the trigger wrapper; hovering the trigger alone does not open it, while hovering the open panel keeps it open.
+// - Closes 160 ms after the pointer leaves the trigger or the panel, when focus moves outside both, immediately on Escape, and whenever the category menu calls closeMenu (its links call it on click).
+// - Positioning: while open, a useLayoutEffect measures the trigger's closest <header> with getBoundingClientRect and stores top/left/width; it re-measures on window resize and on scroll (capture phase, so nested scroll containers count) and removes those listeners on close. If the trigger has no <header> ancestor, the panel never appears.
+// - The panel is portalled to document.body as a fixed element (z-[9999], overflow-auto, maxHeight = viewport height minus its top minus 16px), so it escapes the navbar's overflow clipping and stacking context.
+// - accent is forwarded to the category menu and set as a --accent-color CSS variable on the trigger button.
+// - Accessibility: the button has aria-expanded, aria-haspopup and aria-controls="mega-menu-{category}-{variant}", matching the panel id.
+
+// @param {object} props
+// @param {'ecommerce'|'learning'|'saas'|'media'|'community'|'corporate'|'portfolio'|'booking'|'directory'|'knowledge'} [props.category='ecommerce'] Which category menu to show.
+// @param {number} [props.variant=1] Design number of the category menu; normalised to 1–5.
+// @param {string} [props.label] Trigger text; defaults to the category/variant label or "Explore".
+// @param {string} [props.accent] Accent colour (hex); passed to the category menu and exposed as --accent-color on the trigger.
+// @param {string} [props.triggerClassName=''] When non-empty, replaces the default trigger button classes.
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Extra classes for the wrapper <div> around the trigger; merged with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, data-*) are spread onto the wrapper <div>; its own ref and handlers stay in control.
+
+// Usage example:
+// ```jsx
+// import CategoryMegaMenuDropdown from '@/TestComponent/SectionDesigns/MegaMenu';
+
+// export default function Navbar01() {
+//     return (
+//         <header className="rounded-none border-b border-black/10 bg-[#f3eee6] px-5 py-4 text-[#1c1b19]">
+//             <nav className="hidden items-center gap-7 text-xs font-semibold md:flex">
+//                 <CategoryMegaMenuDropdown
+//                     category="ecommerce"
+//                     accent="#9a704b"
+//                     variant={1}
+//                     label="Lookbook Drop"
+//                     triggerClassName="inline-flex items-center gap-1 text-xs font-semibold text-[#1c1b19] hover:text-[#9a704b] transition-colors cursor-pointer"
+//                 />
+//                 <a href="#new">New Arrivals</a>
+//             </nav>
+//         </header>
+//     )
+// }
+// ```
+
+'use client'
+
+import { useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { HiChevronDown } from 'react-icons/hi';
+
+import EcommerceMegaMenu from './MegaMenus/EcommerceMegaMenu';
+import LearningMegaMenu from './MegaMenus/LearningMegaMenu';
+import SaasMegaMenu from './MegaMenus/SaasMegaMenu';
+import MediaMegaMenu from './MegaMenus/MediaMegaMenu';
+import CommunityMegaMenu from './MegaMenus/CommunityMegaMenu';
+import CorporateMegaMenu from './MegaMenus/CorporateMegaMenu';
+import PortfolioMegaMenu from './MegaMenus/PortfolioMegaMenu';
+import BookingMegaMenu from './MegaMenus/BookingMegaMenu';
+import DirectoryMegaMenu from './MegaMenus/DirectoryMegaMenu';
+import KnowledgeMegaMenu from './MegaMenus/KnowledgeMegaMenu';
+import { cn } from '@/design-system/lib/cn';
 
 // Dynamic container styles per (category, variant) to guarantee NO two mega menus look alike
 const panelContainerStyles = {
@@ -173,14 +241,18 @@ const componentMap = {
     knowledge: KnowledgeMegaMenu,
 }
 
-const MegaMenu = ({
+export function CategoryMegaMenuDropdown({
     category = 'ecommerce',
     variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
     label,
     accent,
     triggerClassName = '',
-    className = '',
-}) => {
+    className,
+    ...props
+}) {
     const [open, setOpen] = useState(false)
     const [panelPosition, setPanelPosition] = useState(null)
     const triggerRef = useRef(null)
@@ -260,8 +332,15 @@ const MegaMenu = ({
 
     return (
         <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'relative z-40 inline-flex items-center self-center',
+                className,
+            )}
+            {...props}
             ref={triggerRef}
-            className={`relative z-40 inline-flex items-center self-center ${className}`}
             onMouseEnter={cancelClose}
             onMouseLeave={scheduleClose}
             onFocusCapture={() => {
@@ -330,4 +409,4 @@ const MegaMenu = ({
     )
 }
 
-export default MegaMenu
+export default CategoryMegaMenuDropdown

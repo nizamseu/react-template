@@ -1,7 +1,69 @@
-import { HiArrowRight } from 'react-icons/hi'
-export default function Hero05() {
+// GiftEditSplitHero
+
+// Hero05 · E-commerce & Marketplaces › Hero sections
+
+// Description:
+// Gifting hero for "The Gift Edit / Nº 06". The left half shows the eyebrow "A gift,
+// already thought through", the serif headline "For the ones who show up.", copy about
+// little thank-yous, big celebrations and just-because gifts, and a blue pill CTA "Find
+// their thing"; the right half is a colourful gifts photo with a white edition tag.
+
+// Design:
+// - Two equal columns (md:grid-cols-[1fr_1fr], min-h-[390px]); text vertically centred
+//   (flex-col justify-center); image column relative with an absolute bottom-right tag.
+// - Blush #f4ebe4 background, #241f1b text, gray-600 copy, CTA #2a85ff with white text,
+//   white tag with gray-900 text. Dark mode: gray-800 background, white text, gray-300 copy.
+// - Serif headline text-5xl → sm:text-6xl (leading-[.95]); eyebrow text-xs bold uppercase
+//   tracking-[.15em]; rounded-full pill CTA; square tag; rounded-lg shell.
+// - Stacks on mobile (image min-h-64 below the text); side by side from md; padding
+//   p-7 → sm:p-12.
+
+// What it does:
+// - Purely presentational: no content props, no state.
+// - One anchor CTA "Find their thing" → #gifts (HiArrowRight icon).
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import GiftEditSplitHero from '@/TestComponent/SectionDesigns/Sections/ecommerce/Hero05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <GiftEditSplitHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function GiftEditSplitHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="overflow-hidden rounded-lg bg-[#f4ebe4] text-[#241f1b] dark:bg-gray-800 dark:text-white">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-lg bg-[#f4ebe4] text-[#241f1b] dark:bg-gray-800 dark:text-white',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid min-h-[390px] md:grid-cols-[1fr_1fr]">
                 <div className="flex flex-col justify-center p-7 sm:p-12">
                     <p className="text-xs font-bold uppercase tracking-[.15em]">
@@ -37,3 +99,5 @@ export default function Hero05() {
         </section>
     )
 }
+
+export default GiftEditSplitHero

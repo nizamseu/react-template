@@ -1,8 +1,69 @@
-import { HiArrowRight } from 'react-icons/hi'
+// ExecutiveOffsiteSanctuaryCTA
 
-export default function CTA05() {
+// CTA05 · Booking & Reservations › Banner CTAs
+
+// Description:
+// A high-contrast banner for booking off-grid board and executive offsites in
+// sanctuaries with redundant Starlink terminals, private culinary teams,
+// strategy pavilions and on-demand helicopter transfers, ending in a
+// "Reserve Executive Sanctuary" button.
+
+// Design:
+// - Flex column → md:flex-row (copy in max-w-xl | button), justify-between
+// - Near-black teal #0e1d24 background, #dae6ec text with a white headline
+//   and white/60 body, coral #e07d5b border-2, eyebrow and button (dark
+//   #0e1d24 label, hover white)
+// - Mono uppercase tracking-widest eyebrow, serif text-3xl font-light
+//   headline; square shell (rounded-none), small-radius (rounded) button
+// - Stacks below md; padding p-8 → sm:p-12
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - "Reserve Executive Sanctuary" (HiArrowRight) is an anchor to
+//   #executive-retreats
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import ExecutiveOffsiteSanctuaryCTA from '@/TestComponent/SectionDesigns/Sections/booking/CTA05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <ExecutiveOffsiteSanctuaryCTA />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function ExecutiveOffsiteSanctuaryCTA({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="rounded-none border-2 border-[#e07d5b] bg-[#0e1d24] p-8 text-[#dae6ec] sm:p-12">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-2 border-[#e07d5b] bg-[#0e1d24] p-8 text-[#dae6ec] sm:p-12',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="max-w-xl">
                     <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#e07d5b]">
@@ -27,3 +88,5 @@ export default function CTA05() {
         </section>
     )
 }
+
+export default ExecutiveOffsiteSanctuaryCTA

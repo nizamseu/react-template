@@ -1,11 +1,73 @@
-import { useState } from 'react'
-import { HiOutlineCalendar, HiCheck } from 'react-icons/hi'
+// StudioNordXGoodformDropCalendarCTA
 
-export default function CTA04() {
+// CTA04 · E-commerce & Marketplaces › Banner CTAs
+
+// Description:
+// Dark launch banner for the "STUDIO NORD × GOODFORM: Volcanic Ceramics & Raw Wool"
+// collaboration ("100 PIECES WORLDWIDE", drop date Oct 24, 2026 · 18:00 CET). Copy
+// mentions numbered pieces with engraved brass plaques and an SMS unlock link, next to a
+// "Sync Drop to Calendar" toggle button.
+
+// Design:
+// - Two rows: a header (title + drop date) with border-b white/10, then copy + button;
+//   the header is flex-col → md:flex-row, the action row flex-col → sm:flex-row.
+// - Always dark: #1c1b18 background, white text, white/60–70 secondary text, amber-300
+//   eyebrow and button hover; the button is white by default and emerald-500 once added.
+// - Serif light headline text-2xl → sm:text-3xl; mono labels; rounded-full button;
+//   rounded-2xl shell; padding p-8 → sm:p-10.
+// - Header row stacks below md; action row stacks below sm.
+
+// What it does:
+// - State: added (boolean) toggled by the button; it swaps HiOutlineCalendar for HiCheck,
+//   the label "Sync Drop to Calendar" for "Drop Added to Calendar" and white for emerald.
+//   No real calendar integration.
+// - No links, no content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import StudioNordXGoodformDropCalendarCTA from '@/TestComponent/SectionDesigns/Sections/ecommerce/CTA04';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <StudioNordXGoodformDropCalendarCTA />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiOutlineCalendar, HiCheck } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function StudioNordXGoodformDropCalendarCTA({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [added, setAdded] = useState(false)
 
     return (
-        <section className="overflow-hidden rounded-2xl border border-white/10 bg-[#1c1b18] p-8 text-white sm:p-10">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-white/10 bg-[#1c1b18] p-8 text-white sm:p-10',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-white/10 pb-8">
                 <div>
                     <span className="font-mono text-[10px] text-amber-300 uppercase tracking-widest">
@@ -41,3 +103,5 @@ export default function CTA04() {
         </section>
     )
 }
+
+export default StudioNordXGoodformDropCalendarCTA

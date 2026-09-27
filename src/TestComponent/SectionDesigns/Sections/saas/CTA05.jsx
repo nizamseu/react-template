@@ -1,8 +1,74 @@
-import { HiArrowRight } from 'react-icons/hi'
+// OpenSourceCommunityGitHubDiscordCTA
 
-export default function CTA05() {
+// CTA05 · SaaS Platforms › Banner CTAs
+
+// Description:
+// A dark, square-edged community banner. The eyebrow reads "Open-source core •
+// 14.8K GitHub stars", above the headline "Built in Public. Powered by 350+ Global
+// Contributors." The copy covers the Apache 2.0 routing engine and edge proxy plus
+// weekly Discord office hours. Two buttons follow: "Star on GitHub (14.8k)" and
+// "Join 12,000+ on Discord".
+
+// Design:
+// - <section> with flex-col -> lg:flex-row (lg:items-center, justify-between):
+//   copy on the left and a shrink-0 button group on the right.
+// - Dark base #17232c with a 2px #263640 border. Mint #65e6b4 is used for the
+//   eyebrow and the primary button (text #17232c, hover white). The secondary
+//   button is outlined in white/30 (hover white/10).
+// - Typography: mono eyebrow with tracking-[.2em], a font-black headline at
+//   text-2xl -> sm:text-3xl, and mono xs body copy. The section is rounded-none, and
+//   the buttons are rounded.
+// - Responsive: below sm the buttons are full-width and stacked; from sm they sit
+//   inline. From lg the button group moves beside the copy.
+
+// What it does:
+// - Purely presentational: no content props, no state.
+// - The GitHub button opens the generic https://github.com in a new tab
+//   (target="_blank", rel="noreferrer"). The Discord button links to `#discord`
+//   with a HiArrowRight icon.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import OpenSourceCommunityGitHubDiscordCTA from '@/TestComponent/SectionDesigns/Sections/saas/CTA05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <OpenSourceCommunityGitHubDiscordCTA />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function OpenSourceCommunityGitHubDiscordCTA({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="overflow-hidden rounded-none border-2 border-[#263640] bg-[#17232c] p-8 text-white">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-none border-2 border-[#263640] bg-[#17232c] p-8 text-white',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 <div>
                     <span className="font-mono text-xs font-bold uppercase tracking-[.2em] text-[#65e6b4]">
@@ -37,3 +103,5 @@ export default function CTA05() {
         </section>
     )
 }
+
+export default OpenSourceCommunityGitHubDiscordCTA

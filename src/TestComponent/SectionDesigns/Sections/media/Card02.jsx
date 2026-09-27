@@ -1,11 +1,79 @@
-import { useState } from 'react'
-import { HiOutlineMicrophone, HiPlay } from 'react-icons/hi'
+// PodcastEpisodeWaveformPlayerCard
 
-export default function Card02() {
+// Card02 · Blogs & Digital Media › Cards
+
+// Description:
+// A dark audio card for episode 48 of the "MARGIN DISCUSSIONS" podcast,
+// "The Crisis of Public Space with Rem Koolhaas". It shows the runtime, a
+// short summary, a mock player with a play button, a bar waveform and the
+// current chapter, plus a note that a transcript is included.
+
+// Design:
+// - Single `article`: meta row (ruled underneath), title and summary, an
+//   inset player panel (button + waveform + time row), then a ruled footer
+// - Dark studio palette: card #191919, text #f0ede6 and white, peach accent
+//   #e7a37c (label, play button, played bars, link), player panel bg
+//   black/60, borders white/10 and white/5
+// - Serif text-xl bold title; monospace 9-12px labels; 40px round play
+//   button that scales up on hover; 20 flex bars with rounded tops;
+//   rounded-xl card with shadow-2xl
+// - No breakpoint classes: fluid width; the waveform bars flex to the
+//   available width
+
+// What it does:
+// - Local `playing` state (useState, starts false) is toggled by the play
+//   button, but nothing reads it: the icon stays a play glyph and the
+//   waveform does not change
+// - Waveform is a hard-coded array of 20 bar heights (percent) mapped to
+//   bars; the first 8 are highlighted as "played"; time row shows 14:20,
+//   "Chapter 2: The Mallification of Rome" and 48:12
+// - "Listen on Apple / Spotify" link points to `#listen`
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import PodcastEpisodeWaveformPlayerCard from '@/TestComponent/SectionDesigns/Sections/media/Card02';
+
+// const CardGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <PodcastEpisodeWaveformPlayerCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiOutlineMicrophone, HiPlay } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function PodcastEpisodeWaveformPlayerCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [playing, setPlaying] = useState(false)
 
     return (
-        <article className="overflow-hidden rounded-xl border border-white/10 bg-[#191919] p-5 text-[#f0ede6] shadow-2xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-xl border border-white/10 bg-[#191919] p-5 text-[#f0ede6] shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#e7a37c] uppercase tracking-widest">
                     <HiOutlineMicrophone /> MARGIN DISCUSSIONS &bull; EP. 48
@@ -62,3 +130,5 @@ export default function Card02() {
         </article>
     )
 }
+
+export default PodcastEpisodeWaveformPlayerCard

@@ -1,8 +1,69 @@
-import { HiStar } from 'react-icons/hi'
+// GuildMemberSpotlightCard
 
-export default function Card04() {
+// Card04 · Social Networks & Communities › Cards
+
+// Description:
+// A dark profile card for the monthly "GUILD MEMBER SPOTLIGHT" (Oct 2026) featuring Elena Rostova
+// (@elena_design, Berlin Chapter Lead), flagged as a top 1% contributor. It shows her avatar, focus
+// areas, three contribution stats (84 PRs merged, 142 crits given, 6,480 community karma), her
+// membership year and a "View Guild Profile" button.
+
+// Design:
+// - Stacked card: header row (spotlight label + star badge), avatar + identity row, a 3-column stats
+//   panel, then a footer row with "Member since 2022" and a button
+// - Palette: near-black brown #1e1715 with white text, peach #ffccad labels, avatar ring and stat
+//   values, amber-300 / amber-400 star badge, white/10 borders and a black/40 stats panel; dark theme
+// - Typography & shapes: mono uppercase micro-labels (9-10px), bold base-size name; rounded-2xl card
+//   with shadow-xl, 56px round avatar with a 2px border, rounded-xl stats panel, pill button
+// - Responsive: no breakpoint classes; the stats grid stays three columns at all widths
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - "View Guild Profile" is a type="button" that inverts on hover (white background, black text)
+//   but has no click handler (visual only)
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import GuildMemberSpotlightCard from '@/TestComponent/SectionDesigns/Sections/community/Card04';
+
+// const CommunityCards = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <GuildMemberSpotlightCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiStar } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function GuildMemberSpotlightCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-white/10 bg-[#1e1715] p-5 text-white shadow-xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-white/10 bg-[#1e1715] p-5 text-white shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-[#ffccad] font-bold">
                     GUILD MEMBER SPOTLIGHT &bull; OCT 2026
@@ -53,3 +114,5 @@ export default function Card04() {
         </article>
     )
 }
+
+export default GuildMemberSpotlightCard

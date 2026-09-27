@@ -1,8 +1,68 @@
-import { HiStar } from 'react-icons/hi'
+// RakuPotteryMasterclassCard
 
-export default function Card04() {
+// Card04 · Booking & Reservations › Cards
+
+// Description:
+// An experience-booking card for a 4-hour craft masterclass, "Raku Pottery &
+// Zen Tea with Master Chiba", in a 200-year-old studio in Uji. It shows a
+// Kyoto tea-ceremony photo with $190 / guest and 5.0 (48 reviews) badges,
+// the description, a "Keep hand-thrown chawan" perk and a "Reserve Spot" link.
+
+// Design:
+// - Padded article: h-56 image frame with overlay price and rating badges,
+//   then a mono category label, title, blurb and a bordered footer row
+// - Dark teal #1a2d36 surface with white text, coral #e07d5b label, price
+//   and CTA, amber-300/400 rating star, white/70 and white/40 muted copy
+// - Mono uppercase tracking-widest text-[10px] label, serif text-lg bold
+//   title; rounded-2xl card, rounded-xl image, white/10 border, shadow-xl
+// - No breakpoints of its own; it fills the width of its grid cell
+
+// What it does:
+// - No content props, no state; the image scales to 105% on hover (700ms)
+// - "Reserve Spot →" is an anchor to #reserve-masterclass
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import RakuPotteryMasterclassCard from '@/TestComponent/SectionDesigns/Sections/booking/Card04';
+
+// const ExperiencesGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <RakuPotteryMasterclassCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiStar } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function RakuPotteryMasterclassCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-white/10 bg-[#1a2d36] p-5 text-white shadow-xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-white/10 bg-[#1a2d36] p-5 text-white shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="relative h-56 overflow-hidden rounded-xl bg-black">
                 <img
                     className="h-full w-full object-cover transition duration-700 hover:scale-105"
@@ -38,3 +98,5 @@ export default function Card04() {
         </article>
     )
 }
+
+export default RakuPotteryMasterclassCard

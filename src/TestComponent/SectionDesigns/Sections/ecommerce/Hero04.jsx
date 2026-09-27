@@ -1,7 +1,69 @@
-import { HiArrowRight } from 'react-icons/hi'
-export default function Hero04() {
+// IndependentMakersStaggeredCollageHero
+
+// Hero04 · E-commerce & Marketplaces › Hero sections
+
+// Description:
+// Maker-focused marketplace hero with the eyebrow "Made by the many" and the serif
+// headline "One good thing at a time.". Short copy introduces independent makers building
+// useful objects, followed by a "Meet the makers" link, next to a two-photo collage of
+// handmade ceramics and an independent fashion collection.
+
+// Design:
+// - Padded card (p-5 → sm:p-8) with grid gap-6 and lg:grid-cols-[.72fr_1.28fr]; the image
+//   area is a 2-column grid where the second photo is pushed down (mt-8 → sm:mt-12) for a
+//   staggered look.
+// - Light palette: #f7f5f0 background, #27231e headline, #6a5039 eyebrow, gray-600 copy and
+//   a blue #2a85ff link accent. Dark mode: gray-800 background, white headline, gray-300 copy.
+// - Serif headline text-5xl → sm:text-6xl (leading-[.98]); eyebrow text-xs bold uppercase
+//   tracking-[.14em]; photos rounded-lg object-cover at h-52 → sm:h-72; rounded-lg shell.
+// - Text stacks above the collage below lg; the collage always stays two columns.
+
+// What it does:
+// - Purely presentational: no content props, no state.
+// - One anchor CTA "Meet the makers" → #makers (HiArrowRight icon).
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import IndependentMakersStaggeredCollageHero from '@/TestComponent/SectionDesigns/Sections/ecommerce/Hero04';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <IndependentMakersStaggeredCollageHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function IndependentMakersStaggeredCollageHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="grid gap-6 rounded-lg bg-[#f7f5f0] p-5 dark:bg-gray-800 sm:p-8 lg:grid-cols-[.72fr_1.28fr]">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'grid gap-6 rounded-lg bg-[#f7f5f0] p-5 dark:bg-gray-800 sm:p-8 lg:grid-cols-[.72fr_1.28fr]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col justify-between">
                 <div>
                     <p className="text-xs font-bold uppercase tracking-[.14em] text-[#6a5039]">
@@ -37,3 +99,5 @@ export default function Hero04() {
         </section>
     )
 }
+
+export default IndependentMakersStaggeredCollageHero

@@ -1,8 +1,73 @@
-import { HiOutlineCalendar, HiOutlineTicket } from 'react-icons/hi'
+// WeekendMasterclassTicketCard
 
-export default function Card02() {
+// Card02 · Learning Management & EdTech › Cards
+
+// Description:
+// Event-ticket styled card for a 3-hour live workshop, "GLSL Shaders & WebGL
+// Real-Time Graphics" (Sat, Oct 26 • 10:00AM EST). It shows a pass header with
+// ticket number, a perforated divider, a short workshop description, an
+// admission fee ($120 USD) vs availability (6 seats left) panel and a
+// full-width "Claim Workshop Pass" button.
+
+// Design:
+// - Dark header strip, dashed "perforation" divider with two circular notches
+//   (absolutely positioned white circles), then a padded body with an info
+//   panel (flex justify-between) and a full-width button
+// - Light body: cream #f5f1e8 background, #102d36 border, header, text and
+//   button, lime #c8ef70 header label and ticket icon, #3c7e5d date line and
+//   button hover, rose-600 availability label, gray-500 and white/70 captions
+// - Mono uppercase labels, serif text-xl bold title; rounded-xl card with a
+//   2px border and a hard neo-brutalist offset shadow (5px 5px 0 #102d36);
+//   rounded-lg info panel and button
+// - No breakpoint classes: fluid width that fills its grid cell
+
+// What it does:
+// - No content props, no state; the "Claim Workshop Pass" element is a type="button"
+//   with no onClick handler, so it only shows a hover colour change
+// - No links; icons HiOutlineCalendar and HiOutlineTicket are decorative
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import WeekendMasterclassTicketCard from '@/TestComponent/SectionDesigns/Sections/learning/Card02';
+
+// const WorkshopGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <WeekendMasterclassTicketCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineCalendar, HiOutlineTicket } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function WeekendMasterclassTicketCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-xl border-2 border-[#102d36] bg-[#f5f1e8] text-[#102d36] shadow-[5px_5px_0px_0px_#102d36]">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-xl border-2 border-[#102d36] bg-[#f5f1e8] text-[#102d36] shadow-[5px_5px_0px_0px_#102d36]',
+                className,
+            )}
+            {...props}
+        >
             {/* Ticket Header */}
             <div className="bg-[#102d36] p-4 text-white flex items-center justify-between">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-[#c8ef70]">
@@ -50,3 +115,5 @@ export default function Card02() {
         </article>
     )
 }
+
+export default WeekendMasterclassTicketCard

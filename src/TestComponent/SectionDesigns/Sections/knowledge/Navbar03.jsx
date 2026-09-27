@@ -1,9 +1,78 @@
-import { HiArrowRight, HiOutlineCode } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// NorthstarAPIKernelThreeTierMasthead
 
-export default function Navbar03() {
+// Navbar03 · Knowledge Bases & Documentation › Navbars
+
+// Description:
+// A dark, three-row developer knowledge-base header for "NORTHSTAR DEVELOPER
+// KNOWLEDGE BASE & KERNEL". A monospace ticker lists spec formats and SDK
+// languages, the masthead shows the brand and a "Manage API Keys" link, and a
+// bottom shelf holds the "Trust Architecture" mega menu plus deep-dive topics
+// (Idempotency Keys, Rate Limit Algorithms, Signed Webhooks, RPC Benchmarks).
+
+// Design:
+// - Three stacked rows separated by white/10 borders: top micro-ticker, middle
+//   masthead (brand left, API-keys link right), bottom navigation shelf on a
+//   darker band.
+// - Dark forest palette: background #121f1a, shelf #0e1713, outer border-y
+//   #41715d/30, mint accent #9bd2a7 (ticker, icon, trigger, link), links white/70,
+//   meta white/60 and white/40; shadow-xl.
+// - Monospace text-[10px] ticker; monospace bold text-sm tracking-wider brand
+//   with a HiOutlineCode icon; text-xs semibold links; square corners (rounded-none).
+// - Padding px-5 → sm:px-8; the middle ticker item and "Manage API Keys" are
+//   hidden below sm, "PRODUCTION GRADE" shows only from lg. The bottom nav stays
+//   visible on all sizes and scrolls horizontally (overflow-x-auto).
+
+// What it does:
+// - No content props or own state. "Trust Architecture" is the shared MegaMenu (category
+//   "knowledge", variant 3, accent #9bd2a7): toggles on click or opens on focus,
+//   closes on pointer leave (160ms delay), Escape or blur, and portals an
+//   "Enterprise Compliance & Guarantees" panel below the header.
+// - Anchors: brand → #home, #api-keys, #idempotency, #rate-limits, #webhooks and
+//   #benchmarks.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import NorthstarAPIKernelThreeTierMasthead from '@/TestComponent/SectionDesigns/Sections/knowledge/Navbar03';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <NorthstarAPIKernelThreeTierMasthead />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiOutlineCode } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function NorthstarAPIKernelThreeTierMasthead({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-y border-[#41715d]/30 bg-[#121f1a] text-white shadow-xl">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-y border-[#41715d]/30 bg-[#121f1a] text-white shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             {/* Top Micro-Ticker */}
             <div className="border-b border-white/10 px-5 py-1.5 font-mono text-[10px] text-[#9bd2a7] flex items-center justify-between sm:px-8">
                 <span>OPENAPI 3.1 SPECIFICATION &bull; REST &bull; GRAPHQL &bull; GRPC SCHEMAS</span>
@@ -60,3 +129,5 @@ export default function Navbar03() {
         </header>
     )
 }
+
+export default NorthstarAPIKernelThreeTierMasthead

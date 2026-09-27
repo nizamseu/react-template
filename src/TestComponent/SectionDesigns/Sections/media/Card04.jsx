@@ -1,8 +1,73 @@
-import { HiOutlinePhotograph } from 'react-icons/hi'
+// PhotojournalismFolioGalleryCard
 
-export default function Card04() {
+// Card04 · Blogs & Digital Media › Cards
+
+// Description:
+// A photo-essay card for "The Neon Rain of Kabukicho" (Visual Monograph,
+// Folio 14, 18 prints) by photojournalist Marcus Chen. A black-and-white
+// Tokyo street photo carries a camera/exposure data strip, followed by the
+// title, a one-line summary and a "View Complete Folio" link.
+
+// Design:
+// - Single `article`: 256px-tall image frame (h-64) with an overlay strip at
+//   the bottom, then meta row, title, summary and a ruled footer row
+// - Dark gallery palette: card #181614, text #ede8e1 and white, peach
+//   accent #e7a37c (meta row, link), overlay bg black/80 with backdrop blur,
+//   borders white/15 and white/10
+// - Serif text-xl bold title; monospace 10-11px meta text; rounded-2xl card
+//   with rounded-xl image frame and shadow-2xl
+// - No breakpoint classes: fluid width; the image uses object-cover inside
+//   a fixed-height frame
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - Hover effect (CSS only): the photo goes from grayscale with extra
+//   contrast to full colour and zooms to 105% over 700ms
+// - "View Complete Folio" link points to `#view-gallery`; image is a remote
+//   Unsplash photo
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import PhotojournalismFolioGalleryCard from '@/TestComponent/SectionDesigns/Sections/media/Card04';
+
+// const CardGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <PhotojournalismFolioGalleryCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlinePhotograph } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function PhotojournalismFolioGalleryCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-white/15 bg-[#181614] p-5 text-[#ede8e1] shadow-2xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-white/15 bg-[#181614] p-5 text-[#ede8e1] shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="relative h-64 overflow-hidden rounded-xl bg-black">
                 <img
                     className="h-full w-full object-cover grayscale contrast-125 transition duration-700 hover:scale-105 hover:grayscale-0"
@@ -40,3 +105,5 @@ export default function Card04() {
         </article>
     )
 }
+
+export default PhotojournalismFolioGalleryCard

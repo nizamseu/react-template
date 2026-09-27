@@ -1,8 +1,69 @@
-import { HiArrowRight } from 'react-icons/hi'
+// EnterpriseTeamResidencyCTA
 
-export default function CTA02() {
+// CTA02 · Learning Management & EdTech › Banner CTAs
+
+// Description:
+// Cream B2B banner selling an "ENTERPRISE RESIDENCY FOR DESIGN & TECH TEAMS".
+// The headline "Transform Your Product Organization's Craft Standard" and copy
+// about custom 4-to-8 week private studios sit beside a "Request Custom
+// Enterprise Syllabus" button and a minimum cohort size note (6 people).
+
+// Design:
+// - Grid: one column, `lg:grid-cols-[1.3fr_0.7fr]` from lg (copy | CTA stack),
+//   items-center
+// - Light palette: cream #f5f1e8 background, #102d36 text and button (hover
+//   #3c7e5d), forest green #3c7e5d eyebrow, gray-200 border, gray-500 note
+// - Mono 10px uppercase eyebrow (.25em tracking), serif text-3xl -> sm:text-4xl
+//   bold headline; rounded-xl section, rounded-full button
+// - Stacks below lg (CTA under the copy); padding p-8 -> sm:p-12
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - Single anchor "Request Custom Enterprise Syllabus" -> #enterprise-quote
+//   (HiArrowRight)
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import EnterpriseTeamResidencyCTA from '@/TestComponent/SectionDesigns/Sections/learning/CTA02';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <EnterpriseTeamResidencyCTA />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function EnterpriseTeamResidencyCTA({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="rounded-xl border border-gray-200 bg-[#f5f1e8] p-8 text-[#102d36] sm:p-12">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-xl border border-gray-200 bg-[#f5f1e8] p-8 text-[#102d36] sm:p-12',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 items-center">
                 <div>
                     <span className="font-mono text-[10px] font-bold uppercase tracking-[.25em] text-[#3c7e5d]">
@@ -32,3 +93,5 @@ export default function CTA02() {
         </section>
     )
 }
+
+export default EnterpriseTeamResidencyCTA

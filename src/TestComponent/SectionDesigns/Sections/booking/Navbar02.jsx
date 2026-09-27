@@ -1,9 +1,74 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// DestinationFinderNavbar
 
-export default function Navbar02() {
+// Navbar02 · Booking & Reservations › Navbars
+
+// Description:
+// A light, editorial header for "ELSEWHERE / DESTINATIONS". The wordmark sits
+// far left; a right-aligned group holds a "Destination Finder" MegaMenu,
+// links to Typologies, Experiences and Private Key, and a "Reserve Villa" button.
+
+// Design:
+// - Flex row: brand on the left, nav + CTA pushed right with ml-auto
+// - Warm paper #f7f5f0 background, ink #1c2c34 text, rust #b65f47 accent
+//   (wordmark suffix, MegaMenu trigger, link hover, CTA which hovers to
+//   #1c2c34), #d8e2e6 bottom border
+// - Serif text-2xl bold wordmark, text-xs medium links, mono bold CTA in a
+//   rounded-lg button; square header corners (rounded-none)
+// - Nav links are hidden below md with no mobile replacement; the CTA stays
+//   visible; padding px-5 → sm:px-8
+
+// What it does:
+// - No content props or state of its own; renders MegaMenu (category "booking",
+//   variant 2, accent #b65f47) whose trigger opens the destination-search
+//   panel (read-only where / when / guests widget) on click or keyboard
+//   focus; portaled below the header, it closes on mouse-leave/blur after
+//   160ms or on Escape
+// - Anchors: wordmark → #home, #typology, #experiences, #private-key;
+//   "Reserve Villa" (HiArrowRight) → #reserve
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import DestinationFinderNavbar from '@/TestComponent/SectionDesigns/Sections/booking/Navbar02';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <DestinationFinderNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function DestinationFinderNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-b border-[#d8e2e6] bg-[#f7f5f0] px-5 py-4 text-[#1c2c34] sm:px-8">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-b border-[#d8e2e6] bg-[#f7f5f0] px-5 py-4 text-[#1c2c34] sm:px-8',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between gap-6">
                 {/* Brand Far Left */}
                 <a href="#home" className="font-serif text-2xl font-bold tracking-tight shrink-0">
@@ -43,3 +108,5 @@ export default function Navbar02() {
         </header>
     )
 }
+
+export default DestinationFinderNavbar

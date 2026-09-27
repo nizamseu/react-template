@@ -1,8 +1,72 @@
-import { HiOutlineCube, HiOutlineServer } from 'react-icons/hi'
+// MultiRegionServiceMeshTopologyCard
 
-export default function Card05() {
+// Card05 · SaaS Platforms › Cards
+
+// Description:
+// A dark infrastructure card labelled "Distributed topology", showing "3 active
+// clusters". It describes a "Multi-Region Microservice Graph" (a self-healing
+// service mesh with geo-steering and circuit-breaker failover). It lists three
+// healthy nodes (edge-gateway / Envoy, auth-service / OAuth2, db-replica /
+// CockroachDB) with latency and availability, and ends with "Auto-scale: Nominal"
+// and an "Inspect Mesh" link.
+
+// Design:
+// - <article> with a header row, a title and summary, a black/40 node box whose
+//   child rows are indented (pl-4 border-l) to suggest a tree, and a border-t
+//   footer row.
+// - Dark base #17232c with #263640 borders, a mint #65e6b4 accent, emerald-400
+//   status dots and white/40-80 text.
+// - Typography: font-mono by default, with a font-sans text-base bold title and
+//   summary. The card is rounded-2xl with shadow-xl, and the node box rounded-xl.
+// - Responsive: no breakpoint classes. The card fills its grid cell.
+
+// What it does:
+// - Purely presentational: no content props, no state.
+// - One link to `#view-mesh` ("Inspect Mesh →"). The node rows are hard-coded (not
+//   mapped).
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import MultiRegionServiceMeshTopologyCard from '@/TestComponent/SectionDesigns/Sections/saas/Card05';
+
+// const CardGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <MultiRegionServiceMeshTopologyCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineCube, HiOutlineServer } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function MultiRegionServiceMeshTopologyCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-[#263640] bg-[#17232c] p-5 text-white shadow-xl font-mono">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-[#263640] bg-[#17232c] p-5 text-white shadow-xl font-mono',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-[#263640] pb-3">
                 <span className="flex items-center gap-1.5 text-xs text-[#65e6b4]">
                     <HiOutlineCube /> DISTRIBUTED TOPOLOGY
@@ -55,3 +119,5 @@ export default function Card05() {
         </article>
     )
 }
+
+export default MultiRegionServiceMeshTopologyCard

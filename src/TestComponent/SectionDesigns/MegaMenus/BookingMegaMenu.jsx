@@ -1,3 +1,54 @@
+// TravelStaysBookingMegaMenuCollection
+
+// BookingMegaMenu · Section designs › Mega menus
+
+// Description:
+// Dropdown panel content for a boutique stays / travel-booking website (fictional
+// "Elsewhere" brand). Depending on `variant` the visitor browses architectural villas,
+// a mock search bar with trending destinations, stay collections by typology, hosted
+// experiences or discounted weekend deals, each with a reserve/book CTA.
+
+// Design:
+// - Five hard-coded layouts in deep teal tones (plus one light cream variant) with terracotta #e07d5b highlights, serif headlines and responsive card grids.
+// - Variant 1 — "Architectural Stays": #102530 panel, three villa cards with Unsplash photo (zoom on hover), price badge, location, star rating, amenities and a "Reserve Sanctuary" link.
+// - Variant 2 — "Destination Finder": light #f7f5f0 panel, white search widget (read-only Where "Kyoto, Japan", static When/Guests, "Search 420 Stays" button) and a row of trending-destination pill links.
+// - Variant 3 — "Stays by Typology": #14232c panel, four collection cards (Mid-Century Modern, Wilderness Treehouses, Historic Watchtowers, Overwater Sanctuaries) with property counts and "Explore Collection" links.
+// - Variant 4 — "Host Experiences": #1a2d36 panel, header with a "Host an Experience" pill link and three experience cards (location/duration, title, price per guest, rating, "Reserve" link).
+// - Variant 5 — "Weekend Escapes": #0e1d24 panel, "Save Up to 35%" header with static countdown text and three deal cards (drive time, was/now price, dates) with "Instant Book Weekend" button-links.
+
+// What it does:
+// - `variant` 1-4 each return their own layout; any other value (including 5) falls through to Variant 5.
+// - Every anchor and the Variant 2 search button call `closeMenu` on click; hrefs are placeholders (e.g. "#book-villa", "#dest", "#browse-type", "#instant-book").
+// - Purely presentational: no real search, booking or countdown logic; all data is hard-coded and there is no state or effect.
+// - `accent` is destructured with a default but never referenced; all colours are hard-coded Tailwind values.
+// - Normally rendered by MegaMenu (category "booking"), which normalises `variant` to 1-5 and supplies `closeMenu`.
+
+// @param {object} props
+// @param {number} [props.variant=1] Design to render (1-5); unknown values render Variant 5.
+// @param {Function} props.closeMenu Called on click of every link/CTA so the parent mega menu can close.
+// @param {string} [props.accent='#b65f47'] Accent colour; accepted but currently unused (colours are hard-coded).
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Merged onto the root <div> of every variant with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, ref, handlers) are spread onto the root <div> of every variant.
+
+// Usage example:
+// ```jsx
+// import { useState } from 'react';
+// import TravelStaysBookingMegaMenuCollection from '@/TestComponent/SectionDesigns/MegaMenus/BookingMegaMenu';
+
+// function StaysMenu() {
+//     const [open, setOpen] = useState(true)
+//     return open ? <TravelStaysBookingMegaMenuCollection variant={2} closeMenu={() => setOpen(false)} /> : null
+// }
+
+// // Usual route: MegaMenu picks this component for category="booking"
+// // <MegaMenu category="booking" variant={2} accent="#b65f47" label="Destination Finder" />
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineCalendar,
@@ -6,13 +57,32 @@ import {
     HiOutlineSparkles,
     HiOutlineStar,
     HiOutlineUsers,
-} from 'react-icons/hi'
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
-export default function BookingMegaMenu({ variant = 1, closeMenu, accent = '#b65f47' }) {
+export function TravelStaysBookingMegaMenuCollection({
+    variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
+    closeMenu,
+    accent = '#b65f47',
+    className,
+    ...props
+}) {
     // VARIANT 1: Sanctuary Escapes & Architectural Stays (elsewhere.)
     if (variant === 1) {
         return (
-            <div className="bg-[#102530] text-[#e3edf2] p-8 border-t-2 border-[#e07d5b]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#102530] text-[#e3edf2] p-8 border-t-2 border-[#e07d5b]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
                     <div>
                         <span className="font-mono text-[10px] uppercase tracking-[.25em] text-[#e07d5b]">
@@ -105,7 +175,16 @@ export default function BookingMegaMenu({ variant = 1, closeMenu, accent = '#b65
     // VARIANT 2: Instant Travel Search & Destination Matrix
     if (variant === 2) {
         return (
-            <div className="bg-[#f7f5f0] text-[#1c2c34] p-8 border-t border-[#d8e2e6]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#f7f5f0] text-[#1c2c34] p-8 border-t border-[#d8e2e6]',
+                    className,
+                )}
+                {...props}
+            >
                 {/* Search Bar Widget */}
                 <div className="rounded-xl bg-white p-3 shadow-md border border-[#d8e2e6] grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
                     <div className="p-2 border-b sm:border-b-0 sm:border-r border-gray-200">
@@ -157,7 +236,16 @@ export default function BookingMegaMenu({ variant = 1, closeMenu, accent = '#b65
     // VARIANT 3: Thematic Stays & Architectural Typologies
     if (variant === 3) {
         return (
-            <div className="bg-[#14232c] text-[#dce7ee] p-8 border-t border-[#b65f47]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#14232c] text-[#dce7ee] p-8 border-t border-[#b65f47]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] text-[#e07d5b] uppercase tracking-[.25em]">
@@ -218,7 +306,16 @@ export default function BookingMegaMenu({ variant = 1, closeMenu, accent = '#b65
     // VARIANT 4: Immersive Experiences & Host Masterclasses
     if (variant === 4) {
         return (
-            <div className="bg-[#1a2d36] text-white p-8 border-t border-[#e07d5b]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#1a2d36] text-white p-8 border-t border-[#e07d5b]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] text-[#e07d5b] uppercase tracking-[.25em]">
@@ -280,7 +377,16 @@ export default function BookingMegaMenu({ variant = 1, closeMenu, accent = '#b65
 
     // VARIANT 5: Last-Minute Weekend Escapes & Secret Season
     return (
-        <div className="bg-[#0e1d24] text-[#dae6ec] p-8 border-t-2 border-[#e07d5b]">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'bg-[#0e1d24] text-[#dae6ec] p-8 border-t-2 border-[#e07d5b]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                 <div>
                     <span className="font-mono text-[10px] text-[#e07d5b] uppercase tracking-[.25em]">
@@ -337,3 +443,5 @@ export default function BookingMegaMenu({ variant = 1, closeMenu, accent = '#b65
         </div>
     )
 }
+
+export default TravelStaysBookingMegaMenuCollection

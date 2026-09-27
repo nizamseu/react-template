@@ -1,7 +1,72 @@
-import { HiArrowRight } from 'react-icons/hi'
-export default function Hero01() {
+// CoralSplitDesignerIntroHero
+
+// Hero01 · Portfolios & Personal Websites › Hero sections
+
+// Description:
+// Split-screen landing hero for the independent designer "Jamie Park". The left
+// panel shows the byline "JAMIE PARK / INDEPENDENT DESIGNER", a huge stacked
+// headline "Make it matter.", a one-line pitch about digital products and
+// identities, and a "Selected work" link. The right panel is a colour-study photo.
+
+// Design:
+// - Two-column grid (md:grid-cols-[1.1fr_.9fr]) with min-h-[430px]; the text
+//   column is flex-col justify-between (byline top, headline middle, link bottom).
+// - Warm, bold palette: coral #ef6a4b background with espresso text #241d1a; the
+//   image panel is #e5cfc0 with a mix-blend-multiply photo and a #241d1a
+//   "Scroll to explore ↓" tag in white text, pinned bottom-right.
+// - Headline text-6xl → sm:text-8xl, font-black, uppercase, leading-[.84];
+//   xs bold uppercase eyebrow with tracking-[.16em]; rounded-lg, overflow-hidden,
+//   no borders or shadows.
+// - Below md it is a single column with the image panel (min-h-64) under the
+//   text; padding grows from p-7 to sm:p-12.
+
+// What it does:
+// - Purely presentational: no content props, no state.
+// - One in-page anchor "Selected work" → #selected-work (HiArrowRight icon);
+//   the image is a remote Unsplash URL.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import CoralSplitDesignerIntroHero from '@/TestComponent/SectionDesigns/Sections/portfolio/Hero01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <CoralSplitDesignerIntroHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function CoralSplitDesignerIntroHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="overflow-hidden rounded-lg bg-[#ef6a4b] text-[#241d1a]">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-lg bg-[#ef6a4b] text-[#241d1a]',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid min-h-[430px] md:grid-cols-[1.1fr_.9fr]">
                 <div className="flex flex-col justify-between p-7 sm:p-12">
                     <p className="text-xs font-bold uppercase tracking-[.16em]">
@@ -39,3 +104,5 @@ export default function Hero01() {
         </section>
     )
 }
+
+export default CoralSplitDesignerIntroHero

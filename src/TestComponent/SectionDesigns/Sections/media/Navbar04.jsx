@@ -1,9 +1,73 @@
-import { HiOutlineRss } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// FloatingLiveWirePillNavbar
 
-export default function Navbar04() {
+// Navbar04 · Blogs & Digital Media › Navbars
+
+// Description:
+// A floating, pill-shaped header for "Margin / Wire", a live news-wire
+// section. A pulsing white dot sits before the wordmark; the centre holds a
+// "Live Wire Feed" mega menu and links to Dispatches, Field Transcripts and
+// Investigations; a white "Live RSS" pill sits on the right.
+
+// Design:
+// - Outer header with small padding wraps a centred pill (max-w-5xl) laid
+//   out as a flex row: brand, nav, action
+// - Solid terracotta pill #a84f34 with white text (links at 80% opacity),
+//   border black/10, shadow-xl; the RSS pill is white with #a84f34 text and
+//   turns black with white text on hover
+// - Serif text-lg bold "Margin" with a small sans uppercase "/ Wire" suffix;
+//   xs nav text; rounded-full container and button
+// - Nav (including the mega menu) is hidden below md with no mobile menu
+//   toggle, leaving only the brand and "Live RSS"
+
+// What it does:
+// - Renders `MegaMenu` (category "media", variant 4, label "Live Wire
+//   Feed", accent #ffffff): opens on click or keyboard focus, stays open
+//   while hovered, closes 160ms after the pointer leaves, on blur, or on
+//   Escape. The panel is portalled to document.body, fixed just below this
+//   header at its width, and shows a light breaking-news wire feed menu
+// - The dot uses Tailwind's `animate-ping`; plain anchor links: `#home`,
+//   `#breaking` (Dispatches), `#fieldnotes`, `#dossiers`, `#rss`
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import FloatingLiveWirePillNavbar from '@/TestComponent/SectionDesigns/Sections/media/Navbar04';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <FloatingLiveWirePillNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineRss } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function FloatingLiveWirePillNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="py-2 px-3">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn('py-2 px-3', className)}
+            {...props}
+        >
             <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-black/10 bg-[#a84f34] px-6 py-2.5 text-white shadow-xl">
                 {/* Micro Brand */}
                 <div className="flex items-center gap-2 shrink-0">
@@ -48,3 +112,5 @@ export default function Navbar04() {
         </header>
     )
 }
+
+export default FloatingLiveWirePillNavbar

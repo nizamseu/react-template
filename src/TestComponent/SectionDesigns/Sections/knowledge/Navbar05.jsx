@@ -1,9 +1,74 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// RuntimeSupportEscalationGridNavbar
 
-export default function Navbar05() {
+// Navbar05 · Knowledge Bases & Documentation › Navbars
+
+// Description:
+// A boxed, three-cell operations header for "NORTHSTAR / RUNTIME" support docs.
+// It pairs the wordmark and a "KERNEL" tag with a "Support Escalation" mega menu
+// and links to Error Codes (5xx), Trace Diagnostics and PagerDuty Sync, plus a
+// static "OPERATIONAL" status light and a "P1 PAGER →" escalation link.
+
+// Design:
+// - Bordered grid: one column on mobile, md:grid-cols-[240px_1fr_220px] from md,
+//   with divide-y-2 / md:divide-x-2 separators (brand · nav strip · status).
+// - Dark palette: background #172721, text #e0eee6, 2px border #41715d, dividers
+//   #41715d/40, mint accent #9bd2a7, links white/70, emerald-400 status text and dot.
+// - Everything monospace and uppercase with wide tracking; text-xs links,
+//   text-[10px] tags; square corners; pulsing round status dot (animate-pulse).
+// - Below md the three cells stack vertically; the nav strip stays visible and
+//   scrolls horizontally (overflow-x-auto); "99.999% SLA MONITOR" shows only from lg.
+
+// What it does:
+// - No content props or own state. "Support Escalation" is the shared MegaMenu (category
+//   "knowledge", variant 5, accent #41715d): toggles on click or opens on focus,
+//   closes on pointer leave (160ms delay), Escape or blur, and portals a panel
+//   with the SLA guarantee, office hours and an urgent incident ticket card.
+// - The "OPERATIONAL" status is hard-coded, not fetched. Anchors: brand → #docs,
+//   #error-codes, #diagnostics, #pagerduty, and "P1 PAGER →" → #escalate.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import RuntimeSupportEscalationGridNavbar from '@/TestComponent/SectionDesigns/Sections/knowledge/Navbar05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <RuntimeSupportEscalationGridNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function RuntimeSupportEscalationGridNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-2 border-[#41715d] bg-[#172721] text-[#e0eee6]">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-2 border-[#41715d] bg-[#172721] text-[#e0eee6]',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid grid-cols-1 md:grid-cols-[240px_1fr_220px] divide-y-2 md:divide-y-0 md:divide-x-2 divide-[#41715d]/40">
                 {/* Column 1: Monospace Index */}
                 <div className="p-3.5 flex items-center justify-between">
@@ -55,3 +120,5 @@ export default function Navbar05() {
         </header>
     )
 }
+
+export default RuntimeSupportEscalationGridNavbar

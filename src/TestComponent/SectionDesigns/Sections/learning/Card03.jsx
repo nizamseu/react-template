@@ -1,11 +1,75 @@
-import { useState } from 'react'
-import { HiCheck, HiOutlineCode, HiPlay } from 'react-icons/hi'
+// InteractiveCodingLessonCard
 
-export default function Card03() {
+// Card03 · Learning Management & EdTech › Cards
+
+// Description:
+// Dark, monospace lesson card for "LESSON 04 • INTERACTIVE CODING": "Generative
+// Algorithmic Topographies". It shows a "3/3 TESTS PASSING" badge, a one-line
+// brief, a syntax-coloured GLSL vertex-shader snippet and a run button that
+// toggles between "Run Lesson Code" and "Output Active (60fps)".
+
+// Design:
+// - Single <article>: header row (lesson label + test badge, border-b), title
+//   and brief, code window panel with indented lines, footer row (button +
+//   "Free sandbox exercise" note)
+// - Dark palette: #11241f background, #d6ede4 text, lime #c8ef70 label and
+//   idle button (#0e272f label), emerald-400 badge and active button state,
+//   code colours pink-400 / blue-300 / emerald-300 on a black/50 panel
+// - font-mono on the whole card (title/brief switch back to font-sans), text-lg
+//   bold title, 11px code; rounded-xl card with white/10 border and shadow-2xl,
+//   rounded-lg code window and button
+// - No breakpoint classes: fluid width; long code lines wrap inside the panel
+
+// What it does:
+// - Local state `running` (useState(false)); the button's onClick toggles it,
+//   swapping the label and colours (lime -> emerald-400). No code actually runs
+// - No content props, no links; the code lines and test badge are hard-coded
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import InteractiveCodingLessonCard from '@/TestComponent/SectionDesigns/Sections/learning/Card03';
+
+// const LessonGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <InteractiveCodingLessonCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiCheck, HiOutlineCode, HiPlay } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function InteractiveCodingLessonCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [running, setRunning] = useState(false)
 
     return (
-        <article className="overflow-hidden rounded-xl border border-white/10 bg-[#11241f] text-[#d6ede4] p-5 shadow-2xl font-mono">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-xl border border-white/10 bg-[#11241f] text-[#d6ede4] p-5 shadow-2xl font-mono',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="flex items-center gap-1.5 text-xs text-[#c8ef70]">
                     <HiOutlineCode /> LESSON 04 &bull; INTERACTIVE CODING
@@ -52,3 +116,5 @@ export default function Card03() {
         </article>
     )
 }
+
+export default InteractiveCodingLessonCard

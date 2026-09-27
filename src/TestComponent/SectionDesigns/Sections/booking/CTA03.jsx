@@ -1,8 +1,69 @@
-import { HiArrowRight } from 'react-icons/hi'
+// ArchitecturalOdysseyItineraryCTA
 
-export default function CTA03() {
+// CTA03 · Booking & Reservations › Banner CTAs
+
+// Description:
+// A dark banner inviting travelers to commission a bespoke 30-day,
+// multi-residence "architectural journey across three continents" (from
+// Palm Springs desert homes to Hakone hot-spring sanctuaries), with a
+// "Design Custom Odyssey" button.
+
+// Design:
+// - Flex column → lg:flex-row (copy in max-w-xl | button), justify-between,
+//   items centered from lg
+// - Slate #14232c background, #dce7ee text with a white headline and
+//   white/70 body, coral #e07d5b eyebrow and button (hover white with
+//   #14232c text), rust #b65f47 border-y-2
+// - Mono uppercase tracking-wider eyebrow, serif text-3xl → sm:text-4xl
+//   normal-weight headline; square shell (rounded-none), rounded-lg button
+// - Stacks below lg; padding p-8 → sm:p-12
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - "Design Custom Odyssey" (HiArrowRight) is an anchor to #custom-itinerary
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import ArchitecturalOdysseyItineraryCTA from '@/TestComponent/SectionDesigns/Sections/booking/CTA03';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <ArchitecturalOdysseyItineraryCTA />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function ArchitecturalOdysseyItineraryCTA({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="rounded-none border-y-2 border-[#b65f47] bg-[#14232c] p-8 text-[#dce7ee] sm:p-12">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-y-2 border-[#b65f47] bg-[#14232c] p-8 text-[#dce7ee] sm:p-12',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                 <div className="max-w-xl">
                     <span className="font-mono text-xs text-[#e07d5b] uppercase tracking-wider font-bold">
@@ -27,3 +88,5 @@ export default function CTA03() {
         </section>
     )
 }
+
+export default ArchitecturalOdysseyItineraryCTA

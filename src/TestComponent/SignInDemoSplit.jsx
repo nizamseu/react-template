@@ -1,11 +1,87 @@
-import { useState } from 'react'
-import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi'
+// SignInPageSplitScreenLayout
 
-const SignInDemoSplit = () => {
+// SignInDemoSplit · Authentication page demo (Split layout)
+
+// Description:
+// Full-page sign-in screen split into two halves: a blue brand panel with
+// an illustration and marketing text on the left, and the sign-in form on
+// the right (Ecme logo, "Welcome back!", pre-filled email + password,
+// "Forgot password", Sign In, Google / Github buttons, "Sign up" link).
+
+// Design:
+// - Full-screen grid (min-h-screen, p-6) with two equal columns from lg
+//   (lg:grid-cols-2): left brand panel, right form column (centered,
+//   max-w-[450px] px-8)
+// - Brand panel: rounded-3xl, bg brand blue #2a85ff, white text, px-16,
+//   /img/others/auth-split-img.png (max-w-[450px], 2xl:max-w-[700px]),
+//   headline "The easiest way to build your admin app" (text-3xl bold)
+//   and a short Ecme blurb at opacity-80
+// - Page bg-white / dark:bg-gray-800, text-gray-900 / dark:text-gray-100;
+//   #2a85ff primary button and input focus border; gray-300 input borders
+//   (dark:border-gray-600); 60px logo that swaps per theme
+// - Responsive: the brand panel is hidden below lg (hidden lg:flex), so
+//   small screens show a single form column
+
+// What it does:
+// - useState(showPassword) toggles the password input between "password"
+//   and "text" via an eye / eye-off icon button with an aria-label
+// - Inputs are uncontrolled (defaultValue "admin-01@ecme.com" / "123Qwe")
+//   and required; form submit is prevented (demo only, no API call)
+// - Google / Github buttons have no click handler
+// - Links (plain anchors, full page load): "Forgot password" goes to
+//   /auth/forgot-password-split, "Sign up" goes to /auth/sign-up-split
+// - No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <main> with cn()
+// - ...props: spread onto the root <main> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// // src/configs/routes.config/authDemoRoute.js
+// {
+//     key: 'authentication.signInSplit',
+//     path: `${AUTH_PREFIX_PATH}/sign-in-split`,
+//     component: lazy(() => import('@/TestComponent/SignInDemoSplit')),
+//     authority: [ADMIN, USER],
+//     meta: {
+//         layout: 'blank',
+//         pageContainerType: 'gutterless',
+//         footer: false,
+//     },
+// }
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function SignInPageSplitScreenLayout({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-        <main className="grid min-h-screen bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100 lg:grid-cols-2">
+        <main
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'grid min-h-screen bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100 lg:grid-cols-2',
+                className,
+            )}
+            {...props}
+        >
             <aside className="hidden flex-col items-center justify-center rounded-3xl bg-[#2a85ff] px-16 py-6 text-white lg:flex">
                 <div className="flex flex-col items-center gap-12">
                     <img className="max-w-[450px] 2xl:max-w-[700px]" src="/img/others/auth-split-img.png" alt="" />
@@ -56,4 +132,4 @@ const SignInDemoSplit = () => {
     )
 }
 
-export default SignInDemoSplit
+export default SignInPageSplitScreenLayout

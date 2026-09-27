@@ -1,9 +1,76 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// MentorResidencyThreeColumnGridNavbar
 
-export default function Navbar05() {
+// Navbar05 · Learning Management & EdTech › Navbars
+
+// Description:
+// Dark, ruled three-cell header for "FIELDNOTE / MENTOR". The brand cell shows a
+// "COHORT 08" tag; the middle strip holds a "Mentorship Residency" mega menu plus
+// links to 1-on-1 Crits, Guest Directors and Placement; the admissions cell shows
+// "3 SPOTS REMAIN" with an "APPLY" link.
+
+// Design:
+// - Grid: one column on mobile, `md:grid-cols-[240px_1fr_200px]` on desktop,
+//   with 2px white/20 dividers (divide-y-2 -> md:divide-x-2)
+// - Dark palette: #102d36 background, white / white-70 text, lime #c8ef70
+//   accents (wordmark suffix, trigger, status), border-2 white/20
+// - Serif text-lg wordmark with a mono xs suffix, mono uppercase tracking-wider
+//   nav, mono xs bold status; square corners (rounded-none), editorial grid feel
+// - Cells stack vertically below md with horizontal dividers; the nav strip stays
+//   visible and scrolls horizontally (overflow-x-auto); "12 STUDENTS PER
+//   COHORT" appears from lg
+
+// What it does:
+// - No content props and no local state; interactivity comes from MegaMenu
+//   (category="learning", variant={5}, accent #c8ef70): its trigger toggles on
+//   click and opens on focus, rendering the mentor directory / 1-on-1 office
+//   hours panel in a portal fixed below the header; it closes 160 ms after the
+//   pointer leaves, when focus moves outside, or on Escape
+// - Anchors: #home, #roster, #guest, #outcomes, and "APPLY" -> #apply-residency
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import MentorResidencyThreeColumnGridNavbar from '@/TestComponent/SectionDesigns/Sections/learning/Navbar05';
+
+// const SiteLayout = ({ children }) => (
+//     <>
+//         <MentorResidencyThreeColumnGridNavbar />
+//         <main className="space-y-6">{children}</main>
+//     </>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function MentorResidencyThreeColumnGridNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-2 border-white/20 bg-[#102d36] text-white">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-2 border-white/20 bg-[#102d36] text-white',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid grid-cols-1 md:grid-cols-[240px_1fr_200px] divide-y-2 md:divide-y-0 md:divide-x-2 divide-white/20">
                 {/* Column 1: Monospace Index */}
                 <div className="p-3.5 flex items-center justify-between">
@@ -52,3 +119,5 @@ export default function Navbar05() {
         </header>
     )
 }
+
+export default MentorResidencyThreeColumnGridNavbar

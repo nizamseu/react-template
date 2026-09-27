@@ -1,9 +1,78 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// FieldnoteCohortAdmissionsNavbar
 
-export default function Navbar01() {
+// Navbar01 · Learning Management & EdTech › Navbars
+
+// Description:
+// Dark full-width header for the "fieldnote." learning studio. On the left the
+// serif wordmark sits next to a "Curriculum Tracks" mega menu and links to Live
+// Cohorts, Faculty and Tuition & Aid; on the right a pulsing "Next Cohort: Oct 15"
+// status chip and a lime "Apply Now" button drive admissions.
+
+// Design:
+// - One flex row, justify-between: left group (wordmark + nav, gap-10) and
+//   right group (status chip + CTA, gap-4)
+// - Dark palette: #0e272f background, white / white-80 links, lime #c8ef70
+//   accent (wordmark dot, mega menu trigger, chip text and dot, CTA), #1b3e49
+//   chip, white/10 bottom border
+// - Serif text-2xl bold wordmark, xs semibold links, mono 10px chip, mono xs
+//   font-black uppercase CTA; square header (rounded-none), rounded-full chip
+//   and CTA, animate-pulse status dot
+// - Nav (including the mega menu) is hidden below md and there is no mobile
+//   menu toggle; status chip appears from lg; padding px-5 -> sm:px-8
+
+// What it does:
+// - No content props and no local state; interactivity comes from MegaMenu
+//   (category="learning", variant={1}, accent #c8ef70): its trigger toggles on
+//   click and opens on focus, rendering the curriculum-tracks / cohort panel in
+//   a portal fixed below the header; it closes 160 ms after the pointer leaves,
+//   when focus moves outside, or on Escape
+// - Anchors: #home (wordmark), #cohorts, #faculty, #tuition, and "Apply Now"
+//   -> #apply (HiArrowRight)
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import FieldnoteCohortAdmissionsNavbar from '@/TestComponent/SectionDesigns/Sections/learning/Navbar01';
+
+// const SiteLayout = ({ children }) => (
+//     <>
+//         <FieldnoteCohortAdmissionsNavbar />
+//         <main className="space-y-6">{children}</main>
+//     </>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function FieldnoteCohortAdmissionsNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-b border-white/10 bg-[#0e272f] px-5 py-4 text-white sm:px-8">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-b border-white/10 bg-[#0e272f] px-5 py-4 text-white sm:px-8',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between gap-6">
                 {/* Brand & Left-Flush Navigation Group */}
                 <div className="flex items-center gap-10">
@@ -49,3 +118,5 @@ export default function Navbar01() {
         </header>
     )
 }
+
+export default FieldnoteCohortAdmissionsNavbar

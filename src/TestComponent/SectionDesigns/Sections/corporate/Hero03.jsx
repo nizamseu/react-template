@@ -1,7 +1,69 @@
-import { HiArrowRight } from 'react-icons/hi'
-export default function Hero03() {
+// ClientRetentionStatHero
+
+// Hero03 · Corporate & Business › Hero sections
+
+// Description:
+// Dark split hero that pairs the promise "Turn ambition into measurable change." (eyebrow
+// "A PARTNER IN WHAT'S NEXT") and a "Start a conversation" button with an outlined proof
+// panel: "A DECADE OF PARTNERSHIP" and a large 94% stat stating that clients return for
+// the next challenge.
+
+// Design:
+// - The section itself is the grid: md:grid-cols-[1fr_.82fr]; left column flex-col
+//   justify-between, right column an inset (m-5) bordered stat panel
+// - Dark navy #121c2c with white text; sky-blue #84b9ff for the eyebrow, filled button
+//   (text #121c2c) and the big number; white/15 borders, white/40-70 muted text
+// - Headline text-5xl, font-semibold, leading-[.96]; stat text-7xl with a smaller
+//   text-4xl "%"; rounded-lg section and panel, rounded-md button
+// - Below md the stat panel stacks under the copy; padding p-7 -> sm:p-11
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - One anchor CTA "Start a conversation" -> #conversation with an HiArrowRight icon;
+//   static tagline "People first / Evidence led / Built to last"
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import ClientRetentionStatHero from '@/TestComponent/SectionDesigns/Sections/corporate/Hero03';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <ClientRetentionStatHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function ClientRetentionStatHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="grid overflow-hidden rounded-lg bg-[#121c2c] text-white md:grid-cols-[1fr_.82fr]">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'grid overflow-hidden rounded-lg bg-[#121c2c] text-white md:grid-cols-[1fr_.82fr]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col justify-between p-7 sm:p-11">
                 <p className="text-xs font-bold uppercase tracking-[.15em] text-[#84b9ff]">
                     A PARTNER IN WHAT&apos;S NEXT
@@ -31,3 +93,5 @@ export default function Hero03() {
         </section>
     )
 }
+
+export default ClientRetentionStatHero

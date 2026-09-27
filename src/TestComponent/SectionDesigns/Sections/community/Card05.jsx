@@ -1,8 +1,68 @@
-import { HiOutlineCode, HiOutlineLightningBolt } from 'react-icons/hi'
+// CommunityCodeBountyCard
 
-export default function Card05() {
+// Card05 · Social Networks & Communities › Cards
+
+// Description:
+// A dark, developer-oriented card for "ACTIVE COMMUNITY BOUNTY #89": build a GLSL fluid particle
+// collision React hook, paying $850 USD and "FUNDED IN ESCROW". It lists the tech stack (React Three
+// Fiber, Three.js), the deadline (14 days remaining), review status (3 draft PRs), the difficulty
+// and offers a "Claim Quest" link.
+
+// Design:
+// - Stacked card: header row (bounty label + escrow badge), title with the reward aligned right
+//   (items-baseline), description, a key/value details panel, then a footer row
+// - Palette: dark brown #291f1b with white text, peach #ffccad accents and CTA, emerald-400 on
+//   emerald-500/20 escrow badge, white/40-80 secondary text, black/40 details panel; dark theme
+// - Typography & shapes: the whole card is font-mono with a font-sans title and description;
+//   font-black xl reward; rounded-xl card with shadow-xl, rounded-lg panel, rounded CTA
+// - Responsive: no breakpoint classes; the card fills the width of its grid cell
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - Anchor "Claim Quest" → #claim-bounty with a code icon and a hover-to-white background
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import CommunityCodeBountyCard from '@/TestComponent/SectionDesigns/Sections/community/Card05';
+
+// const CommunityCards = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <CommunityCodeBountyCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineCode, HiOutlineLightningBolt } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function CommunityCodeBountyCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-xl border border-white/10 bg-[#291f1b] p-5 text-white shadow-xl font-mono">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-xl border border-white/10 bg-[#291f1b] p-5 text-white shadow-xl font-mono',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="flex items-center gap-1.5 text-xs text-[#ffccad] font-bold">
                     <HiOutlineLightningBolt /> ACTIVE COMMUNITY BOUNTY #89
@@ -52,3 +112,5 @@ export default function Card05() {
         </article>
     )
 }
+
+export default CommunityCodeBountyCard

@@ -1,8 +1,69 @@
-import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
+// IndependentBookshopListingCard
 
-export default function Card04() {
+// Card04 · Directories & Search Aggregators › Cards
+
+// Description:
+// Square-edged dark listing card for Motto Books & Print Press in Berlin
+// Kreuzberg, an art / critical theory / zine bookshop rated 4.95. Shows a
+// shop-interior photo, opening status ("Open til 8PM"), a short blurb, the
+// street address and an "Explore Inventory" link.
+
+// Design:
+// - Stacked card: h-56 photo with neighborhood badge (bottom-left) and star
+//   rating (top-right), category/opening row, title, blurb, border-t footer
+// - Very dark #12201c surface, white text (white/40–60 secondary), lime #d9f064
+//   accents, amber star; photo dimmed to opacity-85
+// - Sharp corners (rounded-none) with border-white/20 and shadow-xl; photo frame
+//   bordered white/10; font-serif text-xl bold title; metadata in font-mono
+// - No breakpoints: fills its grid cell; the photo zooms on hover
+//   (hover:scale-105, duration-700)
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - "Explore Inventory →" links to #view-bookshop
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import IndependentBookshopListingCard from '@/TestComponent/SectionDesigns/Sections/directory/Card04';
+
+// const ListingGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <IndependentBookshopListingCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function IndependentBookshopListingCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-none border border-white/20 bg-[#12201c] p-5 text-white shadow-xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-none border border-white/20 bg-[#12201c] p-5 text-white shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="relative h-56 overflow-hidden bg-black border border-white/10">
                 <img
                     className="h-full w-full object-cover opacity-85 transition duration-700 hover:scale-105"
@@ -42,3 +103,5 @@ export default function Card04() {
         </article>
     )
 }
+
+export default IndependentBookshopListingCard

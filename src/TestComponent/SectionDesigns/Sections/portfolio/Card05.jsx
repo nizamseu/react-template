@@ -1,8 +1,69 @@
-import { HiOutlineBookmark } from 'react-icons/hi'
+// StudioEssayJournalCard
 
-export default function Card05() {
+// Card05 · Portfolios & Personal Websites › Cards
+
+// Description:
+// Dark editorial card for a studio essay or field note. It shows a Stockholm
+// atelier photo tagged "STOCKHOLM • STUDIO NOTE 84", an "OCT 2026 • 6 MIN READ"
+// row with a bookmark icon button, the serif title "Reflections on Brutalist
+// Screen Space: Why We Crave Texture Again", an excerpt and a read link.
+
+// Design:
+// - h-56 image on top, then meta row, title, excerpt and a footer row
+//   ("Field Dispatch" label and link) separated by border-t.
+// - Dark palette: surface #181412, text #e3deda, coral #ef6a4b (photo tag,
+//   link), muted white/40-60, borders white/10-20.
+// - font-serif text-xl regular title; font-mono 10-11px meta; square corners
+//   (rounded-none) with shadow-xl; image at opacity-85.
+// - No breakpoint classes: the card fills the width given by its parent.
+
+// What it does:
+// - No content props, no state; hovering the image zooms it to 105% (700ms).
+// - Bookmark button (aria-label "Save note", HiOutlineBookmark) has no handler;
+//   anchor "Read Studio Essay →" → #read-note.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import StudioEssayJournalCard from '@/TestComponent/SectionDesigns/Sections/portfolio/Card05';
+
+// const JournalGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <StudioEssayJournalCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineBookmark } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function StudioEssayJournalCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-none border border-white/20 bg-[#181412] p-5 text-[#e3deda] shadow-xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-none border border-white/20 bg-[#181412] p-5 text-[#e3deda] shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="relative h-56 overflow-hidden bg-black border border-white/10">
                 <img
                     className="h-full w-full object-cover opacity-85 transition duration-700 hover:scale-105"
@@ -39,3 +100,5 @@ export default function Card05() {
         </article>
     )
 }
+
+export default StudioEssayJournalCard

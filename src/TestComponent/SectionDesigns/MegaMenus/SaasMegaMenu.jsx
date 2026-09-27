@@ -1,3 +1,56 @@
+// SaaSPlatformMegaMenuCollection
+
+// SaasMegaMenu · Section designs › Mega menus
+
+// Description:
+// The panel content for software-product navbars, normally rendered by MegaMenu (category="saas").
+// It shows one of five B2B SaaS designs: a product feature suite, a developer and API hub,
+// solutions by team and industry, an AI command center, or an integrations marketplace.
+// Links are hash anchors that close the menu when clicked.
+
+// Design:
+// - Mostly dark slate backgrounds (#0b1319 to #17232c) with emerald #17a878 / mint #65e6b4 accents and monospace labels; static data arrays mapped into link lists and cards.
+// - Variant 1 — "Enterprise Platform Suite": dark #0b1319 with emerald top border; uptime and compliance status bar, three feature columns (Platform Core, Automation & AI, Analytics & BI) and a case-study card.
+// - Variant 2 — "Developer & API Hub": #0e161c; six SDK language tiles with an npm install line and copy icon, a syntax-coloured TypeScript code window, and a changelog with an "Open API Playground" CTA.
+// - Variant 3 — "Solutions Matrix": #121c24; columns for solutions by department and by industry (compliance badges) plus a "+140%" ROI case-study card.
+// - Variant 4 — "AI Command Center": light mint #edf3ee; read-only ⌘K search bar, quick-action links, an LLM model/latency matrix and a dark BYOC card ("Schedule Architecture Review").
+// - Variant 5 — "Integrations Ecosystem": #17232c; six integration tiles marked "1-CLICK SETUP" and a partner-grants link.
+
+// What it does:
+// - variant selects the layout through if (variant === 1..4); any other value renders the Variant 5 design.
+// - Every <a> calls closeMenu on click; there is no state or effect.
+// - Some controls are visual only: the Variant 2 copy button has no handler, the Variant 4 search input is readOnly with a fixed value, the Variant 1 "Read Whitepaper (12p)" line is text, and the Variant 5 integration tiles are not links.
+// - Colours are hard-coded; the accent prop is accepted but not used anywhere in the markup.
+
+// @param {object} props
+// @param {number} [props.variant=1] Design to render: 1–4, any other value falls back to Variant 5.
+// @param {Function} props.closeMenu Called when any link in the panel is clicked (MegaMenu passes its own close handler).
+// @param {string} [props.accent='#17a878'] Accepted for API consistency with the other category menus; currently unused.
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Merged onto the root <div> of every variant with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, ref, handlers) are spread onto the root <div> of every variant.
+
+// Usage example:
+// ```jsx
+// import { useState } from 'react';
+// import SaaSPlatformMegaMenuCollection from '@/TestComponent/SectionDesigns/MegaMenus/SaasMegaMenu';
+
+// // Normally rendered for you by <MegaMenu category="saas" variant={2} />
+// export default function DevMenuPreview() {
+//     const [open, setOpen] = useState(true)
+//     if (!open) return null
+//     return (
+//         <div className="rounded-none border border-[#263640] shadow-2xl">
+//             <SaaSPlatformMegaMenuCollection variant={2} closeMenu={() => setOpen(false)} />
+//         </div>
+//     )
+// }
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineCheckCircle,
@@ -9,13 +62,32 @@ import {
     HiOutlineShieldCheck,
     HiOutlineTerminal,
     HiOutlineTrendingUp,
-} from 'react-icons/hi'
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
-export default function SaasMegaMenu({ variant = 1, closeMenu, accent = '#17a878' }) {
+export function SaaSPlatformMegaMenuCollection({
+    variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
+    closeMenu,
+    accent = '#17a878',
+    className,
+    ...props
+}) {
     // VARIANT 1: Enterprise Multi-Tier Platform Suite (northstar/)
     if (variant === 1) {
         return (
-            <div className="bg-[#0b1319] text-[#e3edf2] p-8 border-t-2 border-[#17a878]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#0b1319] text-[#e3edf2] p-8 border-t-2 border-[#17a878]',
+                    className,
+                )}
+                {...props}
+            >
                 {/* Top Live Uptime & Trust Bar */}
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
                     <div className="flex items-center gap-3">
@@ -139,7 +211,16 @@ export default function SaasMegaMenu({ variant = 1, closeMenu, accent = '#17a878
     // VARIANT 2: Modern Developer & API Hub (signal/stack)
     if (variant === 2) {
         return (
-            <div className="bg-[#0e161c] text-[#d6e3ea] p-8 border-t border-[#263640]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#0e161c] text-[#d6e3ea] p-8 border-t border-[#263640]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left: SDKs and Languages */}
                     <div className="lg:col-span-4 space-y-4">
@@ -250,7 +331,16 @@ export default function SaasMegaMenu({ variant = 1, closeMenu, accent = '#17a878
     // VARIANT 3: Solutions by Team & Industry Matrix
     if (variant === 3) {
         return (
-            <div className="bg-[#121c24] text-white p-8 border-t border-[#263640]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#121c24] text-white p-8 border-t border-[#263640]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] uppercase tracking-[.25em] text-[#17a878]">
@@ -342,7 +432,16 @@ export default function SaasMegaMenu({ variant = 1, closeMenu, accent = '#17a878
     // VARIANT 4: Command Center & Feature Matrix (FLOWSTATE / AI)
     if (variant === 4) {
         return (
-            <div className="bg-[#edf3ee] text-[#111a22] p-8 border-t-2 border-[#17a878]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#edf3ee] text-[#111a22] p-8 border-t-2 border-[#17a878]',
+                    className,
+                )}
+                {...props}
+            >
                 {/* Interactive Command Palette Search Bar */}
                 <div className="flex items-center gap-3 rounded-lg border border-black/15 bg-white px-4 py-3 shadow-sm">
                     <HiOutlineSearch className="text-lg text-gray-400" />
@@ -432,7 +531,16 @@ export default function SaasMegaMenu({ variant = 1, closeMenu, accent = '#17a878
 
     // VARIANT 5: App Ecosystem & Integration Marketplace (signal/stack)
     return (
-        <div className="bg-[#17232c] text-white p-8 border-t border-[#263640]">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'bg-[#17232c] text-white p-8 border-t border-[#263640]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                 <div>
                     <span className="font-mono text-[10px] uppercase tracking-[.25em] text-[#65e6b4]">
@@ -479,3 +587,5 @@ export default function SaasMegaMenu({ variant = 1, closeMenu, accent = '#17a878
         </div>
     )
 }
+
+export default SaaSPlatformMegaMenuCollection

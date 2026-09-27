@@ -1,11 +1,76 @@
-import { useState } from 'react'
-import { HiOutlineCode, HiPlay } from 'react-icons/hi'
+// InteractiveGLSLShaderExperimentCard
 
-export default function Card02() {
+// Card02 · Portfolios & Personal Websites › Cards
+
+// Description:
+// Terminal-style creative-coding card for "EXPERIMENT #42 • GLSL SHADER": a
+// pinging status dot, "60.0 FPS • 8,400 VERTS" stats, the title "Raymarched
+// Non-Euclidean Gyroid Topology", an SDF description and a mock canvas with a
+// blurred gradient orb that the visitor can animate with a button.
+
+// Design:
+// - Header row (label and stats, border-b), then title, description, an h-40
+//   black preview panel and an action row (button left, link right).
+// - Neo-brutalist dark palette: surface #111111, white text, coral #ef6a4b
+//   (label, ping dot, button, offset shadow), emerald-400 stats, orb gradient
+//   from #ef6a4b to purple-600.
+// - font-mono throughout, with a font-sans text-lg bold title and description;
+//   square corners (rounded-none), border-2 white/20 and a hard
+//   shadow-[6px_6px_0px_0px_#ef6a4b]; small rounded button.
+// - No breakpoint classes: the card fills the width given by its parent.
+
+// What it does:
+// - Local state `active` (useState, false): the button toggles it, scaling and
+//   rotating the orb (scale-150 rotate-90, 700ms) and switching its label from
+//   "Interact with Mesh" to "Perturb Gyroid". No real WebGL is rendered; the
+//   canvas is a CSS gradient mock.
+// - Anchor "Source (GitHub)" → #source (HiOutlineCode); HiPlay on the button.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import InteractiveGLSLShaderExperimentCard from '@/TestComponent/SectionDesigns/Sections/portfolio/Card02';
+
+// const ExperimentsGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <InteractiveGLSLShaderExperimentCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiOutlineCode, HiPlay } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function InteractiveGLSLShaderExperimentCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [active, setActive] = useState(false)
 
     return (
-        <article className="overflow-hidden rounded-none border-2 border-white/20 bg-[#111111] p-5 text-white shadow-[6px_6px_0px_0px_#ef6a4b] font-mono">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-none border-2 border-white/20 bg-[#111111] p-5 text-white shadow-[6px_6px_0px_0px_#ef6a4b] font-mono',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="flex items-center gap-2 text-xs text-[#ef6a4b]">
                     <span className="h-2 w-2 rounded-full bg-[#ef6a4b] animate-ping" />
@@ -55,3 +120,5 @@ export default function Card02() {
         </article>
     )
 }
+
+export default InteractiveGLSLShaderExperimentCard

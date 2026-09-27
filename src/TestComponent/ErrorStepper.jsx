@@ -1,11 +1,70 @@
-import { HiCheck, HiX } from 'react-icons/hi'
+// HorizontalStepperWithErrorState
+
+// ErrorStepper · Steps demo
+
+// Description:
+// A static 4-step horizontal stepper with titles in which the current step
+// ("Order Placed") is shown in an error state: a red outlined circle with
+// an X icon and a red title. Step 1 is complete (check icon) and steps
+// 3-4 are pending. Display-only.
+
+// Design:
+// - Row layout (flex, justify-between); every step except the last takes
+//   basis-1/3 and draws a connector line (ms-2.5), the last is max-w-[25%]
+// - Error: border-2 border-red-500, text-red-500, font-normal, HiX icon,
+//   title in text-red-500
+// - Complete: filled brand blue #2a85ff circle with white HiCheck;
+//   pending: gray-300 border (dark:border-gray-600) with the step number
+// - Connector is h-0.5, blue after a complete step, otherwise gray-200
+//   (dark:bg-gray-600); other titles gray-600 (dark:text-gray-300)
+// - No responsive breakpoints
+
+// What it does:
+// - currentStep is a module-level constant (1), not state
+// - isError = index === currentStep, isComplete = index < currentStep
+// - No state, no event handlers
+// - No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <div> with cn()
+// - ...props: spread onto the root <div> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import HorizontalStepperWithErrorState from '@/TestComponent/ErrorStepper';
+
+// const Error = () => {
+//     return <HorizontalStepperWithErrorState />
+// }
+// ```
+
+'use client'
+
+import { HiCheck, HiX } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
 const steps = ['Login', 'Order Placed', 'In Review', 'Approved']
 const currentStep = 1
 
-const ErrorStepper = () => {
+export function HorizontalStepperWithErrorState({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <div className="flex items-center justify-between">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn('flex items-center justify-between', className)}
+            {...props}
+        >
             {steps.map((title, index) => {
                 const isError = index === currentStep
                 const isComplete = index < currentStep
@@ -47,4 +106,4 @@ const ErrorStepper = () => {
     )
 }
 
-export default ErrorStepper
+export default HorizontalStepperWithErrorState

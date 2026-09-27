@@ -1,8 +1,69 @@
-import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
+// DolomitesGlassPavilionCard
 
-export default function Card03() {
+// Card03 · Booking & Reservations › Cards
+
+// Description:
+// A dark alpine-stay listing card for the "Dolomites Alpine Glass Pavilion"
+// in South Tyrol, Italy (2,100m): photo with $720 / night and 4.96 (51 stays)
+// badges, a blurb on panoramic views, cedar sauna and wine cellar, an
+// "Includes Alpine Guide" note and an "Explore Dates" link.
+
+// Design:
+// - Padded article: h-60 image frame with overlay price (bottom-left) and
+//   rating (top-right) badges, then location row, title, blurb and a
+//   bordered footer row
+// - Slate #14232c surface, #dce7ee text, coral #e07d5b price, pin and CTA,
+//   amber-300/400 rating star, black/80 and black/70 badges, white/10 borders
+// - Serif text-xl bold title, mono badges and footer note; rounded-2xl card,
+//   rounded-xl image, shadow-2xl
+// - No breakpoints of its own; it fills the width of its grid cell
+
+// What it does:
+// - No content props, no state; the image itself scales to 105% on hover (700ms)
+// - "Explore Dates →" is an anchor to #book-pavilion
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import DolomitesGlassPavilionCard from '@/TestComponent/SectionDesigns/Sections/booking/Card03';
+
+// const StaysGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <DolomitesGlassPavilionCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function DolomitesGlassPavilionCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-white/10 bg-[#14232c] p-5 text-[#dce7ee] shadow-2xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-white/10 bg-[#14232c] p-5 text-[#dce7ee] shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="relative h-60 overflow-hidden rounded-xl bg-black">
                 <img
                     className="h-full w-full object-cover transition duration-700 hover:scale-105"
@@ -40,3 +101,5 @@ export default function Card03() {
         </article>
     )
 }
+
+export default DolomitesGlassPavilionCard

@@ -1,8 +1,74 @@
-import { HiArrowRight, HiOutlineBell, HiOutlineShieldCheck, HiCheck } from 'react-icons/hi'
+// SecurityAdvisoryAlertSubscriptionBanner
 
-export default function CTA05() {
+// CTA05 · Knowledge Bases & Documentation › Banner CTAs
+
+// Description:
+// A near-black status/advisory banner: "Instant Real-Time Alerts for Breaking
+// Changes & Security Advisories". A pulsing "99.998% EDGES OPERATIONAL" pill and
+// four delivery-channel chips (Webhook, PagerDuty, Slack, Encrypted Email) sit
+// beside an "Incident Dispatch Subscription" email sign-up panel.
+
+// Design:
+// - Flex column that becomes lg:flex-row: copy + channel chips on the left
+//   (max-w-2xl), subscription panel on the right (w-full lg:w-96).
+// - Dark palette: background #0a110e, border white/10; Tailwind emerald accents
+//   (emerald-400 pill/checks/icons, emerald-500 button with black text hovering to
+//   emerald-400, emerald-500 input focus border) rather than the folder's
+//   #41715d / #9bd2a7 tokens; chips white/10, panel black/50, input black/60.
+// - Monospace base font with a sans-serif headline text-2xl → sm:text-4xl
+//   font-extrabold tracking-tight; rounded-full status pill, rounded-lg chips,
+//   inputs and button; rounded-xl panel, rounded-2xl section, shadow-2xl.
+// - Padding p-8 → sm:p-12; the panel stacks full-width below the copy until lg;
+//   badge row and chips use flex-wrap.
+
+// What it does:
+// - No content props or state. The status dot pulses via animate-pulse (CSS only); the
+//   email input is uncontrolled, not inside a form and has no label;
+//   "Subscribe to Incident Alerts" is a type="button" with no onClick.
+// - One anchor, "status.platform.dev →" → #status-page.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import SecurityAdvisoryAlertSubscriptionBanner from '@/TestComponent/SectionDesigns/Sections/knowledge/CTA05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <SecurityAdvisoryAlertSubscriptionBanner />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiOutlineBell, HiOutlineShieldCheck, HiCheck } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function SecurityAdvisoryAlertSubscriptionBanner({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a110e] p-8 text-white sm:p-12 shadow-2xl font-mono">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a110e] p-8 text-white sm:p-12 shadow-2xl font-mono',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                 <div className="max-w-2xl">
                     <div className="flex flex-wrap items-center gap-2">
@@ -68,3 +134,5 @@ export default function CTA05() {
         </section>
     )
 }
+
+export default SecurityAdvisoryAlertSubscriptionBanner

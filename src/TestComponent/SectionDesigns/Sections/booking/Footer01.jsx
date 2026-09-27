@@ -1,7 +1,71 @@
-import { HiArrowRight } from 'react-icons/hi'
-export default function Footer01() {
+// FieldNotesNewsletterFooter
+
+// Footer01 · Booking & Reservations › Footers
+
+// Description:
+// A dark travel footer for "Elsewhere Travel". It pairs the eyebrow "A little
+// farther, a little slower" and headline "Find a stay that feels like
+// somewhere." with an email sign-up ("Get the field notes"), then four site
+// links and the line "© Elsewhere Travel · Places, not checklists."
+
+// Design:
+// - Top row md:grid-cols-[1fr_1fr] (headline | underline-style form), then a
+//   bordered link grid and a copyright line
+// - Deep teal #132d3a background, white text, peach #f0aa8d eyebrow and
+//   submit arrow, white/60 links, white/40 copyright, white/40 and white/15 rules
+// - Serif text-4xl headline, bold uppercase text-xs eyebrow with
+//   tracking-[.16em]; transparent input with a bottom rule; rounded-lg shell
+// - Top row stacks below md; links go from 2 columns to sm:grid-cols-4;
+//   padding p-7 → sm:p-10
+
+// What it does:
+// - No content props, no state; the form's onSubmit only calls e.preventDefault()
+//   (email input id "travel-email" with an sr-only label, arrow button
+//   aria-label "Subscribe")
+// - Anchors: #stays, #experiences, #hosting, #help
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <footer> with cn()
+// - ...props: spread onto the root <footer> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import FieldNotesNewsletterFooter from '@/TestComponent/SectionDesigns/Sections/booking/Footer01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <FieldNotesNewsletterFooter />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function FieldNotesNewsletterFooter({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <footer className="rounded-lg bg-[#132d3a] p-7 text-white sm:p-10">
+        <footer
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-lg bg-[#132d3a] p-7 text-white sm:p-10',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid gap-8 md:grid-cols-[1fr_1fr]">
                 <div>
                     <p className="text-xs font-bold uppercase tracking-[.16em] text-[#f0aa8d]">
@@ -44,3 +108,5 @@ export default function Footer01() {
         </footer>
     )
 }
+
+export default FieldNotesNewsletterFooter

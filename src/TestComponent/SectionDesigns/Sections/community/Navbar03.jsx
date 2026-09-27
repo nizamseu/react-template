@@ -1,9 +1,75 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// CreatorCommonsThreeTierMastheadNavbar
 
-export default function Navbar03() {
+// Navbar03 · Social Networks & Communities › Navbars
+
+// Description:
+// A dark, newspaper-style header for "THE INDEPENDENT CREATOR COMMONS" with three stacked tiers:
+// a mono ticker (120+ practice guilds, 42,000 creative practitioners, code-of-conduct note,
+// "EST. 2021"), the main masthead with a "Read Community Charter →" link, and a bottom navigation
+// shelf with a "Topic Radar" mega menu plus Design Ethics, Indie Founders, Open Source and City
+// Chapters links.
+
+// Design:
+// - Three full-width rows separated by white/10 borders; the bottom shelf has its own darker background
+// - Palette: dark brown #241c19 with #f7e6de text, darker shelf #1c1513, peach #ffccad for the
+//   ticker, charter link and mega-menu trigger, white wordmark and white/70 links; dark theme with
+//   shadow-xl
+// - Typography & shapes: 10px mono ticker, font-black xl → sm:text-2xl wordmark, xs semibold nav;
+//   square bar (rounded-none) with 2px top and bottom borders
+// - Responsive: the code-of-conduct ticker item and the charter link hide below sm; the
+//   "DECENTRALIZED GOVERNANCE" tag shows only from lg; the nav shelf stays visible on mobile and
+//   scrolls horizontally (overflow-x-auto)
+
+// What it does:
+// - Renders the shared MegaMenu (category "community", variant 3, label "Topic Radar", accent
+//   #ffccad): the trigger toggles on click and opens on keyboard focus; the panel is portaled to
+//   document.body below this header and closes on Escape, on blur or shortly after the pointer leaves
+// - No own props or state; anchors: wordmark → #home, charter → #manifesto, #ethics, #indie, #oss,
+//   #local
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import CreatorCommonsThreeTierMastheadNavbar from '@/TestComponent/SectionDesigns/Sections/community/Navbar03';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <CreatorCommonsThreeTierMastheadNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function CreatorCommonsThreeTierMastheadNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-y-2 border-black/15 bg-[#241c19] text-[#f7e6de] shadow-xl">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-y-2 border-black/15 bg-[#241c19] text-[#f7e6de] shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             {/* Top Micro-Ticker */}
             <div className="border-b border-white/10 px-5 py-1.5 font-mono text-[10px] text-[#ffccad] flex items-center justify-between sm:px-8">
                 <span>120+ PRACTICE GUILDS WORLDWIDE &bull; 42,000 CREATIVE PRACTITIONERS</span>
@@ -56,3 +122,5 @@ export default function Navbar03() {
         </header>
     )
 }
+
+export default CreatorCommonsThreeTierMastheadNavbar

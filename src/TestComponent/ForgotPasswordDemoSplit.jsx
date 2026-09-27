@@ -1,10 +1,88 @@
-import { useState } from 'react'
+// ForgotPasswordPageSplitScreenLayout
 
-const ForgotPasswordDemoSplit = () => {
+// ForgotPasswordDemoSplit · Authentication page demo (Split layout)
+
+// Description:
+// Full-page "Forgot Password" screen split into a blue brand panel (left)
+// and the form (right). The user enters an email and presses Submit, then
+// sees a "Check your email" confirmation with a Continue button. A "Back
+// to Sign in" link is always shown.
+
+// Design:
+// - Full-screen grid (min-h-screen, p-6) with two equal columns from lg
+//   (lg:grid-cols-2): left brand panel, right form column (centered,
+//   max-w-[450px] px-8); no logo
+// - Brand panel: rounded-3xl, bg brand blue #2a85ff, white text, px-16,
+//   /img/others/auth-split-img.png (max-w-[450px], 2xl:max-w-[700px]),
+//   headline "The easiest way to build your admin app" and a short Ecme
+//   blurb at opacity-80
+// - Page bg-white / dark:bg-gray-800, text-gray-900 / dark:text-gray-100;
+//   #2a85ff Submit / Continue buttons and input focus border; gray-300
+//   input border (dark:border-gray-600); h1 text-2xl bold
+// - Responsive: the brand panel is hidden below lg (hidden lg:flex), so
+//   small screens show a single form column
+
+// What it does:
+// - useState(emailSent), initially false
+// - Form submit is prevented and sets emailSent to true (demo only, no
+//   API call); heading / subtitle text change and the form is replaced by
+//   a "Continue" link
+// - Links (plain anchors, full page load): "Continue" and "Sign in" both
+//   go to /auth/sign-in-side
+// - No content props.
+
+// Note: the "Continue" and "Back to Sign in" links point to
+// /auth/sign-in-side instead of the matching /auth/sign-in-split route.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <main> with cn()
+// - ...props: spread onto the root <main> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// // src/configs/routes.config/authDemoRoute.js
+// {
+//     key: 'authentication.forgotPasswordSplit',
+//     path: `${AUTH_PREFIX_PATH}/forgot-password-split`,
+//     component: lazy(() => import('@/TestComponent/ForgotPasswordDemoSplit')),
+//     authority: [ADMIN, USER],
+//     meta: {
+//         layout: 'blank',
+//         pageContainerType: 'gutterless',
+//         footer: false,
+//     },
+// }
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { cn } from '@/design-system/lib/cn';
+
+export function ForgotPasswordPageSplitScreenLayout({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [emailSent, setEmailSent] = useState(false)
 
     return (
-        <main className="grid min-h-screen bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100 lg:grid-cols-2">
+        <main
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'grid min-h-screen bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100 lg:grid-cols-2',
+                className,
+            )}
+            {...props}
+        >
             <aside className="hidden flex-col items-center justify-center rounded-3xl bg-[#2a85ff] px-16 py-6 text-white lg:flex">
                 <div className="flex flex-col items-center gap-12">
                     <img className="max-w-[450px] 2xl:max-w-[700px]" src="/img/others/auth-split-img.png" alt="" />
@@ -38,4 +116,4 @@ const ForgotPasswordDemoSplit = () => {
     )
 }
 
-export default ForgotPasswordDemoSplit
+export default ForgotPasswordPageSplitScreenLayout

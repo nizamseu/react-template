@@ -1,8 +1,75 @@
-import { HiArrowRight, HiOutlineCode, HiOutlineExternalLink } from 'react-icons/hi'
+// DocsAsCodeGitHubContributionBanner
 
-export default function CTA01() {
+// CTA01 · Knowledge Bases & Documentation › Banner CTAs
+
+// Description:
+// A dark open-source contribution banner: "Spotted a Typo or Missing Recipe?
+// Edit This Page on GitHub." Tagged "Docs-as-Code · Apache 2.0" with "1,420+
+// Engineers Contributed", it invites readers to fork and edit the docs, and
+// shows a mock terminal window with a git branch/lint workflow and "PR #1,492 MERGED".
+
+// Design:
+// - Relative section with a blurred decorative circle top-right; a grid of one
+//   column that becomes lg:grid-cols-12 (copy spans 7, terminal mock spans 5).
+// - Dark palette: background #0f1714, border white/10; green accent #41715d
+//   (glow #41715d/20, badge #41715d/25) and mint #9bd2a7 (badge text, $ prompts,
+//   primary button with #0f1714 text, hover white); secondary button white/5 with
+//   white/20 border; terminal black/60 with red/yellow/green window dots and an
+//   emerald-400 success line.
+// - Monospace base font; sans-serif headline text-2xl → sm:text-4xl font-black
+//   tracking-tight; text-sm body; text-xs bold buttons with rounded-xl corners;
+//   rounded-2xl section, shadow-2xl.
+// - Padding p-8 → sm:p-12; the terminal stacks below the copy until lg; badge
+//   row and buttons use flex-wrap.
+
+// What it does:
+// - Purely presentational: no content props, no state; the terminal lines are static.
+// - CTAs: "Fork & Edit on GitHub" → https://github.com (new tab,
+//   rel="noreferrer", external-link icon) and "Good First Issues (24)" →
+//   #good-first-issues.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import DocsAsCodeGitHubContributionBanner from '@/TestComponent/SectionDesigns/Sections/knowledge/CTA01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <DocsAsCodeGitHubContributionBanner />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiOutlineCode, HiOutlineExternalLink } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function DocsAsCodeGitHubContributionBanner({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0f1714] p-8 text-white sm:p-12 shadow-2xl font-mono">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'relative overflow-hidden rounded-2xl border border-white/10 bg-[#0f1714] p-8 text-white sm:p-12 shadow-2xl font-mono',
+                className,
+            )}
+            {...props}
+        >
             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#41715d]/20 blur-3xl pointer-events-none" />
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-7">
@@ -64,3 +131,5 @@ export default function CTA01() {
         </section>
     )
 }
+
+export default DocsAsCodeGitHubContributionBanner

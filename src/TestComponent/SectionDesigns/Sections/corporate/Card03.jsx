@@ -1,8 +1,68 @@
-import { HiCheck, HiOutlineGlobeAlt } from 'react-icons/hi'
+// ESGAuditScorecardCard
 
-export default function Card03() {
+// Card03 · Corporate & Business › Cards
+
+// Description:
+// Dark sustainability scorecard for a 2026 ESG audit with an "AAA MSCI RATING" badge. It
+// shows 1.8M tons of CO2e abated, a progress bar at "84% ON TRACK" toward the 2030
+// net-zero target, Scope 1 & 2 emissions at -42% YoY, KPMG LLP as independent assurance,
+// and a "View Full Disclosures" link.
+
+// Design:
+// - <article> with header row, headline figure row, labelled progress bar (h-2 track
+//   bg-white/10, #84b9ff fill at w-[84%]), inset key-value panel and footer row
+// - Deep navy #101b2a background, white text, sky-blue #84b9ff accents, emerald-400 on
+//   emerald-500/20 for the rating and positive values, inset panel bg-black/30
+// - rounded-2xl, border white/10, shadow-2xl, p-5; serif text-3xl bold figure; font-mono
+//   text-[10px] / text-xs labels; rounded-full progress track
+// - No breakpoints: fixed internal layout that stretches to the width of its grid cell
+
+// What it does:
+// - Purely presentational: no content props, no state; the 84% progress is a static class
+// - Link "View Full Disclosures" -> #esg-report; HiOutlineGlobeAlt and HiCheck icons
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import ESGAuditScorecardCard from '@/TestComponent/SectionDesigns/Sections/corporate/Card03';
+
+// const SustainabilityGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <ESGAuditScorecardCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiCheck, HiOutlineGlobeAlt } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function ESGAuditScorecardCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-white/10 bg-[#101b2a] p-5 text-white shadow-2xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-white/10 bg-[#101b2a] p-5 text-white shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#84b9ff] font-bold">
                     <HiOutlineGlobeAlt /> 2026 ESG AUDIT SCORECARD
@@ -57,3 +117,5 @@ export default function Card03() {
         </article>
     )
 }
+
+export default ESGAuditScorecardCard

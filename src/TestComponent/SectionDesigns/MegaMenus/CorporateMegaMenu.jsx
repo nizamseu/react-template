@@ -1,3 +1,54 @@
+// CorporateMegaMenuCollection
+
+// CorporateMegaMenu · Section designs › Mega menus
+
+// Description:
+// Dropdown panel content for a corporate / professional-services website (fictional
+// "Northstar" brand). Depending on `variant` the visitor sees advisory practice areas,
+// investor-relations filings, audited client case studies, research papers or
+// private-capital strategies, each with CTA links that close the menu when clicked.
+
+// Design:
+// - Five hard-coded dark-navy layouts with sky-blue (#84b9ff) highlights, serif headlines, mono uppercase eyebrows and responsive grids (1 column on mobile, 3-4 from md/lg); meant to sit inside MegaMenu's positioned panel.
+// - Variant 1 — "Global Advisory Practices": #0e1724 panel, header with office cities (Zurich … Singapore), three icon-headed practice columns of bullet links (M&A, AI & Digital, ESG) and an "Executive Briefing" PDF download card.
+// - Variant 2 — "Investor Relations Hub": #0b111a panel, stock-ticker banner (NYSE: NST, price, market cap, earnings call), Regulatory Filings and Corporate Governance link lists, and an Investor Day card with a "Register for Webcast" button-link.
+// - Variant 3 — "Quantified Client Impact": #101b2a panel, three case-study cards with a large mono metric ($140,000,000 / 99.999% / -42%), label, description and "Read Full Audit Report" link.
+// - Variant 4 — "Research Institute": #0d1520 panel, patents/affiliates header and three research-paper cards (date, citations, title, authors) each with a "Download Open-Access Preprint" link.
+// - Variant 5 — "Private Capital": #0a0f17 panel, AUM header, two static investment-strategy cards and an "LP Portal" card with a "Sign in with Security Key" button-link.
+
+// What it does:
+// - `variant` 1-4 each return their own layout; any other value (including 5) falls through to Variant 5.
+// - Every anchor calls `closeMenu` on click; all hrefs are in-page placeholders (e.g. "#ma", "#filing", "#case-study", "#lp-login").
+// - Purely presentational: no state, effects or data fetching; interactivity is limited to hover colour/border changes.
+// - `accent` is destructured with a default but never referenced; all colours are hard-coded Tailwind values.
+// - Normally rendered by MegaMenu (category "corporate"), which normalises `variant` to 1-5 and supplies `closeMenu`.
+
+// @param {object} props
+// @param {number} [props.variant=1] Design to render (1-5); unknown values render Variant 5.
+// @param {Function} props.closeMenu Called on click of every link/CTA so the parent mega menu can close.
+// @param {string} [props.accent='#3476c5'] Accent colour; accepted but currently unused (colours are hard-coded).
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Merged onto the root <div> of every variant with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, ref, handlers) are spread onto the root <div> of every variant.
+
+// Usage example:
+// ```jsx
+// import { useState } from 'react';
+// import CorporateMegaMenuCollection from '@/TestComponent/SectionDesigns/MegaMenus/CorporateMegaMenu';
+
+// function InvestorMenu() {
+//     const [open, setOpen] = useState(true)
+//     return open ? <CorporateMegaMenuCollection variant={2} closeMenu={() => setOpen(false)} /> : null
+// }
+
+// // Usual route: MegaMenu picks this component for category="corporate"
+// // <MegaMenu category="corporate" variant={2} accent="#84b9ff" label="Investor Relations" />
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineBriefcase,
@@ -6,13 +57,32 @@ import {
     HiOutlineGlobeAlt,
     HiOutlineScale,
     HiOutlineTrendingUp,
-} from 'react-icons/hi'
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
-export default function CorporateMegaMenu({ variant = 1, closeMenu, accent = '#3476c5' }) {
+export function CorporateMegaMenuCollection({
+    variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
+    closeMenu,
+    accent = '#3476c5',
+    className,
+    ...props
+}) {
     // VARIANT 1: Global Advisory & Strategic Practice Areas (NORTHSTAR / ADVISORY)
     if (variant === 1) {
         return (
-            <div className="bg-[#0e1724] text-[#d9e4f2] p-8 border-t-2 border-[#84b9ff]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#0e1724] text-[#d9e4f2] p-8 border-t-2 border-[#84b9ff]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
                     <div>
                         <span className="font-mono text-[10px] uppercase tracking-[.25em] text-[#84b9ff]">
@@ -106,7 +176,16 @@ export default function CorporateMegaMenu({ variant = 1, closeMenu, accent = '#3
     // VARIANT 2: Investor Relations & Public Markets Hub
     if (variant === 2) {
         return (
-            <div className="bg-[#0b111a] text-[#cdd8e6] p-8 border-t border-white/15">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#0b111a] text-[#cdd8e6] p-8 border-t border-white/15',
+                    className,
+                )}
+                {...props}
+            >
                 {/* Stock Ticker Banner */}
                 <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg bg-white/5 p-4 border border-white/10 font-mono text-xs">
                     <div className="flex items-center gap-4">
@@ -181,7 +260,16 @@ export default function CorporateMegaMenu({ variant = 1, closeMenu, accent = '#3
     // VARIANT 3: Client Case Studies & Quantified Impact
     if (variant === 3) {
         return (
-            <div className="bg-[#101b2a] text-white p-8 border-t border-white/10">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#101b2a] text-white p-8 border-t border-white/10',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] text-[#84b9ff] uppercase tracking-[.25em]">
@@ -241,7 +329,16 @@ export default function CorporateMegaMenu({ variant = 1, closeMenu, accent = '#3
     // VARIANT 4: Innovation Lab, Research Institute & Whitepapers
     if (variant === 4) {
         return (
-            <div className="bg-[#0d1520] text-[#d6e3f2] p-8 border-t border-[#3476c5]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#0d1520] text-[#d6e3f2] p-8 border-t border-[#3476c5]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/15 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] uppercase tracking-[.25em] text-[#84b9ff]">
@@ -306,7 +403,16 @@ export default function CorporateMegaMenu({ variant = 1, closeMenu, accent = '#3
 
     // VARIANT 5: Private Equity & Boutique Asset Management
     return (
-        <div className="bg-[#0a0f17] text-[#c9d6e6] p-8 border-t-2 border-[#84b9ff]">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'bg-[#0a0f17] text-[#c9d6e6] p-8 border-t-2 border-[#84b9ff]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                 <div>
                     <span className="font-mono text-[10px] text-[#84b9ff] uppercase tracking-[.25em]">
@@ -352,3 +458,5 @@ export default function CorporateMegaMenu({ variant = 1, closeMenu, accent = '#3
         </div>
     )
 }
+
+export default CorporateMegaMenuCollection

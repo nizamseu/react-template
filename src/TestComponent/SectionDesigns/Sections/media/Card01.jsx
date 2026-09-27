@@ -1,8 +1,71 @@
-import { HiArrowRight, HiOutlineBookmark } from 'react-icons/hi'
+// CoverEssayDropCapArticleCard
 
-export default function Card01() {
+// Card01 · Blogs & Digital Media › Cards
+
+// Description:
+// An editorial teaser card for the cover essay of issue no. 48, "The
+// Architecture of Silence: In Praise of Tokyo's Third Places". It shows the
+// read time, a bookmark button, a monospace byline, an excerpt opening with
+// a large drop cap, topic tags and a "Read Full Essay" link.
+
+// Design:
+// - Single `article` stacked top to bottom: meta row (ruled underneath),
+//   headline, byline, excerpt, then a ruled footer row with tags and link
+// - Warm paper palette: background #f2efe9, border and rules #ded8cb, ink
+//   #1c1d1a, terracotta accent #a8472b, byline #787163, excerpt #45423a
+// - Serif text-2xl normal-weight headline; monospace 10-11px labels;
+//   serif text-3xl bold drop cap floated left; rounded-xl, 1px border,
+//   shadow-sm that becomes shadow-md on hover
+// - No breakpoint classes: fluid width that fills its grid cell
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - Bookmark icon button (aria-label "Bookmark essay") has hover colour
+//   only, no click handler; the headline changes colour on hover but is not
+//   a link; "Read Full Essay" links to `#read`
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import CoverEssayDropCapArticleCard from '@/TestComponent/SectionDesigns/Sections/media/Card01';
+
+// const CardGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <CoverEssayDropCapArticleCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiOutlineBookmark } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function CoverEssayDropCapArticleCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-xl border border-[#ded8cb] bg-[#f2efe9] p-6 text-[#1c1d1a] shadow-sm hover:shadow-md transition-shadow">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-xl border border-[#ded8cb] bg-[#f2efe9] p-6 text-[#1c1d1a] shadow-sm hover:shadow-md transition-shadow',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between text-[11px] font-mono border-b border-[#ded8cb] pb-3">
                 <span className="font-bold text-[#a8472b] uppercase tracking-widest">
                     COVER ESSAY &bull; ISSUE NO. 48
@@ -42,3 +105,5 @@ export default function Card01() {
         </article>
     )
 }
+
+export default CoverEssayDropCapArticleCard

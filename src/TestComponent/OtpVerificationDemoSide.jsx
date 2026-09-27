@@ -1,6 +1,74 @@
-import { useState } from 'react'
+// OTPVerificationPageSideImageLayout
 
-const OtpVerificationDemoSide = () => {
+// OtpVerificationDemoSide · Authentication page demo (Side layout)
+
+// Description:
+// Full-page "OTP Verification" screen with the form on the left and a
+// large rounded background image on the right. The form has six
+// single-digit boxes, "Verify OTP" and "Resend OTP"; a complete code
+// shows "OTP verified!" and hides the form.
+
+// Design:
+// - Full-screen flex row (min-h-screen, gap-6, p-6): form column on the
+//   left (flex-1, centered, content max-w-[450px] px-8) and an image panel
+//   on the right (flex-1, max-w-[720px], rounded-3xl, overflow-hidden)
+//   showing /img/others/auth-side-bg.png with object-cover; no logo
+// - bg-white / dark:bg-gray-800, text-gray-900 / dark:text-gray-100; brand
+//   blue #2a85ff Verify button and input focus border; gray-300 input
+//   borders (dark:border-gray-600)
+// - Six equal boxes (gap-2, flex-1, h-[58px], text-center text-xl); status
+//   message emerald when verified, red otherwise, with dark variants
+// - Responsive: the image panel is hidden below lg (hidden lg:block), so
+//   small screens show only the form
+
+// What it does:
+// - State: otp (array of 6 strings), message, verified
+// - updateDigit(index, value) keeps only the last character, strips
+//   non-digits and clears the message; inputs use inputMode="numeric",
+//   maxLength 1 and an aria-label per digit (no auto-advance of focus)
+// - submit() prevents the default submit; any empty digit sets "Please
+//   enter a valid OTP", otherwise verified is set to true (demo only)
+// - "Resend OTP" only sets the message "We have sent you One Time
+//   Password." (shown with the red style while not verified)
+// - No links to other routes
+// - No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <main> with cn()
+// - ...props: spread onto the root <main> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// // src/configs/routes.config/authDemoRoute.js
+// {
+//     key: 'authentication.otpVerificationSide',
+//     path: `${AUTH_PREFIX_PATH}/otp-verification-side`,
+//     component: lazy(() => import('@/TestComponent/OtpVerificationDemoSide')),
+//     authority: [ADMIN, USER],
+//     meta: {
+//         layout: 'blank',
+//         pageContainerType: 'gutterless',
+//         footer: false,
+//     },
+// }
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { cn } from '@/design-system/lib/cn';
+
+export function OTPVerificationPageSideImageLayout({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [otp, setOtp] = useState(['', '', '', '', '', ''])
     const [message, setMessage] = useState('')
     const [verified, setVerified] = useState(false)
@@ -21,7 +89,16 @@ const OtpVerificationDemoSide = () => {
     }
 
     return (
-        <main className="flex min-h-screen gap-6 bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
+        <main
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'flex min-h-screen gap-6 bg-white p-6 text-gray-900 dark:bg-gray-800 dark:text-gray-100',
+                className,
+            )}
+            {...props}
+        >
             <section className="flex flex-1 flex-col items-center justify-center">
                 <div className="w-full max-w-[450px] px-8">
                     <header className="mb-8">
@@ -52,4 +129,4 @@ const OtpVerificationDemoSide = () => {
     )
 }
 
-export default OtpVerificationDemoSide
+export default OTPVerificationPageSideImageLayout

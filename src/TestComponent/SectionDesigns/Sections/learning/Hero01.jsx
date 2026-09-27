@@ -1,7 +1,71 @@
-import { HiArrowRight } from 'react-icons/hi'
-export default function Hero01() {
+// LearningStudioSplitHeroWithStreakBadge
+
+// Hero01 · Learning Management & EdTech › Hero sections
+
+// Description:
+// Two-column landing hero for the "Fieldnote / Learning Studio" brand. The left
+// column pairs the serif headline "Learn the thing you came here for." with a
+// pitch about short lessons and real projects plus a "Find your path" CTA; the
+// right column is a learners photo with a white "Your learning streak: 4 days" badge.
+
+// Design:
+// - CSS grid, one column on mobile and `md:grid-cols-[1fr_1.05fr]`; left column
+//   is flex-col justify-between (eyebrow top, headline/CTA middle, tagline bottom)
+// - Dark palette: #102d36 background, white text (white/65, white/45), lime
+//   #c8ef70 eyebrow and CTA, #d9d7c9 image placeholder, #3c7e5d trend arrow
+// - xs bold uppercase eyebrow (.15em tracking), serif headline text-5xl ->
+//   sm:text-6xl (leading .98), rounded-full CTA pill, square white stat badge;
+//   outer wrapper rounded-lg with overflow-hidden
+// - Below md the image stacks under the text (min-h-72, object-cover);
+//   padding grows from p-7 to sm:p-12
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - One anchor CTA "Find your path" -> #courses (HiArrowRight icon); the
+//   streak badge is static text over an Unsplash image
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import LearningStudioSplitHeroWithStreakBadge from '@/TestComponent/SectionDesigns/Sections/learning/Hero01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <LearningStudioSplitHeroWithStreakBadge />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function LearningStudioSplitHeroWithStreakBadge({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="grid overflow-hidden rounded-lg bg-[#102d36] text-white md:grid-cols-[1fr_1.05fr]">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'grid overflow-hidden rounded-lg bg-[#102d36] text-white md:grid-cols-[1fr_1.05fr]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col justify-between p-7 sm:p-12">
                 <p className="text-xs font-bold uppercase tracking-[.15em] text-[#c8ef70]">
                     FIELDNOTE / LEARNING STUDIO
@@ -43,3 +107,5 @@ export default function Hero01() {
         </section>
     )
 }
+
+export default LearningStudioSplitHeroWithStreakBadge

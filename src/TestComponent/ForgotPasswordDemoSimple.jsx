@@ -1,10 +1,84 @@
-import { useState } from 'react'
+// ForgotPasswordPageSimpleCenteredLayout
 
-const ForgotPasswordDemoSimple = () => {
+// ForgotPasswordDemoSimple · Authentication page demo (Simple layout)
+
+// Description:
+// Full-page "Forgot Password" screen in one centered column: the user
+// enters an email and presses Submit, then the page switches to a "Check
+// your email" confirmation with a Continue button. A "Back to Sign in"
+// link is always shown.
+
+// Design:
+// - Full-screen main (min-h-screen, flex, centered, px-5 py-10) with one
+//   column (w-full, min-w-[320px], max-w-[400px]); no logo, no side panel,
+//   no card border or shadow
+// - bg-white / dark:bg-gray-800, text-gray-900 / dark:text-gray-100; brand
+//   blue #2a85ff for the Submit / Continue buttons and input focus border;
+//   gray-300 input border (dark:border-gray-600)
+// - h1 text-2xl bold with a semibold gray subtitle; rounded-sm controls
+// - No responsive breakpoints; the column simply shrinks to 320px minimum
+
+// What it does:
+// - useState(emailSent), initially false
+// - Form submit is prevented and sets emailSent to true (demo only, no
+//   API call); heading / subtitle text change and the form is replaced by
+//   a "Continue" link
+// - Links (plain anchors, full page load): "Continue" and "Sign in" both
+//   go to /auth/sign-in-side
+// - No content props.
+
+// Note: the "Continue" and "Back to Sign in" links point to
+// /auth/sign-in-side instead of the matching /auth/sign-in-simple route.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <main> with cn()
+// - ...props: spread onto the root <main> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// // src/configs/routes.config/authDemoRoute.js
+// {
+//     key: 'authentication.forgotPasswordSimple',
+//     path: `${AUTH_PREFIX_PATH}/forgot-password-simple`,
+//     component: lazy(() => import('@/TestComponent/ForgotPasswordDemoSimple')),
+//     authority: [ADMIN, USER],
+//     meta: {
+//         layout: 'blank',
+//         pageContainerType: 'gutterless',
+//         footer: false,
+//     },
+// }
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { cn } from '@/design-system/lib/cn';
+
+export function ForgotPasswordPageSimpleCenteredLayout({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [emailSent, setEmailSent] = useState(false)
 
     return (
-        <main className="flex min-h-screen items-center justify-center bg-white px-5 py-10 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
+        <main
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'flex min-h-screen items-center justify-center bg-white px-5 py-10 text-gray-900 dark:bg-gray-800 dark:text-gray-100',
+                className,
+            )}
+            {...props}
+        >
             <section className="w-full min-w-[320px] max-w-[400px]">
                 <header className="mb-6">
                     <h1 className="mb-2 text-2xl font-bold">{emailSent ? 'Check your email' : 'Forgot Password'}</h1>
@@ -27,4 +101,4 @@ const ForgotPasswordDemoSimple = () => {
     )
 }
 
-export default ForgotPasswordDemoSimple
+export default ForgotPasswordPageSimpleCenteredLayout

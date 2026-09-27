@@ -1,9 +1,75 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// AtelierOfFormMastheadNavbar
 
-export default function Navbar03() {
+// Navbar03 · Portfolios & Personal Websites › Navbars
+
+// Description:
+// Newspaper-style, three-tier header for "JAMIE PARK — ATELIER OF FORM": a
+// mono micro-ticker (Stockholm & New York, Awwwards jury credential, EST. 2016),
+// a large uppercase masthead with a "Read Studio Manifesto →" link, and a darker
+// shelf nav with a "Design Manifesto" mega menu and four section links.
+
+// Design:
+// - Three stacked bands separated by black/15 borders, each a flex row
+//   (justify-between): ticker, masthead, bottom shelf nav.
+// - Warm palette: coral #ef6a4b, darker coral shelf #e05e40, text #241d1a
+//   (links at /80, hover white); border-y-2 black/15 and shadow-lg.
+// - Masthead text-2xl → sm:text-3xl font-black uppercase tracking-wider;
+//   10px mono ticker; xs bold uppercase shelf links; square corners.
+// - Below sm the middle ticker item and the manifesto link are hidden; the
+//   "1 COMMISSION AVAILABLE" note appears only from lg; the shelf links are
+//   always shown and scroll horizontally (overflow-x-auto); px-5 → sm:px-8.
+
+// What it does:
+// - No content props or local state; "Design Manifesto" is a MegaMenu (category
+//   "portfolio", variant 3) that toggles on click or keyboard focus, closes on
+//   pointer leave (160ms), blur or Escape, and portals a light studio-ethos
+//   panel (manifesto quote, keynotes list, CV download link) below the header.
+// - Anchors: masthead → #home, #manifesto, #monographs, #typefaces, #spatial,
+//   #archive ("Archive (2016–2026)").
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import AtelierOfFormMastheadNavbar from '@/TestComponent/SectionDesigns/Sections/portfolio/Navbar03';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <AtelierOfFormMastheadNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function AtelierOfFormMastheadNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-y-2 border-black/15 bg-[#ef6a4b] text-[#241d1a] shadow-lg">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-y-2 border-black/15 bg-[#ef6a4b] text-[#241d1a] shadow-lg',
+                className,
+            )}
+            {...props}
+        >
             {/* Top Micro-Ticker */}
             <div className="border-b border-black/15 px-5 py-1.5 font-mono text-[10px] text-[#241d1a]/80 flex items-center justify-between sm:px-8">
                 <span>INDEPENDENT DESIGN DIRECTION &bull; STOCKHOLM & NEW YORK</span>
@@ -56,3 +122,5 @@ export default function Navbar03() {
         </header>
     )
 }
+
+export default AtelierOfFormMastheadNavbar

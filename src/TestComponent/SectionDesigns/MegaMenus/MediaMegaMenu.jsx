@@ -1,3 +1,57 @@
+// EditorialMediaMegaMenuCollection
+
+// MediaMegaMenu · Section designs › Mega menus
+
+// Description:
+// The panel content for magazine, news and podcast navbars, normally rendered by MegaMenu
+// (category="media"). It shows one of five publishing designs: a Sunday broadsheet with a
+// newsletter sign-up, a podcast player, a high-contrast gazette index, a live news wire,
+// or a photo monograph showcase.
+
+// Design:
+// - Editorial typography (serif headlines, mono metadata) with rust #a8472b or peach #e7a37c accents on paper-cream or near-black backgrounds; static data mapped into lists and cards.
+// - Variant 1 — "Sunday Broadsheet": paper #f2efe9 with rust top border; 5/4/3 grid with a cover essay (image, headline, byline), "Cultural Index" story links with read times, and a newsletter box (email input + "Receive Dispatch").
+// - Variant 2 — "Broadcast Podcast Player": charcoal #191919 with peach; episode card with static waveform bars, "Play Episode" button and Apple Podcasts / Spotify links, plus three series-archive links.
+// - Variant 3 — "High-Contrast Gazette": black #121212 with white top border; edition header, three numbered columns of story links (Long Essays, Critique & Reviews, Field Reports) and an archive link.
+// - Variant 4 — "Breaking News Wire": off-white #f7f5f2; red "BREAKING WIRE" banner with pinging dot and four timestamped, tagged news cards with a "Save" button.
+// - Variant 5 — "Art Book Monograph": dark brown #1a1816; monograph header, three photo-folio cards (image, photo count, photographer) and an "Order Limited Print Edition" link.
+
+// What it does:
+// - variant selects the layout through if (variant === 1..4); any other value renders the Variant 5 design.
+// - Most links, and the Variant 1 "Receive Dispatch" button, call closeMenu on click; the button only closes the menu, the email input is not submitted or stored.
+// - The Variant 2 Apple Podcasts / Spotify links do not call closeMenu; "Play Episode" and the Variant 4 "Save" buttons have no handler, so nothing in Variant 4 closes the menu.
+// - The Variant 1 cover headline and the Variant 5 folio cards have hover styles but are not links.
+// - Colours are hard-coded; the accent prop is accepted but not used anywhere in the markup.
+
+// @param {object} props
+// @param {number} [props.variant=1] Design to render: 1–4, any other value falls back to Variant 5.
+// @param {Function} props.closeMenu Called when a link (or the Variant 1 newsletter button) is clicked (MegaMenu passes its own close handler).
+// @param {string} [props.accent='#a84f34'] Accepted for API consistency with the other category menus; currently unused.
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Merged onto the root <div> of every variant with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, ref, handlers) are spread onto the root <div> of every variant.
+
+// Usage example:
+// ```jsx
+// import { useState } from 'react';
+// import EditorialMediaMegaMenuCollection from '@/TestComponent/SectionDesigns/MegaMenus/MediaMegaMenu';
+
+// // Normally rendered for you by <MegaMenu category="media" variant={1} />
+// export default function MagazineMenuPreview() {
+//     const [open, setOpen] = useState(true)
+//     if (!open) return null
+//     return (
+//         <div className="rounded-lg border border-black/15 shadow-xl">
+//             <EditorialMediaMegaMenuCollection variant={1} closeMenu={() => setOpen(false)} />
+//         </div>
+//     )
+// }
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineBookmark,
@@ -7,13 +61,32 @@ import {
     HiOutlineNewspaper,
     HiOutlinePhotograph,
     HiOutlineVolumeUp,
-} from 'react-icons/hi'
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
-export default function MediaMegaMenu({ variant = 1, closeMenu, accent = '#a84f34' }) {
+export function EditorialMediaMegaMenuCollection({
+    variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
+    closeMenu,
+    accent = '#a84f34',
+    className,
+    ...props
+}) {
     // VARIANT 1: The Sunday Edition / Broadsheet Magazine (MARGIN.)
     if (variant === 1) {
         return (
-            <div className="bg-[#f2efe9] text-[#1c1d1a] p-8 border-t-2 border-[#a8472b]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#f2efe9] text-[#1c1d1a] p-8 border-t-2 border-[#a8472b]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left: Lead Cover Story */}
                     <div className="lg:col-span-5 space-y-4 border-r border-[#ded8cb] pr-6">
@@ -117,7 +190,16 @@ export default function MediaMegaMenu({ variant = 1, closeMenu, accent = '#a84f3
     // VARIANT 2: Broadcast Studio & Multimedia Podcast Atelier
     if (variant === 2) {
         return (
-            <div className="bg-[#191919] text-[#e0e0e0] p-8 border-t border-white/20">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#191919] text-[#e0e0e0] p-8 border-t border-white/20',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left: Featured Podcast Audio Player Card */}
                     <div className="lg:col-span-6 rounded-lg border border-white/15 bg-white/5 p-6">
@@ -208,7 +290,16 @@ export default function MediaMegaMenu({ variant = 1, closeMenu, accent = '#a84f3
     // VARIANT 3: Minimalist High-Contrast Cultural Gazette
     if (variant === 3) {
         return (
-            <div className="bg-[#121212] text-white p-8 border-t-2 border-white">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#121212] text-white p-8 border-t-2 border-white',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex items-center justify-between border-b border-white/20 pb-4 font-mono text-xs">
                     <span className="tracking-[.25em]">GAZETTE EDITION &bull; OCTOBER 2026</span>
                     <span className="text-white/50">CIRCULATION: 120,000 &bull; GLOBAL PRINT & DIGITAL</span>
@@ -279,7 +370,16 @@ export default function MediaMegaMenu({ variant = 1, closeMenu, accent = '#a84f3
     // VARIANT 4: Real-time News Pulse & Live Wire Feed
     if (variant === 4) {
         return (
-            <div className="bg-[#f7f5f2] text-[#222] p-8 border-t border-black/10">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#f7f5f2] text-[#222] p-8 border-t border-black/10',
+                    className,
+                )}
+                {...props}
+            >
                 {/* Breaking Wire Banner */}
                 <div className="flex items-center gap-3 rounded bg-red-600 px-4 py-2 text-xs font-bold text-white">
                     <span className="h-2 w-2 rounded-full bg-white animate-ping" />
@@ -337,7 +437,16 @@ export default function MediaMegaMenu({ variant = 1, closeMenu, accent = '#a84f3
 
     // VARIANT 5: Visual Archival & Art Book Edition
     return (
-        <div className="bg-[#1a1816] text-[#e8e4df] p-8 border-t border-[#443e39]">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'bg-[#1a1816] text-[#e8e4df] p-8 border-t border-[#443e39]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#443e39] pb-4 gap-4">
                 <div>
                     <span className="font-mono text-[10px] text-[#e7a37c] uppercase tracking-[.25em]">
@@ -401,3 +510,5 @@ export default function MediaMegaMenu({ variant = 1, closeMenu, accent = '#a84f3
         </div>
     )
 }
+
+export default EditorialMediaMegaMenuCollection

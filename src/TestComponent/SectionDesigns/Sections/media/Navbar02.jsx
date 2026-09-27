@@ -1,9 +1,78 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// MarginBroadcastAudioNavbar
 
-export default function Navbar02() {
+// Navbar02 · Blogs & Digital Media › Navbars
+
+// Description:
+// A dark header for the audio arm of the publication, "MARGIN / BROADCAST".
+// The wordmark sits on the far left; on the right are a "Broadcast Audio"
+// mega menu, links to Episodes (48), Transcripts and the Patron Feed, and an
+// outlined "Listen Live" button.
+
+// Design:
+// - One flex row: wordmark left, and a right-aligned group (ml-auto) with
+//   the nav and the action button
+// - Dark studio palette: background and 2px top/bottom border #191919, text
+//   #e0e0e0 with white on hover, peach accent #e7a37c for the menu trigger
+//   and button
+// - Serif text-2xl bold wordmark with very wide tracking; monospace 11px
+//   uppercase nav tracked at .15em; square (rounded-none) header and button;
+//   the button fills with peach and turns #191919 text on hover
+// - Nav (including the mega menu) is hidden below md with no mobile menu
+//   toggle, leaving only the wordmark and "Listen Live"; padding
+//   px-5 → sm:px-8
+
+// What it does:
+// - Renders `MegaMenu` (category "media", variant 2, label "Broadcast
+//   Audio"): opens on click or keyboard focus, stays open while hovered,
+//   closes 160ms after the pointer leaves, on blur, or on Escape. The panel
+//   is portalled to document.body, fixed just below this header at its
+//   width, and shows a rounded dark podcast/broadcast menu
+// - Plain anchor links: `#home`, `#episodes`, `#transcripts`, `#patron`;
+//   the "Listen Live" button links to `#subscribe`
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import MarginBroadcastAudioNavbar from '@/TestComponent/SectionDesigns/Sections/media/Navbar02';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <MarginBroadcastAudioNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function MarginBroadcastAudioNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-y-2 border-[#191919] bg-[#191919] px-5 py-3.5 text-[#e0e0e0] sm:px-8">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-y-2 border-[#191919] bg-[#191919] px-5 py-3.5 text-[#e0e0e0] sm:px-8',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between gap-6">
                 {/* Brand Far Left */}
                 <a href="#home" className="font-serif text-2xl font-bold tracking-widest text-white shrink-0">
@@ -43,3 +112,5 @@ export default function Navbar02() {
         </header>
     )
 }
+
+export default MarginBroadcastAudioNavbar

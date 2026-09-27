@@ -1,8 +1,70 @@
-import { HiOutlineBriefcase } from 'react-icons/hi'
+// SeniorManagingPartnerProfileCard
 
-export default function Card04() {
+// Card04 · Corporate & Business › Cards
+
+// Description:
+// Dark team-profile card for the fictional senior managing partner "Sir Alistair Vance"
+// (London, 28 years in advisory, Head of Sovereign & Global M&A). It shows a portrait, a
+// credentials panel (mandate, $48B+ lifetime deal volume, board roles), a "Registered
+// FINRA / FCA" note and a "Request Executive Meeting" button.
+
+// Design:
+// - <article> with header row, avatar + name row (flex gap-4), inset key-value panel and
+//   footer row separated by white/10 dividers
+// - Navy #0d1520 background with a #3476c5/30 border; sky-blue #84b9ff for role title,
+//   board roles, avatar border and the pill button (text #0d1520, hover:bg-white);
+//   white/50 labels, inset panel bg-black/40
+// - rounded-2xl, shadow-xl, p-5; avatar h-16 w-16 rounded-xl object-cover; name
+//   font-serif text-lg bold; font-mono details; rounded-full button
+// - No breakpoints: fixed internal layout that stretches to the width of its grid cell
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - The "Request Executive Meeting" control is a type="button" with no onClick handler
+//   (placeholder); Unsplash portrait uses the partner's name as alt text
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import SeniorManagingPartnerProfileCard from '@/TestComponent/SectionDesigns/Sections/corporate/Card04';
+
+// const LeadershipGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <SeniorManagingPartnerProfileCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineBriefcase } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function SeniorManagingPartnerProfileCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-[#3476c5]/30 bg-[#0d1520] p-5 text-white shadow-xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-[#3476c5]/30 bg-[#0d1520] p-5 text-white shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-[#84b9ff] font-bold">
                     SENIOR MANAGING PARTNER &bull; LONDON
@@ -52,3 +114,5 @@ export default function Card04() {
         </article>
     )
 }
+
+export default SeniorManagingPartnerProfileCard

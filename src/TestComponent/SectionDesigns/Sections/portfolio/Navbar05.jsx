@@ -1,9 +1,74 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// ContactSheetGridNavbar
 
-export default function Navbar05() {
+// Navbar05 · Portfolios & Personal Websites › Navbars
+
+// Description:
+// Dark, three-cell grid header for "JAMIE PARK / WORK": an index cell with the
+// brand and year 2026, a nav strip with a "Visual Notes" mega menu, links to
+// Brand Systems, Interactive Art and Exhibitions plus a "TOKYO & STOCKHOLM"
+// tag, and a status cell reading "1 COMMISSION LEFT" with an "INQUIRE →" link.
+
+// Design:
+// - CSS grid: one column on mobile, md:grid-cols-[240px_1fr_220px] from md,
+//   with 2px white/20 dividers (divide-y-2 on mobile, divide-x-2 from md).
+// - Dark palette: #181412 background, text #e3deda, coral #ef6a4b accents,
+//   muted white/50-70 links, border-2 white/20.
+// - Serif brand with tracking-widest; mono uppercase xs nav and status text;
+//   square corners (rounded-none).
+// - Below md the three cells stack into rows; the nav strip scrolls
+//   horizontally (overflow-x-auto); the location tag appears only from lg.
+
+// What it does:
+// - No content props or local state; "Visual Notes" is a MegaMenu (category
+//   "portfolio", variant 5) that toggles on click or keyboard focus, closes on
+//   pointer leave (160ms), blur or Escape, and portals a "Forms, Light & Found
+//   Typography" photo contact-sheet panel below the header.
+// - Anchors: brand → #home, #systems, #interactive, #exhibitions;
+//   "INQUIRE →" → #inquire.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import ContactSheetGridNavbar from '@/TestComponent/SectionDesigns/Sections/portfolio/Navbar05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <ContactSheetGridNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function ContactSheetGridNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-2 border-white/20 bg-[#181412] text-[#e3deda]">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-2 border-white/20 bg-[#181412] text-[#e3deda]',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid grid-cols-1 md:grid-cols-[240px_1fr_220px] divide-y-2 md:divide-y-0 md:divide-x-2 divide-white/20">
                 {/* Column 1: Monospace Index */}
                 <div className="p-3.5 flex items-center justify-between">
@@ -52,3 +117,5 @@ export default function Navbar05() {
         </header>
     )
 }
+
+export default ContactSheetGridNavbar

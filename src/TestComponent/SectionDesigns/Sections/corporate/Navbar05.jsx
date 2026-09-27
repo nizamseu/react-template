@@ -1,9 +1,73 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// PrivateCapitalGridNavbar
 
-export default function Navbar05() {
+// Navbar05 · Corporate & Business › Navbars
+
+// Description:
+// Boxed three-cell header for "NORTHSTAR CAPITAL" (Fund VI): a brand cell, a navigation
+// strip with a "Private Capital" mega menu plus Portfolio, Mandate and General Partners
+// links, and a status cell showing "$18.4B AUM" with an "LP PORTAL" link.
+
+// Design:
+// - grid grid-cols-1 -> md:grid-cols-[240px_1fr_220px] with 2px dividers (divide-y-2 on
+//   mobile, md:divide-x-2) in #84b9ff/20; each cell p-3.5 flex justify-between
+// - Near-black #0a0f17 background with border-2 #84b9ff/30; sky-blue #84b9ff accents
+//   (CAPITAL tag, trigger, tagline, LP link); nav links white/70 -> hover white
+// - Wordmark font-serif text-lg tracking-widest; nav font-mono uppercase text-xs
+//   tracking-wider; square corners throughout (rounded-none)
+// - Below md the three cells stack vertically; the nav strip stays visible and scrolls
+//   horizontally (overflow-x-auto); "GLOBAL PRIVATE EQUITY" tag shows from lg
+
+// What it does:
+// - No content props or local state; MegaMenu (category="corporate", variant={5}, accent #84b9ff)
+//   toggles on trigger click, opens on keyboard focus, and closes on Escape, focus loss,
+//   ~160 ms after the pointer leaves, or when a panel link is clicked
+// - Its panel (portalled, fixed just below this header) presents two investment
+//   strategies and an "Accredited Investor Room" LP portal card
+// - Anchors: #home, #portfolio, #criteria (labelled "Mandate"), #team, #lp-login
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import PrivateCapitalGridNavbar from '@/TestComponent/SectionDesigns/Sections/corporate/Navbar05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <PrivateCapitalGridNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function PrivateCapitalGridNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-2 border-[#84b9ff]/30 bg-[#0a0f17] text-white">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-2 border-[#84b9ff]/30 bg-[#0a0f17] text-white',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid grid-cols-1 md:grid-cols-[240px_1fr_220px] divide-y-2 md:divide-y-0 md:divide-x-2 divide-[#84b9ff]/20">
                 {/* Column 1: Monospace Index */}
                 <div className="p-3.5 flex items-center justify-between">
@@ -52,3 +116,5 @@ export default function Navbar05() {
         </header>
     )
 }
+
+export default PrivateCapitalGridNavbar

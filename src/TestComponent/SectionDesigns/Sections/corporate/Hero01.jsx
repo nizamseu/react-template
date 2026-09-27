@@ -1,7 +1,72 @@
-import { HiArrowRight } from 'react-icons/hi'
-export default function Hero01() {
+// NorthstarAdvisorySplitImageHero
+
+// Hero01 · Corporate & Business › Hero sections
+
+// Description:
+// Dark two-column landing hero for the fictional "NORTHSTAR / ADVISORY" consultancy.
+// The left column stacks an eyebrow, the headline "Complex change. Clear direction.",
+// a one-line value statement and an "Explore our work" button; the right column is a
+// full-height city-architecture photo tagged "Independent thinking since 2008".
+
+// Design:
+// - Grid with min-h-[420px], split 1fr / 1fr from md; the text column uses flex-col
+//   justify-between (eyebrow top, headline block middle, pillar line bottom)
+// - Dark navy #121c2c with white text; sky-blue #84b9ff for the eyebrow and the filled
+//   button (button text #121c2c); muted copy in white/65 and white/40; the photo badge
+//   reuses #121c2c as its background
+// - Headline text-5xl -> sm:text-6xl, font-semibold, leading-[.98]; eyebrow text-xs bold
+//   uppercase with tracking-[.16em]; rounded-lg section (overflow-hidden), rounded-md button
+// - Below md the columns stack and the image block keeps a min-h-64; text padding
+//   p-7 -> sm:p-12
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - One anchor CTA "Explore our work" -> #work with an HiArrowRight icon; Unsplash image
+//   absolutely positioned with object-cover and a descriptive alt text; static pillar
+//   line "Strategy · People · Transformation"
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import NorthstarAdvisorySplitImageHero from '@/TestComponent/SectionDesigns/Sections/corporate/Hero01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <NorthstarAdvisorySplitImageHero />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function NorthstarAdvisorySplitImageHero({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="overflow-hidden rounded-lg bg-[#121c2c] text-white">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-lg bg-[#121c2c] text-white',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid min-h-[420px] md:grid-cols-[1fr_1fr]">
                 <div className="flex flex-col justify-between p-7 sm:p-12">
                     <p className="text-xs font-bold uppercase tracking-[.16em] text-[#84b9ff]">
@@ -40,3 +105,5 @@ export default function Hero01() {
         </section>
     )
 }
+
+export default NorthstarAdvisorySplitImageHero

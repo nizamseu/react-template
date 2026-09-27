@@ -1,8 +1,70 @@
-import { HiArrowRight, HiOutlineClock, HiOutlineUserGroup } from 'react-icons/hi'
+// CreativeDirectionCohortSyllabusCard
 
-export default function Card01() {
+// Card01 · Learning Management & EdTech › Cards
+
+// Description:
+// Dark course card for a "10-WEEK INTENSIVE • COHORT 04" (18 students max) titled
+// "Creative Direction & Systems for Modern Brands". It shows an instructor blurb,
+// a mini roadmap of three weekly modules (W01 Strategy, W03 Identity, W06
+// Spatial), the start date and price (Oct 15 • $1,450) and a "Syllabus" button.
+
+// Design:
+// - Single <article>: header row (cohort label + capacity chip, border-b),
+//   title and blurb, inset roadmap panel of label/topic rows, footer row (border-t)
+// - Dark palette: #0e272f background, #e8f3ea base text with white/60-80
+//   secondary, lime #c8ef70 labels and CTA, #1b3e49 capacity chip, white/5
+//   roadmap panel, white/10 borders
+// - Mono 10px uppercase tracking-widest labels, serif text-2xl bold title;
+//   rounded-2xl card with shadow-xl, rounded-xl roadmap, rounded-full chip/CTA
+// - No breakpoint classes: fluid width that fills its grid cell
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - Single anchor "Syllabus" -> #cohort-detail (hover:bg-white colour
+//   transition); roadmap rows are hard-coded, not mapped from an array
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import CreativeDirectionCohortSyllabusCard from '@/TestComponent/SectionDesigns/Sections/learning/Card01';
+
+// const CourseGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <CreativeDirectionCohortSyllabusCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiOutlineClock, HiOutlineUserGroup } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function CreativeDirectionCohortSyllabusCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-white/10 bg-[#0e272f] p-5 text-[#e8f3ea] shadow-xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-white/10 bg-[#0e272f] p-5 text-[#e8f3ea] shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-[#c8ef70]">
                     10-WEEK INTENSIVE &bull; COHORT 04
@@ -53,3 +115,5 @@ export default function Card01() {
         </article>
     )
 }
+
+export default CreativeDirectionCohortSyllabusCard

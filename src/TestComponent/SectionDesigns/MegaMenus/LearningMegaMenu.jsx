@@ -1,3 +1,56 @@
+// LearningCoursesMegaMenuCollection
+
+// LearningMegaMenu · Section designs › Mega menus
+
+// Description:
+// The panel content for education / online-academy navbars, normally rendered by MegaMenu
+// (category="learning"). It shows one of five course-platform designs: cohort curriculum tracks,
+// a live session calendar, a career roadmap, weekend workshop labs, or a mentor booking directory.
+// Links are hash anchors that close the menu when clicked.
+
+// Design:
+// - Static demo data mapped into Tailwind card grids; deep teal/green backgrounds with lime #c8ef70 highlights on the dark variants and green #3c7e5d on the light ones.
+// - Variant 1 — "Academy Curriculum Tracks": dark teal #0e272f with lime top border; cohort header with a pinging "4 spots remaining" pill, four track cards (weeks, mentor, "Syllabus & Tuition") and a certificate footer with a catalog link.
+// - Variant 2 — "Live Studio Calendar": cream #f7f4ed; 7/5 split with three dated live-session rows ("RSVP Seat") and a featured alumni case-study card.
+// - Variant 3 — "Career Roadmap & Skills Matrix": white Swiss-style layout; salary and hire-rate stats, a four-phase skills roadmap (Phase 01–04) and a "Start Diagnostic Test" CTA.
+// - Variant 4 — "Creative Experiment Lab": dark green #11241f with lime; header with filter pills, three workshop cards (image, difficulty, time, rating, "Launch Sandbox") and a hackathon banner ("Submit Project").
+// - Variant 5 — "Mentorship Residency": dark #12282e with soft green #95c77b; "Mentors Online" header, three mentor profile cards (rating, expertise, rate, "Book Slot") and an async critique link.
+
+// What it does:
+// - variant selects the layout through if (variant === 1..4); any other value renders the Variant 5 design.
+// - Every <a> calls closeMenu on click; there is no state or effect.
+// - The Variant 4 filter pills are static buttons without a click handler ("All Labs" is always highlighted), and the Variant 2 "Read Maya's 4-Page Case Study" line is plain text, not a link.
+// - Colours are hard-coded; the accent prop is accepted but not used anywhere in the markup.
+
+// @param {object} props
+// @param {number} [props.variant=1] Design to render: 1–4, any other value falls back to Variant 5.
+// @param {Function} props.closeMenu Called when any link in the panel is clicked (MegaMenu passes its own close handler).
+// @param {string} [props.accent='#3c7e5d'] Accepted for API consistency with the other category menus; currently unused.
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Merged onto the root <div> of every variant with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, ref, handlers) are spread onto the root <div> of every variant.
+
+// Usage example:
+// ```jsx
+// import { useState } from 'react';
+// import LearningCoursesMegaMenuCollection from '@/TestComponent/SectionDesigns/MegaMenus/LearningMegaMenu';
+
+// // Normally rendered for you by <MegaMenu category="learning" variant={2} />
+// export default function CoursesMenuPreview() {
+//     const [open, setOpen] = useState(true)
+//     if (!open) return null
+//     return (
+//         <div className="rounded-none border-y border-[#d8e2d8] shadow-2xl">
+//             <LearningCoursesMegaMenuCollection variant={2} closeMenu={() => setOpen(false)} />
+//         </div>
+//     )
+// }
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineAcademicCap,
@@ -8,13 +61,32 @@ import {
     HiOutlineVideoCamera,
     HiOutlineCheckCircle,
     HiOutlineCalendar,
-} from 'react-icons/hi'
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
-export default function LearningMegaMenu({ variant = 1, closeMenu, accent = '#3c7e5d' }) {
+export function LearningCoursesMegaMenuCollection({
+    variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
+    closeMenu,
+    accent = '#3c7e5d',
+    className,
+    ...props
+}) {
     // VARIANT 1: Multi-Track Creative Academy & Live Cohorts (fieldnote.)
     if (variant === 1) {
         return (
-            <div className="bg-[#0e272f] text-[#e8f3ea] p-8 border-t-2 border-[#c8ef70]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#0e272f] text-[#e8f3ea] p-8 border-t-2 border-[#c8ef70]',
+                    className,
+                )}
+                {...props}
+            >
                 {/* Header status bar */}
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
                     <div>
@@ -122,7 +194,16 @@ export default function LearningMegaMenu({ variant = 1, closeMenu, accent = '#3c
     // VARIANT 2: Masterclass Studio & Mentorship Hub (Fieldnote Class)
     if (variant === 2) {
         return (
-            <div className="bg-[#f7f4ed] text-[#142d34] p-8 border-t border-[#d8e2d8]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#f7f4ed] text-[#142d34] p-8 border-t border-[#d8e2d8]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left: Upcoming Live Studio Sessions */}
                     <div className="lg:col-span-7 space-y-4">
@@ -216,7 +297,16 @@ export default function LearningMegaMenu({ variant = 1, closeMenu, accent = '#3c
     // VARIANT 3: Career Path Roadmap & Skills Matrix (FIELDNOTE / SCHOOL)
     if (variant === 3) {
         return (
-            <div className="bg-white text-[#102d36] p-8 border-t border-gray-200">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-white text-[#102d36] p-8 border-t border-gray-200',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-100 pb-4 gap-4">
                     <div>
                         <span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#3c7e5d]">
@@ -306,7 +396,16 @@ export default function LearningMegaMenu({ variant = 1, closeMenu, accent = '#3c
     // VARIANT 4: Creative Lab & Weekend Workshops (LEARN / LAB)
     if (variant === 4) {
         return (
-            <div className="bg-[#11241f] text-[#ebfbee] p-8 border-t-2 border-[#c8ef70]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#11241f] text-[#ebfbee] p-8 border-t-2 border-[#c8ef70]',
+                    className,
+                )}
+                {...props}
+            >
                 {/* Search Bar & Filter Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-5">
                     <div>
@@ -424,7 +523,16 @@ export default function LearningMegaMenu({ variant = 1, closeMenu, accent = '#3c
 
     // VARIANT 5: The Mentors Directory & 1-on-1 Office Hours
     return (
-        <div className="bg-[#12282e] text-[#e8f1f5] p-8 border-t border-[#3c7e5d]">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'bg-[#12282e] text-[#e8f1f5] p-8 border-t border-[#3c7e5d]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/15 pb-4 gap-4">
                 <div>
                     <span className="text-[10px] font-bold uppercase tracking-[.22em] text-[#95c77b]">
@@ -513,3 +621,5 @@ export default function LearningMegaMenu({ variant = 1, closeMenu, accent = '#3c
         </div>
     )
 }
+
+export default LearningCoursesMegaMenuCollection

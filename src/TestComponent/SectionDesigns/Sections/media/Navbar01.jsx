@@ -1,9 +1,80 @@
-import { HiOutlineSearch } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// MarginBroadsheetSearchNavbar
 
-export default function Navbar01() {
+// Navbar01 · Blogs & Digital Media › Navbars
+
+// Description:
+// A light, newspaper-style header for the "MARGIN." publication. The serif
+// wordmark sits beside a "Sunday Edition" mega menu and links to Longform
+// Essays, Dialogues, Dispatch and the 2004–2026 Archive; the right side
+// shows the current issue ("ISSUE NO. 48 · OCT 2026") and a search pill.
+
+// Design:
+// - One flex row: left group (wordmark + nav, gap-10) and right group
+//   (issue label + search button) pushed apart with justify-between
+// - Warm paper palette: background #f1eee6, ink #1f201c (links at 70%
+//   opacity), terracotta accent #a8472b on the wordmark dot and menu
+//   trigger (MegaMenu accent #a84f34), bottom border black/15
+// - Serif text-3xl bold wordmark; serif xs nav links; monospace xs right
+//   group; square header (rounded-none) with a 2px bottom rule; rounded-full
+//   outlined search pill
+// - Nav (including the mega menu) is hidden below md and there is no mobile
+//   menu toggle; the issue label and the "Search Index" text hide below sm,
+//   leaving only the search icon; padding px-5 → sm:px-8
+
+// What it does:
+// - Renders `MegaMenu` (category "media", variant 1, label "Sunday
+//   Edition"): the trigger opens on click or keyboard focus, stays open while
+//   hovered, and closes 160ms after the pointer leaves, on blur, or on
+//   Escape; its chevron rotates when open. The panel is portalled to
+//   document.body and fixed flush under this header at the header's width,
+//   showing the broadsheet-style Sunday Edition menu
+// - Plain anchor links: `#home`, `#longform`, `#dialogues`, `#dispatch`,
+//   `#archive`; the search button (aria-label "Search articles") has no
+//   click handler
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import MarginBroadsheetSearchNavbar from '@/TestComponent/SectionDesigns/Sections/media/Navbar01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <MarginBroadsheetSearchNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineSearch } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function MarginBroadsheetSearchNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-b-2 border-black/15 bg-[#f1eee6] px-5 py-4 text-[#1f201c] sm:px-8">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-b-2 border-black/15 bg-[#f1eee6] px-5 py-4 text-[#1f201c] sm:px-8',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between gap-6">
                 {/* Brand & Left-Flush Navigation Group */}
                 <div className="flex items-center gap-10">
@@ -54,3 +125,5 @@ export default function Navbar01() {
         </header>
     )
 }
+
+export default MarginBroadsheetSearchNavbar

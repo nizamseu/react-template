@@ -1,9 +1,72 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// SlowCoastFloatingPillNavbar
 
-export default function Navbar04() {
+// Navbar04 · Booking & Reservations › Navbars
+
+// Description:
+// A floating, pill-shaped header for "SLOW COAST / TRAVEL" focused on hosted
+// experiences. It shows the mono wordmark, a "Host Experiences" MegaMenu with
+// Craft Workshops, Alpine Foraging and Meet Hosts links, and a "Host a Stay"
+// pill button.
+
+// Design:
+// - Transparent header (py-2 px-3) wrapping a centered max-w-5xl rounded-full
+//   bar laid out brand / nav / CTA with justify-between
+// - Sage #e5ede8 pill with a #c8d8cf border and shadow-xl, deep teal #132d3a
+//   text (links at 75% opacity), rust #b65f47 slash and MegaMenu trigger;
+//   the #132d3a CTA hovers to #b65f47
+// - Mono uppercase text-xs bold wordmark with tracking-[.18em]; text-xs
+//   semibold links; rounded-full bar and CTA
+// - Nav is hidden below md (no mobile menu), leaving only wordmark and CTA
+
+// What it does:
+// - No content props or state of its own; renders MegaMenu (category "booking",
+//   variant 4, accent #b65f47) whose trigger opens the "Led by Local
+//   Craftsmen, Foragers & Scientists" experiences panel on click or keyboard
+//   focus; portaled below the header, it closes on mouse-leave/blur after
+//   160ms or on Escape
+// - Anchors: wordmark → #home, #workshops, #foraging, #hosts;
+//   "Host a Stay" (HiArrowRight) → #host-stay
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import SlowCoastFloatingPillNavbar from '@/TestComponent/SectionDesigns/Sections/booking/Navbar04';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <SlowCoastFloatingPillNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function SlowCoastFloatingPillNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="py-2 px-3">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn('py-2 px-3', className)}
+            {...props}
+        >
             <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-[#c8d8cf] bg-[#e5ede8] px-6 py-2.5 text-[#132d3a] shadow-xl">
                 {/* Micro Brand */}
                 <a
@@ -45,3 +108,5 @@ export default function Navbar04() {
         </header>
     )
 }
+
+export default SlowCoastFloatingPillNavbar

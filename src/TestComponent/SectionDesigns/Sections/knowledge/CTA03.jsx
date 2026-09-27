@@ -1,8 +1,75 @@
-import { HiArrowRight, HiOutlineShieldCheck, HiOutlineDocumentDownload } from 'react-icons/hi'
+// EnterpriseArchitectureAuditSLABanner
 
-export default function CTA03() {
+// CTA03 · Knowledge Bases & Documentation › Banner CTAs
+
+// Description:
+// A light enterprise-support banner: "Deploying for Millions of Users? Get a
+// Direct Architecture Audit & 15-Min SLA." It pitches dedicated TAMs and private
+// engineer channels, backs it with four stat tiles (99.999% SLA, < 15 min P1
+// response, Slack/Teams access, SOC2 Type II) and offers review/whitepaper CTAs.
+
+// Design:
+// - Flex column that becomes lg:flex-row: copy + stat tiles on the left
+//   (max-w-2xl), a CTA button stack on the right.
+// - Light palette: background #f9fafb, gray-200 borders, text #111827 /
+//   gray-900 and gray-600; accent #41715d (badge on #41715d/10, stat values);
+//   primary button #17231f hovering to #41715d; secondary white button with
+//   gray-300 border and gray-700 text.
+// - Monospace uppercase text-[11px] badge; headline text-2xl → sm:text-4xl
+//   font-extrabold tracking-tight; monospace text-xl bold stat values with
+//   text-[11px] labels; rounded-xl tiles and buttons (shadow-xs); rounded-2xl
+//   section with shadow-sm.
+// - Padding p-8 → sm:p-12; stat tiles 2 columns → 4 at sm; buttons stack on
+//   mobile, sit side by side at sm, and stack again in the right column at lg.
+
+// What it does:
+// - Purely presentational: no content props, no state; stat tiles are hard-coded.
+// - CTAs: "Schedule Architecture Review" (HiArrowRight) → #enterprise-consult and
+//   "Enterprise Whitepaper (PDF)" (download icon) → #whitepaper (a plain anchor;
+//   nothing is downloaded).
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import EnterpriseArchitectureAuditSLABanner from '@/TestComponent/SectionDesigns/Sections/knowledge/CTA03';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <EnterpriseArchitectureAuditSLABanner />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiOutlineShieldCheck, HiOutlineDocumentDownload } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function EnterpriseArchitectureAuditSLABanner({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="rounded-2xl border border-gray-200 bg-[#f9fafb] p-8 text-[#111827] sm:p-12 shadow-sm">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-2xl border border-gray-200 bg-[#f9fafb] p-8 text-[#111827] sm:p-12 shadow-sm',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                 <div className="max-w-2xl">
                     <span className="inline-flex items-center gap-1.5 rounded-md bg-[#41715d]/10 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-[#41715d]">
@@ -56,3 +123,5 @@ export default function CTA03() {
         </section>
     )
 }
+
+export default EnterpriseArchitectureAuditSLABanner

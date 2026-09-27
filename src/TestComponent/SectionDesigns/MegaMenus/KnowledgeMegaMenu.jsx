@@ -1,3 +1,54 @@
+// KnowledgeBaseDeveloperDocsMegaMenuCollection
+
+// KnowledgeMegaMenu · Section designs › Mega menus
+
+// Description:
+// Dropdown panel content for a developer documentation / help-center website (fictional
+// "Northstar" platform). Depending on `variant` the visitor sees docs and SDK links,
+// a mock self-service search with popular articles, a trust/compliance center,
+// starter-template recipes or support and escalation channels.
+
+// Design:
+// - Five hard-coded layouts in dark green tones (plus one light variant) with mint #9bd2a7 highlights (#41715d on the light variant) and responsive grids (1 column on mobile, 3-4 from md/lg).
+// - Variant 1 — "API & SDK Docs": #0f1a16 panel, "API v4.2" header with protocol list, three icon-headed link columns (Getting Started, Core API Reference, Official SDKs) and a community card with a "Join Discord Guild" link.
+// - Variant 2 — "Self-Service Hub": light #f4f8f5 panel, read-only search field with a "Press Enter" hint and three popular-article cards (category, title, helpfulness/read time, "Read Full Article" link).
+// - Variant 3 — "Trust & Security": #121f1a panel, SOC2 / HIPAA / ISO 27001 badges and three shield-icon security cards each with a "Download Technical Whitepaper (PDF)" link.
+// - Variant 4 — "Cookbook Recipes": #101c17 panel, GitHub-stars header and three starter-template cards (stack, name, description) with "Clone on GitHub" links.
+// - Variant 5 — "Support SLA": #172721 panel, response-time/CSAT header and three support cards (Enterprise SLA, Architecture Office Hours, Urgent Incident Ticket) with links and an "Open Incident Ticket" button-link.
+
+// What it does:
+// - `variant` 1-4 each return their own layout; any other value (including 5) falls through to Variant 5.
+// - Every anchor calls `closeMenu` on click; hrefs are placeholders (e.g. "#doc", "#art", "#whitepaper", "#clone", "#submit-ticket").
+// - Purely presentational: the Variant 2 search field is read-only with no search logic; no state, effects or data fetching.
+// - `accent` is destructured with a default but never referenced; all colours are hard-coded Tailwind values.
+// - Normally rendered by MegaMenu (category "knowledge"), which normalises `variant` to 1-5 and supplies `closeMenu`.
+
+// @param {object} props
+// @param {number} [props.variant=1] Design to render (1-5); unknown values render Variant 5.
+// @param {Function} props.closeMenu Called on click of every link/CTA so the parent mega menu can close.
+// @param {string} [props.accent='#41715d'] Accent colour; accepted but currently unused (colours are hard-coded).
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Merged onto the root <div> of every variant with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, ref, handlers) are spread onto the root <div> of every variant.
+
+// Usage example:
+// ```jsx
+// import { useState } from 'react';
+// import KnowledgeBaseDeveloperDocsMegaMenuCollection from '@/TestComponent/SectionDesigns/MegaMenus/KnowledgeMegaMenu';
+
+// function DocsMenu() {
+//     const [open, setOpen] = useState(true)
+//     return open ? <KnowledgeBaseDeveloperDocsMegaMenuCollection variant={1} closeMenu={() => setOpen(false)} /> : null
+// }
+
+// // Usual route: MegaMenu picks this component for category="knowledge"
+// // <MegaMenu category="knowledge" variant={1} accent="#41715d" label="API & SDKs" />
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineBookOpen,
@@ -7,13 +58,32 @@ import {
     HiOutlineSearch,
     HiOutlineShieldCheck,
     HiOutlineTerminal,
-} from 'react-icons/hi'
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
-export default function KnowledgeMegaMenu({ variant = 1, closeMenu, accent = '#41715d' }) {
+export function KnowledgeBaseDeveloperDocsMegaMenuCollection({
+    variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
+    closeMenu,
+    accent = '#41715d',
+    className,
+    ...props
+}) {
     // VARIANT 1: Developer Documentation & Multi-Language SDKs (northstar docs)
     if (variant === 1) {
         return (
-            <div className="bg-[#0f1a16] text-[#e0ece6] p-8 border-t-2 border-[#9bd2a7]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#0f1a16] text-[#e0ece6] p-8 border-t-2 border-[#9bd2a7]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
                     <div>
                         <span className="font-mono text-[10px] text-[#9bd2a7] uppercase tracking-[.25em]">
@@ -101,7 +171,16 @@ export default function KnowledgeMegaMenu({ variant = 1, closeMenu, accent = '#4
     // VARIANT 2: Instant Search & Self-Service Knowledge Base
     if (variant === 2) {
         return (
-            <div className="bg-[#f4f8f5] text-[#162720] p-8 border-t border-[#d1e2d7]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#f4f8f5] text-[#162720] p-8 border-t border-[#d1e2d7]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex items-center gap-3 rounded-xl border border-gray-300 bg-white px-4 py-3 shadow-sm">
                     <HiOutlineSearch className="text-lg text-gray-400" />
                     <input
@@ -152,7 +231,16 @@ export default function KnowledgeMegaMenu({ variant = 1, closeMenu, accent = '#4
     // VARIANT 3: System Architecture, Whitepapers & Compliance Hub
     if (variant === 3) {
         return (
-            <div className="bg-[#121f1a] text-[#d9e8e0] p-8 border-t border-[#41715d]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#121f1a] text-[#d9e8e0] p-8 border-t border-[#41715d]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] text-[#9bd2a7] uppercase tracking-[.25em]">
@@ -201,7 +289,16 @@ export default function KnowledgeMegaMenu({ variant = 1, closeMenu, accent = '#4
     // VARIANT 4: Interactive Cookbook, Recipes & GitHub Templates
     if (variant === 4) {
         return (
-            <div className="bg-[#101c17] text-white p-8 border-t border-white/15">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#101c17] text-white p-8 border-t border-white/15',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] text-[#9bd2a7] uppercase tracking-[.25em]">
@@ -253,7 +350,16 @@ export default function KnowledgeMegaMenu({ variant = 1, closeMenu, accent = '#4
 
     // VARIANT 5: Community Forum & Direct Engineer Escalation
     return (
-        <div className="bg-[#172721] text-[#e0eee6] p-8 border-t border-[#41715d]">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'bg-[#172721] text-[#e0eee6] p-8 border-t border-[#41715d]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                 <div>
                     <span className="font-mono text-[10px] text-[#9bd2a7] uppercase tracking-[.25em]">
@@ -309,3 +415,5 @@ export default function KnowledgeMegaMenu({ variant = 1, closeMenu, accent = '#4
         </div>
     )
 }
+
+export default KnowledgeBaseDeveloperDocsMegaMenuCollection

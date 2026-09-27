@@ -1,9 +1,76 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// ArchitecturalStaysConciergeNavbar
 
-export default function Navbar01() {
+// Navbar01 · Booking & Reservations › Navbars
+
+// Description:
+// A dark header for the "elsewhere." sanctuary-stays brand. The wordmark sits
+// left next to a nav group led by an "Architectural Stays" MegaMenu trigger
+// plus Sanctuaries, Field Journal and Membership links; the right side shows
+// a "CONCIERGE ON CALL" label and a "Check Availability" pill button.
+
+// Design:
+// - Single flex row, justify-between: brand + nav grouped on the left,
+//   concierge label + CTA on the right
+// - Deep teal #102530 background, white text with white/80 links and a
+//   white/50 concierge label, coral #e07d5b logo dot, MegaMenu trigger and
+//   CTA (CTA hovers to white with #102530 text), white/10 bottom border
+// - Serif text-2xl wordmark, text-xs links, mono bold CTA in a rounded-full
+//   pill; square header corners (rounded-none)
+// - Nav links are hidden below md with no mobile menu to replace them; the
+//   concierge label is hidden below sm; padding px-5 → sm:px-8
+
+// What it does:
+// - No content props or state of its own; renders MegaMenu (category "booking",
+//   variant 1, accent #e07d5b) whose trigger opens the "Rare Stays Designed
+//   to Stay with You" sanctuaries panel on click or keyboard focus; the panel
+//   is portaled to document.body below the header, stays open while hovered
+//   and closes on mouse-leave/blur (160ms delay) or Escape
+// - Anchors: logo → #home, #sanctuaries, #journal, #membership;
+//   "Check Availability" (HiArrowRight) → #availability
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import ArchitecturalStaysConciergeNavbar from '@/TestComponent/SectionDesigns/Sections/booking/Navbar01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <ArchitecturalStaysConciergeNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function ArchitecturalStaysConciergeNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-b border-white/10 bg-[#102530] px-5 py-4 text-white sm:px-8">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-b border-white/10 bg-[#102530] px-5 py-4 text-white sm:px-8',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between gap-6">
                 {/* Brand & Left-Flush Navigation Group */}
                 <div className="flex items-center gap-10">
@@ -48,3 +115,5 @@ export default function Navbar01() {
         </header>
     )
 }
+
+export default ArchitecturalStaysConciergeNavbar

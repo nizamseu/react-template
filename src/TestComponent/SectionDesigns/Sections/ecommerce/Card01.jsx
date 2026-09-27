@@ -1,7 +1,63 @@
-import { useState } from 'react'
-import { HiOutlineHeart, HiOutlineShoppingBag, HiStar } from 'react-icons/hi'
+// LinenKimonoProductCardWithSwatches
 
-export default function Card01() {
+// Card01 · E-commerce & Marketplaces › Cards
+
+// Description:
+// Fashion product card for Studio Nord's "The Relaxed Atelier Kimono" (SS26, "Drop 04 •
+// Look 08"). Shows the product photo with a drop label and a save (heart) button, a 4.95
+// (48) rating, a material line (100% Belgian washed linen, hand-stitched cuffs), three
+// colour swatches with the selected colour name, the $185 price and an "Add to Bag" button.
+
+// Design:
+// - Vertical article: image block (h-72) → brand/rating row → serif title → material line
+//   → swatch/price row (border-t) → full-width button.
+// - Warm light palette: #fbf9f5 card, #e8e4dc border, #1e1c1a text, #efe9de image
+//   background, #766b5e muted, #9a704b accent; swatches #b35d45 / #614d3b / #ebe5da; button
+//   #1c1b19 → hover #9a704b; amber-400 star, rose-500 saved heart. No dark-mode variants.
+// - rounded-xl card with shadow-sm → hover:shadow-md; rounded-lg image; mono uppercase
+//   micro-labels (text-[10px]); serif bold title text-lg; round h-4 w-4 swatches that
+//   scale-125 with a black border when selected; frosted white/90 chips over the photo;
+//   the photo zooms (scale-105, duration-700) on card hover.
+// - No breakpoint-specific classes: the card fills the width of its grid cell.
+
+// What it does:
+// - State: saved (boolean) toggled by the heart button, which fills the heart rose;
+//   selectedColor (default 'Terracotta') set by clicking a swatch and echoed as a label.
+// - The local swatches array ({ name, bg }) is mapped to swatch buttons (colour via inline
+//   style, name as title). "Add to Bag" is a button with no handler. No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import LinenKimonoProductCardWithSwatches from '@/TestComponent/SectionDesigns/Sections/ecommerce/Card01';
+
+// const ProductGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <LinenKimonoProductCardWithSwatches />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiOutlineHeart, HiOutlineShoppingBag, HiStar } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function LinenKimonoProductCardWithSwatches({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [saved, setSaved] = useState(false)
     const [selectedColor, setSelectedColor] = useState('Terracotta')
 
@@ -12,7 +68,16 @@ export default function Card01() {
     ]
 
     return (
-        <article className="group overflow-hidden rounded-xl border border-[#e8e4dc] bg-[#fbf9f5] p-4 text-[#1e1c1a] shadow-sm hover:shadow-md transition-shadow">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'group overflow-hidden rounded-xl border border-[#e8e4dc] bg-[#fbf9f5] p-4 text-[#1e1c1a] shadow-sm hover:shadow-md transition-shadow',
+                className,
+            )}
+            {...props}
+        >
             <div className="relative overflow-hidden rounded-lg bg-[#efe9de]">
                 <img
                     className="h-72 w-full object-cover transition duration-700 group-hover:scale-105"
@@ -82,3 +147,5 @@ export default function Card01() {
         </article>
     )
 }
+
+export default LinenKimonoProductCardWithSwatches

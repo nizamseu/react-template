@@ -1,8 +1,71 @@
-import { HiArrowRight } from 'react-icons/hi'
+// EmergingVoicesFellowshipScholarshipCTA
 
-export default function CTA01() {
+// CTA01 · Learning Management & EdTech › Banner CTAs
+
+// Description:
+// Dark banner announcing the "2026 EMERGING VOICES FELLOWSHIP" with five
+// full-ride scholarships. It carries the headline "Never Let Tuition Stand in
+// the Way of Extraordinary Craft.", copy about funded seats, coaching and
+// stipends, an "Apply for Fellowship" button and the deadline "Oct 30, 2026".
+
+// Design:
+// - Single left-aligned content block (max-w-2xl, relative z-10) inside a
+//   relative, overflow-hidden section; the CTA row pairs the button and deadline
+// - Dark palette: #0e272f background, #e8f3ea / white / white-70 / white-50
+//   text, lime #c8ef70 eyebrow and button (#0e272f label, white on hover),
+//   white/10 border
+// - Mono xs uppercase tracking-widest eyebrow, serif text-3xl -> sm:text-4xl
+//   bold headline; rounded-2xl section with shadow-2xl, rounded-full mono
+//   uppercase button
+// - CTA row is flex-col (full-width button, centred deadline) below sm and a
+//   row from sm; padding p-8 -> sm:p-12
+
+// What it does:
+// - Purely presentational: no content props, no state
+// - Single anchor "Apply for Fellowship" -> #apply-fellowship (HiArrowRight)
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import EmergingVoicesFellowshipScholarshipCTA from '@/TestComponent/SectionDesigns/Sections/learning/CTA01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <EmergingVoicesFellowshipScholarshipCTA />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function EmergingVoicesFellowshipScholarshipCTA({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e272f] p-8 text-[#e8f3ea] sm:p-12 shadow-2xl">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e272f] p-8 text-[#e8f3ea] sm:p-12 shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="relative z-10 max-w-2xl">
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#c8ef70]">
                     2026 EMERGING VOICES FELLOWSHIP &bull; 5 FULL-RIDE SCHOLARSHIPS
@@ -30,3 +93,5 @@ export default function CTA01() {
         </section>
     )
 }
+
+export default EmergingVoicesFellowshipScholarshipCTA

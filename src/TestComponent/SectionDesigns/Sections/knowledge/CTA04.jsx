@@ -1,8 +1,75 @@
-import { HiArrowRight, HiOutlineCube, HiCheck, HiOutlineExternalLink } from 'react-icons/hi'
+// SDKRoadmapRFCVotingBanner
 
-export default function CTA04() {
+// CTA04 · Knowledge Bases & Documentation › Banner CTAs
+
+// Description:
+// A dark "PUBLIC RFC ROADMAP" banner (Q4 2026 Cycle): "Need Native SDKs for
+// Rust, Elixir, or Swift? Vote on What We Ship Next." It asks developers to
+// upvote proposals or author an RFC, and shows three RFC rows (Rust Async SDK,
+// Elixir OTP & Broadway Producer, Swift 6 Concurrency Bindings) with vote buttons.
+
+// Design:
+// - Flex column that becomes lg:flex-row: copy + CTAs on the left (max-w-xl),
+//   a stacked RFC list on the right (w-full lg:w-[420px]).
+// - Dark palette: background #0d1411, border white/10; mint #9bd2a7 badge text;
+//   primary button #41715d hovering to emerald-600; the highlighted Rust row uses
+//   a #9bd2a7/30 border on emerald-950/30 with emerald-300/400 text, the others
+//   black/40 with white/10 borders (hover white/25).
+// - Headline text-2xl → sm:text-4xl font-extrabold tracking-tight; monospace RFC
+//   list and badge; rounded-full badge, rounded-xl rows and CTAs, rounded-lg vote
+//   buttons; rounded-2xl section, shadow-2xl.
+// - Padding p-8 → sm:p-12; the RFC list stacks below the copy until lg; CTAs
+//   use flex-wrap.
+
+// What it does:
+// - No content props or state. The three vote buttons are type="button" with no
+//   handlers; their counts (842 Upvoted, +618, +412) are static and rows are
+//   hard-coded rather than mapped.
+// - CTAs: "Author New RFC Spec" → #submit-rfc and "GitHub Projects Board" →
+//   https://github.com (new tab, rel="noreferrer").
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <section> with cn()
+// - ...props: spread onto the root <section> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import SDKRoadmapRFCVotingBanner from '@/TestComponent/SectionDesigns/Sections/knowledge/CTA04';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <SDKRoadmapRFCVotingBanner />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiOutlineCube, HiCheck, HiOutlineExternalLink } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function SDKRoadmapRFCVotingBanner({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <section className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0d1411] p-8 text-white sm:p-12 shadow-2xl">
+        <section
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'relative overflow-hidden rounded-2xl border border-white/10 bg-[#0d1411] p-8 text-white sm:p-12 shadow-2xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                 <div className="max-w-xl">
                     <div className="flex items-center gap-2">
@@ -83,3 +150,5 @@ export default function CTA04() {
         </section>
     )
 }
+
+export default SDKRoadmapRFCVotingBanner

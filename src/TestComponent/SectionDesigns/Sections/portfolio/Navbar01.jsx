@@ -1,9 +1,74 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// CoralDesignDirectorNavbar
 
-export default function Navbar01() {
+// Navbar01 · Portfolios & Personal Websites › Navbars
+
+// Description:
+// Coral header for "JP / Design Director". The monogram brand is followed by a
+// left-flush nav: a "Selected Works" mega menu plus About, Awards (26) and
+// Field Notes links. The right side shows an "AVAILABLE Q4" status and a dark
+// "Commission Work" pill button.
+
+// Design:
+// - One flex row (justify-between): brand and nav grouped on the left (gap-10),
+//   availability and CTA grouped on the right.
+// - Warm palette: coral #ef6a4b background, text #241d1a, border-b-2 black/15;
+//   CTA #241d1a (hover black) with white text; MegaMenu accent #241d1a.
+// - Brand font-black uppercase with tracking-[.14em]; xs bold uppercase nav
+//   links (hover opacity-75); mono availability text; rounded-full CTA; square
+//   header (rounded-none).
+// - The nav is hidden below md with no mobile menu in its place; the
+//   availability text is hidden below sm; padding px-5 → sm:px-8.
+
+// What it does:
+// - No content props or local state; "Selected Works" is a MegaMenu (category
+//   "portfolio", variant 1). It toggles on click or keyboard focus, stays open
+//   while hovered, closes 160ms after the pointer leaves, on blur or on Escape,
+//   and portals a dark case-study panel (four selected works) below the header.
+// - Anchors: brand → #home, #about, #awards, #notes; CTA → #contact.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import CoralDesignDirectorNavbar from '@/TestComponent/SectionDesigns/Sections/portfolio/Navbar01';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <CoralDesignDirectorNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function CoralDesignDirectorNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-b-2 border-black/15 bg-[#ef6a4b] px-5 py-4 text-[#241d1a] sm:px-8">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-b-2 border-black/15 bg-[#ef6a4b] px-5 py-4 text-[#241d1a] sm:px-8',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between gap-6">
                 {/* Brand & Left-Flush Navigation Group */}
                 <div className="flex items-center gap-10">
@@ -51,3 +116,5 @@ export default function Navbar01() {
         </header>
     )
 }
+
+export default CoralDesignDirectorNavbar

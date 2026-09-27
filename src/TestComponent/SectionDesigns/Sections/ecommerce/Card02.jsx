@@ -1,8 +1,71 @@
-import { HiOutlineLightningBolt, HiOutlineShoppingBag } from 'react-icons/hi'
+// NeoBrutalistHoodieQuickDropCard
 
-export default function Card02() {
+// Card02 · E-commerce & Marketplaces › Cards
+
+// Description:
+// Limited-stock streetwear drop card for the "MONOLITH HOODIE v2" at $240. The header
+// shows "QUICK DROP • 04/50" and "STOCK: 4 REMAINING", followed by a grayscale product
+// photo tagged "#480-GSM FLEECE", a spec line (oversized boxy cut, cobalt dye, YKK zips),
+// a 92% "ALLOCATION SOLD" progress bar and a "CLAIM INSTANT DROP" button.
+
+// Design:
+// - Stacked article: header row (border-b-2) → framed image → title/price row → specs →
+//   progress bar → full-width button.
+// - Lime #d6f36a background with black text and borders; black chips with lime text;
+//   white/60 progress track with a black fill; no dark-mode variants.
+// - Neo-brutalist styling: rounded-none, border-2 border-black, hard offset shadow
+//   shadow-[6px_6px_0px_0px_#000], monospace font-black uppercase type; the photo is
+//   grayscale contrast-125 and returns to colour on hover (duration-500); the button
+//   inverts to white/black on hover.
+// - No breakpoint-specific classes: the card fills the width of its grid cell.
+
+// What it does:
+// - Purely presentational: no content props, no state; the 92% bar is a static w-[92%] fill.
+// - "CLAIM INSTANT DROP" is a button with no handler; icons HiOutlineLightningBolt and
+//   HiOutlineShoppingBag from react-icons/hi.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import NeoBrutalistHoodieQuickDropCard from '@/TestComponent/SectionDesigns/Sections/ecommerce/Card02';
+
+// const ProductGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <NeoBrutalistHoodieQuickDropCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineLightningBolt, HiOutlineShoppingBag } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function NeoBrutalistHoodieQuickDropCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-none border-2 border-black bg-[#d6f36a] p-5 text-black shadow-[6px_6px_0px_0px_#000]">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-none border-2 border-black bg-[#d6f36a] p-5 text-black shadow-[6px_6px_0px_0px_#000]',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b-2 border-black pb-3">
                 <span className="inline-flex items-center gap-1 font-mono text-[10px] font-black uppercase tracking-wider bg-black text-[#d6f36a] px-2 py-0.5">
                     <HiOutlineLightningBolt /> QUICK DROP &bull; 04/50
@@ -56,3 +119,5 @@ export default function Card02() {
         </article>
     )
 }
+
+export default NeoBrutalistHoodieQuickDropCard

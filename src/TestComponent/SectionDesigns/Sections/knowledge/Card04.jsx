@@ -1,8 +1,69 @@
-import { HiArrowRight, HiOutlineTerminal } from 'react-icons/hi'
+// WebSocketPresenceCookbookRecipeCard
 
-export default function Card04() {
+// Card04 · Knowledge Bases & Documentation › Cards
+
+// Description:
+// A terminal-style cookbook card, "COOKBOOK RECIPE #24", for "Real-Time
+// Multiplayer Presence with WebSockets & Redis Pub/Sub". It notes a "15 MIN
+// IMPLEMENTATION", lists the stack (Next.js 15, Node.js, Upstash Redis) and
+// memory overhead, and offers a "Clone Recipe" button.
+
+// Design:
+// - Single article: header row (terminal icon + recipe number | time estimate),
+//   title and summary, an inset key/value spec box, and a footer row with a top border.
+// - Dark palette: background #101c17, border white/20, white text, mint accent
+//   #9bd2a7 for the label, spec box black/40, emerald-400 memory value; button
+//   #41715d hovering to emerald-600; shadow-xl.
+// - Monospace base font with sans-serif text-base bold title; square card
+//   corners (rounded-none) contrasted with a rounded-lg spec box and rounded button.
+// - No breakpoint classes: the card is fluid and fills its grid cell.
+
+// What it does:
+// - Purely presentational: no content props, no state; content is hard-coded.
+// - One CTA anchor, "Clone Recipe" (HiArrowRight) → #deploy-recipe.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import WebSocketPresenceCookbookRecipeCard from '@/TestComponent/SectionDesigns/Sections/knowledge/Card04';
+
+// const DocsGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <WebSocketPresenceCookbookRecipeCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight, HiOutlineTerminal } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function WebSocketPresenceCookbookRecipeCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-none border border-white/20 bg-[#101c17] p-5 text-white shadow-xl font-mono">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-none border border-white/20 bg-[#101c17] p-5 text-white shadow-xl font-mono',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="flex items-center gap-1.5 text-xs text-[#9bd2a7] font-bold">
                     <HiOutlineTerminal /> COOKBOOK RECIPE #24
@@ -43,3 +104,5 @@ export default function Card04() {
         </article>
     )
 }
+
+export default WebSocketPresenceCookbookRecipeCard

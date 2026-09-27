@@ -1,3 +1,55 @@
+// CommunityHubMegaMenuCollection
+
+// CommunityMegaMenu · Section designs › Mega menus
+
+// Description:
+// The panel content for community and forum navbars, normally rendered by MegaMenu
+// (category="community"). It shows one of five community designs: guild discovery, in-person
+// city meetups, trending threads with a karma leaderboard, peer Q&A reviews, or a Discord and
+// open-collective hub. Links are hash anchors that close the menu when clicked.
+
+// Design:
+// - Warm dark browns (#1b1513 to #291f1b) with peach #ffccad accents, plus one light variant using terracotta #a34c38; static data mapped into cards.
+// - Variant 1 — "Guilds & Spaces": #241c19 with peach top border; header with a pinging "members active" pill, three guild cards (online count, latest topic, hashtags, "Join Guild") and a "Create a Guild" link.
+// - Variant 2 — "City Chapters": light #fcf8f5 with terracotta; "24 Global City Chapters" header and four meetup cards (Berlin, Tokyo, London, New York) with date, venue, spots left and "RSVP".
+// - Variant 3 — "Topic Radar & Leaderboard": #1e1715; 8/4 split with three trending thread links (votes, author, replies) and a top-3 karma leaderboard.
+// - Variant 4 — "Peer Q&A": #291f1b with terracotta top border; "Post a Question / Request Review" CTA and three review cards with SOLVED/ACTIVE status and "View Thread" links.
+// - Variant 5 — "Discord Collective": #1b1513 with indigo Discord accents; members-online pill and three cards: live voice lounge, Open Collective ledger and community charter.
+
+// What it does:
+// - variant selects the layout through if (variant === 1..4); any other value renders the Variant 5 design.
+// - Every <a> calls closeMenu on click; there is no state or effect. The Variant 3 leaderboard rows are not interactive.
+// - Colours are hard-coded; the accent prop is accepted but not used anywhere in the markup.
+
+// @param {object} props
+// @param {number} [props.variant=1] Design to render: 1–4, any other value falls back to Variant 5.
+// @param {Function} props.closeMenu Called when any link in the panel is clicked (MegaMenu passes its own close handler).
+// @param {string} [props.accent='#a34c38'] Accepted for API consistency with the other category menus; currently unused.
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Merged onto the root <div> of every variant with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, ref, handlers) are spread onto the root <div> of every variant.
+
+// Usage example:
+// ```jsx
+// import { useState } from 'react';
+// import CommunityHubMegaMenuCollection from '@/TestComponent/SectionDesigns/MegaMenus/CommunityMegaMenu';
+
+// // Normally rendered for you by <MegaMenu category="community" variant={4} />
+// export default function ForumMenuPreview() {
+//     const [open, setOpen] = useState(true)
+//     if (!open) return null
+//     return (
+//         <div className="rounded-lg border border-[#a34c38] shadow-2xl">
+//             <CommunityHubMegaMenuCollection variant={4} closeMenu={() => setOpen(false)} />
+//         </div>
+//     )
+// }
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineChat,
@@ -7,13 +59,32 @@ import {
     HiOutlineMicrophone,
     HiOutlineSparkles,
     HiOutlineUserGroup,
-} from 'react-icons/hi'
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
-export default function CommunityMegaMenu({ variant = 1, closeMenu, accent = '#a34c38' }) {
+export function CommunityHubMegaMenuCollection({
+    variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
+    closeMenu,
+    accent = '#a34c38',
+    className,
+    ...props
+}) {
     // VARIANT 1: Spaces & Guilds Discovery (COMMONROOM)
     if (variant === 1) {
         return (
-            <div className="bg-[#241c19] text-[#f7e6de] p-8 border-t-2 border-[#ffccad]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#241c19] text-[#f7e6de] p-8 border-t-2 border-[#ffccad]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
                     <div>
                         <span className="font-mono text-[10px] uppercase tracking-[.25em] text-[#ffccad]">
@@ -98,7 +169,16 @@ export default function CommunityMegaMenu({ variant = 1, closeMenu, accent = '#a
     // VARIANT 2: IRL Meetups & Global City Chapters
     if (variant === 2) {
         return (
-            <div className="bg-[#fcf8f5] text-[#2c1d18] p-8 border-t border-[#ebded7]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#fcf8f5] text-[#2c1d18] p-8 border-t border-[#ebded7]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#ebded7] pb-4 gap-4">
                     <div>
                         <span className="text-[10px] font-bold uppercase tracking-[.25em] text-[#a34c38]">
@@ -175,7 +255,16 @@ export default function CommunityMegaMenu({ variant = 1, closeMenu, accent = '#a
     // VARIANT 3: Topic Radar & Community Leaderboard
     if (variant === 3) {
         return (
-            <div className="bg-[#1e1715] text-[#ede3de] p-8 border-t border-white/10">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#1e1715] text-[#ede3de] p-8 border-t border-white/10',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left: Trending Discussions */}
                     <div className="lg:col-span-8 space-y-4">
@@ -257,7 +346,16 @@ export default function CommunityMegaMenu({ variant = 1, closeMenu, accent = '#a
     // VARIANT 4: Peer Q&A & Collaborative Problem Solving
     if (variant === 4) {
         return (
-            <div className="bg-[#291f1b] text-white p-8 border-t border-[#a34c38]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#291f1b] text-white p-8 border-t border-[#a34c38]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/15 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] uppercase tracking-[.25em] text-[#ffccad]">
@@ -323,7 +421,16 @@ export default function CommunityMegaMenu({ variant = 1, closeMenu, accent = '#a
 
     // VARIANT 5: Open-Source Collective & Discord Bridge
     return (
-        <div className="bg-[#1b1513] text-[#e8ded9] p-8 border-t border-white/15">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'bg-[#1b1513] text-[#e8ded9] p-8 border-t border-white/15',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                 <div>
                     <span className="font-mono text-[10px] text-[#ffccad] uppercase tracking-[.25em]">
@@ -392,3 +499,5 @@ export default function CommunityMegaMenu({ variant = 1, closeMenu, accent = '#a
         </div>
     )
 }
+
+export default CommunityHubMegaMenuCollection

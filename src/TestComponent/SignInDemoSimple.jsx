@@ -1,11 +1,86 @@
-import { useState } from 'react'
-import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi'
+// SignInPageSimpleCenteredLayout
 
-const SignInDemoSimple = () => {
+// SignInDemoSimple · Authentication page demo (Simple layout)
+
+// Description:
+// Full-page sign-in screen with the Ecme logo, a "Welcome back!" heading,
+// an email + password form pre-filled with demo credentials, a "Forgot
+// password" link, a Sign In button, Google / Github social buttons and a
+// "Sign up" link, all in one centered column.
+
+// Design:
+// - Full-screen main (min-h-screen, flex, centered, px-5 py-10) with one
+//   column (w-full, min-w-[320px], max-w-[400px]); no side panel and no
+//   card border or shadow
+// - bg-white / dark:bg-gray-800, text-gray-900 / dark:text-gray-100; brand
+//   blue #2a85ff for the primary button and input focus border; inputs
+//   have gray-300 borders (dark:border-gray-600) and transparent background
+// - 60px logo that swaps per theme (logo-dark-streamline.png in light
+//   mode, logo-light-streamline.png in dark mode via dark:hidden /
+//   dark:block); h1 text-2xl bold, semibold gray subtitle, rounded-sm
+//   inputs and buttons, "or countinue with" divider between two lines
+// - No responsive breakpoints; the column simply shrinks to 320px minimum
+
+// What it does:
+// - useState(showPassword) toggles the password input between "password"
+//   and "text" via an eye / eye-off icon button with an aria-label
+// - Inputs are uncontrolled (defaultValue "admin-01@ecme.com" / "123Qwe")
+//   and required; form submit is prevented (demo only, no API call)
+// - Google / Github buttons have no click handler
+// - Links (plain anchors, full page load): "Forgot password" goes to
+//   /auth/forgot-password-simple, "Sign up" goes to /auth/sign-up-simple
+// - No content props.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <main> with cn()
+// - ...props: spread onto the root <main> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// // src/configs/routes.config/authDemoRoute.js
+// {
+//     key: 'authentication.signInSimple',
+//     path: `${AUTH_PREFIX_PATH}/sign-in-simple`,
+//     component: lazy(() => import('@/TestComponent/SignInDemoSimple')),
+//     authority: [ADMIN, USER],
+//     meta: {
+//         layout: 'blank',
+//         pageContainerType: 'gutterless',
+//         footer: false,
+//     },
+// }
+// ```
+
+'use client'
+
+import { useState } from 'react';
+import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function SignInPageSimpleCenteredLayout({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-        <main className="flex min-h-screen items-center justify-center bg-white px-5 py-10 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
+        <main
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'flex min-h-screen items-center justify-center bg-white px-5 py-10 text-gray-900 dark:bg-gray-800 dark:text-gray-100',
+                className,
+            )}
+            {...props}
+        >
             <section className="w-full min-w-[320px] max-w-[400px]">
                 <div className="mb-8 flex justify-center">
                     <img className="h-[60px] dark:hidden" src="/img/logo/logo-dark-streamline.png" alt="Ecme" />
@@ -76,4 +151,4 @@ const SignInDemoSimple = () => {
     )
 }
 
-export default SignInDemoSimple
+export default SignInPageSimpleCenteredLayout

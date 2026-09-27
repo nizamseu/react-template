@@ -1,8 +1,73 @@
-import { HiOutlineClock, HiPlay } from 'react-icons/hi'
+// OnDemandGuestMasterclassVideoCard
 
-export default function Card05() {
+// Card05 · Learning Management & EdTech › Cards
+
+// Description:
+// Dark video-course card for an on-demand guest masterclass, "The Art of
+// Pitching Non-Obvious Ideas" with Michael Bierut. It shows a thumbnail with a
+// centred play button and "2h 38m TOTAL" runtime tag, a chapter list (one Free,
+// one Locked), the price line "Lifetime Access • $85" and a "Preview" link.
+
+// Design:
+// - Single <article>: h-48 thumbnail frame with an absolutely centred play
+//   button and bottom-right duration badge, then label, title, description,
+//   chapter panel and a border-t footer row
+// - Dark palette: #12282e background, white text (white/70, /60, /40), lime
+//   #c8ef70 label, badge text and play button (#0e272f icon), black/30-80
+//   overlays, image at opacity-80
+// - Mono 10-11px labels, serif text-xl bold title; rounded-2xl card with
+//   white/10 border and shadow-xl, rounded-xl thumbnail, rounded-full play
+//   button and preview pill
+// - No breakpoint classes: fluid width; image zooms on hover (scale-105) and
+//   the play button grows on hover (scale-110)
+
+// What it does:
+// - No content props, no state; the play button (type="button", aria-label) and the
+//   chapter rows (cursor-pointer, hover:text-white) have no click handlers
+// - Single anchor "Preview" -> #watch; chapters are hard-coded, not mapped
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <article> with cn()
+// - ...props: spread onto the root <article> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import OnDemandGuestMasterclassVideoCard from '@/TestComponent/SectionDesigns/Sections/learning/Card05';
+
+// const MasterclassGrid = () => (
+//     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+//         <OnDemandGuestMasterclassVideoCard />
+//     </div>
+// )
+// ```
+
+'use client'
+
+import { HiOutlineClock, HiPlay } from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
+
+export function OnDemandGuestMasterclassVideoCard({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <article className="overflow-hidden rounded-2xl border border-white/10 bg-[#12282e] p-5 text-white shadow-xl">
+        <article
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'overflow-hidden rounded-2xl border border-white/10 bg-[#12282e] p-5 text-white shadow-xl',
+                className,
+            )}
+            {...props}
+        >
             <div className="relative h-48 overflow-hidden rounded-xl bg-black">
                 <img
                     className="h-full w-full object-cover opacity-80 transition-transform duration-700 hover:scale-105"
@@ -61,3 +126,5 @@ export default function Card05() {
         </article>
     )
 }
+
+export default OnDemandGuestMasterclassVideoCard

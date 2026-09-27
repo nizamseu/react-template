@@ -1,9 +1,78 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// SignalStackModularGridNavbar
 
-export default function Navbar05() {
+// Navbar05 · SaaS Platforms › Navbars
+
+// Description:
+// A dark, modular three-cell header for "SIGNAL / STACK" (v4.18):
+// - a brand cell with a version tag;
+// - a navigation strip ("Integrations" mega menu, Kafka Bus, Distributed PG,
+//   OpenTelemetry) with a "Zero egress fees" note;
+// - a live telemetry cell with a pulsing "14ms P99" and a "CONSOLE →" link.
+
+// Design:
+// - <header> with a 2px #263640 border. The inner grid is
+//   `md:grid-cols-[240px_1fr_220px]`, split by 2px dividers (divide-y-2 on mobile,
+//   md:divide-x-2 from md).
+// - Base #17232c with #263640 dividers, a mint #65e6b4 accent, an emerald-400
+//   pulse dot and white/50-70 secondary text.
+// - Typography: font-mono throughout; xs uppercase tracking-wider nav and 10px
+//   tags. Everything is rounded-none, giving a blocky, brutalist feel.
+// - Responsive: below md the cells stack in one column with horizontal dividers;
+//   from md they form three columns. The nav strip scrolls horizontally
+//   (overflow-x-auto), and "Zero egress fees" only shows from lg.
+
+// What it does:
+// - Embeds <MegaMenu category="saas" variant={5} label="Integrations"
+//   accent="#65e6b4" />, which opens the "App Ecosystem & Integration Marketplace"
+//   panel. Clicking the trigger toggles it and focusing it opens it. The panel is
+//   portal-rendered below the header and closes on mouse leave (160 ms delay),
+//   blur or Escape.
+// - Anchors: `#home`, `#kafka`, `#postgres`, `#otel`. "CONSOLE →" points to
+//   `#docs`. The status dot uses animate-pulse. No content props or local state.
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import SignalStackModularGridNavbar from '@/TestComponent/SectionDesigns/Sections/saas/Navbar05';
+
+// const LandingPage = () => (
+//     <main className="space-y-6">
+//         <SignalStackModularGridNavbar />
+//     </main>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function SignalStackModularGridNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-2 border-[#263640] bg-[#17232c] text-white">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-2 border-[#263640] bg-[#17232c] text-white',
+                className,
+            )}
+            {...props}
+        >
             <div className="grid grid-cols-1 md:grid-cols-[240px_1fr_220px] divide-y-2 md:divide-y-0 md:divide-x-2 divide-[#263640]">
                 {/* Column 1: Monospace Index */}
                 <div className="p-3.5 flex items-center justify-between">
@@ -55,3 +124,5 @@ export default function Navbar05() {
         </header>
     )
 }
+
+export default SignalStackModularGridNavbar

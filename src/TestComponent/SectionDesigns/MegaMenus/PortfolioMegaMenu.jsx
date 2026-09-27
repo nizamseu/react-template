@@ -1,16 +1,87 @@
+// DesignerPortfolioMegaMenuCollection
+
+// PortfolioMegaMenu · Section designs › Mega menus
+
+// Description:
+// Dropdown panel content for an independent designer's portfolio site (fictional
+// "Jamie Park" studio). Depending on `variant` the visitor sees selected case studies,
+// creative-code experiments, a design manifesto with talks, service/retainer packages
+// or a photographic contact sheet.
+
+// Design:
+// - Five hard-coded layouts in warm charcoal tones (plus one light cream variant) with coral #ef6a4b highlights, serif or mono headlines and responsive card grids.
+// - Variant 1 — "Selected Works": #1c1816 panel, header with a pulsing "Available for select Q4 commissions" badge, four clickable project cards (number, year, client, title, award) and a footer with contact e-mail and "Browse Complete 12-Year Archive" link.
+// - Variant 2 — "Shader Laboratory": #111 panel, mono "WebGL / WebGPU Sandbox" header with award counts and four "LAB 0x" cards (title, tech stack, description) each with a "Run WebGL Demo" link.
+// - Variant 3 — "Design Manifesto": light #f9f7f4 panel in two columns: italic serif manifesto quote with a "Download Full CV / Monograph (PDF)" button-link, and a static list of keynotes/lectures.
+// - Variant 4 — "Services & Retainers": #241d1a panel, three service cards (Design Sprint, Fractional Design Director, End-to-End Product Build) with duration and deliverable, plus a "Book Exploration Call on Cal.com" link.
+// - Variant 5 — "Visual Notes": #181412 panel, four-photo contact sheet (Unsplash images with title and location, zoom on hover), 2 columns on mobile and 4 from md.
+
+// What it does:
+// - `variant` 1-4 each return their own layout; any other value (including 5) falls through to Variant 5.
+// - Every anchor calls `closeMenu` on click (placeholder hrefs such as "#case-study", "#launch-demo", "#resume", "#cal").
+// - Variant 5 contains no links and never calls `closeMenu`; the Variant 3 lecture list and Variant 4 service cards are static.
+// - Purely presentational: no state or effects; interactivity is limited to hover styles.
+// - `accent` is destructured with a default but never referenced; all colours are hard-coded Tailwind values.
+// - Normally rendered by MegaMenu (category "portfolio"), which normalises `variant` to 1-5 and supplies `closeMenu`.
+
+// @param {object} props
+// @param {number} [props.variant=1] Design to render (1-5); unknown values render Variant 5.
+// @param {Function} props.closeMenu Called on click of every link/CTA so the parent mega menu can close.
+// @param {string} [props.accent='#ef6a4b'] Accent colour; accepted but currently unused (colours are hard-coded).
+// @param {'md'} [props.size='md'] Only size; exposed as data-size (no visual change).
+// @param {boolean} [props.disabled=false] Exposed as data-disabled (no visual change).
+// @param {boolean} [props.loading=false] Exposed as data-disabled (no visual change).
+// @param {string} [props.className] Merged onto the root <div> of every variant with cn().
+// @param {object} [props.rest] Any other props (id, aria-*, ref, handlers) are spread onto the root <div> of every variant.
+
+// Usage example:
+// ```jsx
+// import { useState } from 'react';
+// import DesignerPortfolioMegaMenuCollection from '@/TestComponent/SectionDesigns/MegaMenus/PortfolioMegaMenu';
+
+// function WorkMenu() {
+//     const [open, setOpen] = useState(true)
+//     return open ? <DesignerPortfolioMegaMenuCollection variant={1} closeMenu={() => setOpen(false)} /> : null
+// }
+
+// // Usual route: MegaMenu picks this component for category="portfolio"
+// // <MegaMenu category="portfolio" variant={1} accent="#ef6a4b" label="Selected Works" />
+// ```
+
+'use client'
+
 import {
     HiArrowRight,
     HiOutlineCalendar,
     HiOutlineCode,
     HiOutlineExternalLink,
     HiOutlineSparkles,
-} from 'react-icons/hi'
+} from 'react-icons/hi';
+import { cn } from '@/design-system/lib/cn';
 
-export default function PortfolioMegaMenu({ variant = 1, closeMenu, accent = '#ef6a4b' }) {
+export function DesignerPortfolioMegaMenuCollection({
+    variant = 1,
+    size = 'md',
+    disabled = false,
+    loading = false,
+    closeMenu,
+    accent = '#ef6a4b',
+    className,
+    ...props
+}) {
     // VARIANT 1: Selected Case Studies & Client Index (JP / Designer)
     if (variant === 1) {
         return (
-            <div className="bg-[#1c1816] text-[#ede4de] p-8 border-t-2 border-[#ef6a4b]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#1c1816] text-[#ede4de] p-8 border-t-2 border-[#ef6a4b]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
                     <div>
                         <span className="font-mono text-[10px] text-[#ef6a4b] uppercase tracking-[.25em]">
@@ -99,7 +170,16 @@ export default function PortfolioMegaMenu({ variant = 1, closeMenu, accent = '#e
     // VARIANT 2: Experimental Laboratory & Creative Code (Kinetic Lab)
     if (variant === 2) {
         return (
-            <div className="bg-[#111] text-[#eaeaea] p-8 border-t border-white/20">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#111] text-[#eaeaea] p-8 border-t border-white/20',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/15 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] text-[#ef6a4b] uppercase tracking-[.25em]">
@@ -165,7 +245,16 @@ export default function PortfolioMegaMenu({ variant = 1, closeMenu, accent = '#e
     // VARIANT 3: Design Manifesto, Philosophy & Press
     if (variant === 3) {
         return (
-            <div className="bg-[#f9f7f4] text-[#1c1b19] p-8 border-t border-[#ded8cf]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#f9f7f4] text-[#1c1b19] p-8 border-t border-[#ded8cf]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left: Typographic Manifesto */}
                     <div className="lg:col-span-6 space-y-4 border-r border-[#ded8cf] pr-8">
@@ -230,7 +319,16 @@ export default function PortfolioMegaMenu({ variant = 1, closeMenu, accent = '#e
     // VARIANT 4: Services, Retainers & Client Engagements
     if (variant === 4) {
         return (
-            <div className="bg-[#241d1a] text-white p-8 border-t border-[#ef6a4b]">
+            <div
+                data-variant={variant}
+                data-size={size}
+                data-disabled={disabled || loading}
+                className={cn(
+                    'bg-[#241d1a] text-white p-8 border-t border-[#ef6a4b]',
+                    className,
+                )}
+                {...props}
+            >
                 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                     <div>
                         <span className="font-mono text-[10px] uppercase tracking-[.25em] text-[#ef6a4b]">
@@ -293,7 +391,16 @@ export default function PortfolioMegaMenu({ variant = 1, closeMenu, accent = '#e
 
     // VARIANT 5: Visual Moodboard, Photo Essays & Field Notes
     return (
-        <div className="bg-[#181412] text-[#e3deda] p-8 border-t border-white/15">
+        <div
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'bg-[#181412] text-[#e3deda] p-8 border-t border-white/15',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                 <div>
                     <span className="font-mono text-[10px] text-[#ef6a4b] uppercase tracking-[.25em]">
@@ -343,3 +450,5 @@ export default function PortfolioMegaMenu({ variant = 1, closeMenu, accent = '#e
         </div>
     )
 }
+
+export default DesignerPortfolioMegaMenuCollection

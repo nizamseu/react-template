@@ -1,9 +1,75 @@
-import { HiArrowRight } from 'react-icons/hi'
-import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu'
+// LocalGuildsDarkNavbar
 
-export default function Navbar01() {
+// Navbar01 · Directories & Search Aggregators › Navbars
+
+// Description:
+// Dark single-row header for "GOOD NEIGHBOR." with the brand and navigation
+// grouped on the left and a "4,820 places verified" counter plus a "Suggest
+// Place" pill on the right. The "Local Guilds" item opens the directory
+// MegaMenu (variant 1: verified local establishments panel).
+
+// Design:
+// - Flex row justify-between: [brand + nav] left group (gap-10), [counter +
+//   CTA] right group; px-5 → sm:px-8, py-4
+// - Dark #14201e background, white text (white/70 links, white/50 counter),
+//   lime #d9f064 2px bottom border, brand dot, MegaMenu trigger and CTA pill
+//   (#14201e text, hover white)
+// - Brand font-mono text-sm font-black uppercase tracking-[.18em]; links
+//   text-xs; square header (rounded-none) with a rounded-full CTA pill
+// - The nav (MegaMenu + links) is hidden below md and the counter below sm; no
+//   mobile menu is provided
+
+// What it does:
+// - Renders MegaMenu (category="directory", variant={1}, accent="#d9f064"): its
+//   trigger opens a portal panel under this header on focus and toggles it on
+//   click; Escape closes it, as does leaving it with the pointer (~160ms delay)
+// - Links: brand → #home, Neighborhoods → #neighborhoods, Field Guides →
+//   #guides, Map Index → #map, "Suggest Place" → #suggest
+
+// Props:
+// - variant: "primary" (the only design; exposed as data-variant)
+// - size: "md" (the only size; exposed as data-size)
+// - disabled, loading: false by default; set data-disabled, no visual change
+// - className: merged onto the root <header> with cn()
+// - ...props: spread onto the root <header> (id, aria-*, ref, handlers)
+
+// Usage example:
+// ```jsx
+// import LocalGuildsDarkNavbar from '@/TestComponent/SectionDesigns/Sections/directory/Navbar01';
+
+// const AppShell = ({ children }) => (
+//     <>
+//         <LocalGuildsDarkNavbar />
+//         <main className="space-y-6">{children}</main>
+//     </>
+// )
+// ```
+
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi';
+import MegaMenu from '@/TestComponent/SectionDesigns/MegaMenu';
+import { cn } from '@/design-system/lib/cn';
+
+export function LocalGuildsDarkNavbar({
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    className,
+    ...props
+}) {
     return (
-        <header className="rounded-none border-b-2 border-[#d9f064] bg-[#14201e] px-5 py-4 text-white sm:px-8">
+        <header
+            data-variant={variant}
+            data-size={size}
+            data-disabled={disabled || loading}
+            className={cn(
+                'rounded-none border-b-2 border-[#d9f064] bg-[#14201e] px-5 py-4 text-white sm:px-8',
+                className,
+            )}
+            {...props}
+        >
             <div className="flex items-center justify-between gap-6">
                 {/* Brand & Left-Flush Navigation Group */}
                 <div className="flex items-center gap-10">
@@ -51,3 +117,5 @@ export default function Navbar01() {
         </header>
     )
 }
+
+export default LocalGuildsDarkNavbar
