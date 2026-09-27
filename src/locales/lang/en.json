@@ -68,7 +68,9 @@
             "typography": "Typography",
             "icons": "Icons",
             "sectionDesigns": "Section Designs",
-            "sectionDesignsDesc": "Website section design studio"
+            "sectionDesignsDesc": "Website section design studio",
+            "pageSections": "Page Sections",
+            "pageSectionsDesc": "Page section library"
         },
         "uiComponentsFeedback": {
             "feedback": "Feedback",

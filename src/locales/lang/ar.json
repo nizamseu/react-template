@@ -68,7 +68,9 @@
             "typography": "الطباعة",
             "icons": "الأيقونات",
             "sectionDesigns": "تصاميم الأقسام",
-            "sectionDesignsDesc": "استوديو تصميم أقسام المواقع"
+            "sectionDesignsDesc": "استوديو تصميم أقسام المواقع",
+            "pageSections": "أقسام الصفحات",
+            "pageSectionsDesc": "مكتبة أقسام الصفحات"
         },
         "uiComponentsFeedback": {
             "feedback": "التعليقات",

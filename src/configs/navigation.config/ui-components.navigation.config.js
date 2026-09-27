@@ -121,6 +121,23 @@ const uiComponentNavigationConfig = [
                         },
                         subMenu: [],
                     },
+                    {
+                        key: 'uiComponent.common.pageSections',
+                        path: '/page-sections',
+                        title: 'Page Sections',
+                        translateKey: 'nav.uiComponentsCommon.pageSections',
+                        icon: 'uiCommonGrid',
+                        type: NAV_ITEM_TYPE_ITEM,
+                        authority: [ADMIN, USER],
+                        meta: {
+                            description: {
+                                translateKey:
+                                    'nav.uiComponentsCommon.pageSectionsDesc',
+                                label: 'Page section library',
+                            },
+                        },
+                        subMenu: [],
+                    },
                 ],
             },
             {

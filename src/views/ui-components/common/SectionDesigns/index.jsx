@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router'
 
 const sectionModules = import.meta.glob(
     '@/TestComponent/SectionDesigns/Sections/*/*.jsx',
@@ -61,6 +62,24 @@ const SectionDesigns = () => {
                         Art-directed, responsive sections for different kinds of
                         websites.
                     </p>
+                    <nav
+                        aria-label="Design library"
+                        className="mt-4 inline-flex rounded-md border border-gray-200 bg-white p-1 text-xs font-semibold dark:border-gray-700 dark:bg-gray-800"
+                    >
+                        <Link
+                            to="/design-studio"
+                            aria-current="page"
+                            className="rounded bg-[#2a85ff] px-3 py-1.5 text-white"
+                        >
+                            Section designs
+                        </Link>
+                        <Link
+                            to="/page-sections"
+                            className="rounded px-3 py-1.5 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
+                        >
+                            Page sections
+                        </Link>
+                    </nav>
                 </div>
                 <label className="flex flex-col gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300">
                     Website category

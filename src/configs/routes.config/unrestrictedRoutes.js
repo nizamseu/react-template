@@ -11,6 +11,17 @@ const unrestrictedRoutes = [
             pageContainerType: 'contained',
         },
     },
+    {
+        key: 'uiComponent.common.pageSections',
+        path: '/page-sections',
+        component: lazy(
+            () => import('@/views/ui-components/common/PageSections'),
+        ),
+        meta: {
+            pageBackgroundType: 'plain',
+            pageContainerType: 'contained',
+        },
+    },
 ]
 
 export default unrestrictedRoutes

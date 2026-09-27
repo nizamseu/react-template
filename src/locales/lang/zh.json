@@ -68,7 +68,9 @@
             "typography": "排版",
             "icons": "图标",
             "sectionDesigns": "页面区块设计",
-            "sectionDesignsDesc": "网站区块设计工作室"
+            "sectionDesignsDesc": "网站区块设计工作室",
+            "pageSections": "页面分区",
+            "pageSectionsDesc": "页面分区组件库"
         },
         "uiComponentsFeedback": {
             "feedback": "反馈",

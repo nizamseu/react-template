@@ -68,7 +68,9 @@
             "typography": "Tipografía",
             "icons": "Íconos",
             "sectionDesigns": "Diseños de secciones",
-            "sectionDesignsDesc": "Estudio de diseño de secciones web"
+            "sectionDesignsDesc": "Estudio de diseño de secciones web",
+            "pageSections": "Secciones de página",
+            "pageSectionsDesc": "Biblioteca de secciones de página"
         },
         "uiComponentsFeedback": {
             "feedback": "Retroalimentación",
