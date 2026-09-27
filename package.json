@@ -4,7 +4,7 @@
   "version": "1.3.8",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "NODE_OPTIONS='--no-deprecation' vite",
     "build": "vite build",
     "preview": "vite preview",
     "prettier": "npx prettier src --check",
@@ -74,6 +74,7 @@
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/typography": "^0.5.15",
     "@vitejs/plugin-react": "^4.7.0",
+    "baseline-browser-mapping": "^2.11.26",
     "color": "^4.2.3",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
