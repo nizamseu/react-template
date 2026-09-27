@@ -26,6 +26,7 @@
 //   self-service panel (read-only search prompt plus popular articles) below the header.
 // - Anchors: brand → #docs, #troubleshooting, #architecture, #status, and the
 //   "Ask Support" CTA → #ask-support.
+// - Its mega menu panel is SelfServiceHubMegaMenu in MegaMenus/knowledge/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

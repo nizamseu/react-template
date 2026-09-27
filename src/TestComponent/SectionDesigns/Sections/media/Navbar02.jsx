@@ -29,6 +29,7 @@
 //   width, and shows a rounded dark podcast/broadcast menu
 // - Plain anchor links: `#home`, `#episodes`, `#transcripts`, `#patron`;
 //   the "Listen Live" button links to `#subscribe`
+// - Its mega menu panel is BroadcastPodcastPlayerMegaMenu in MegaMenus/media/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

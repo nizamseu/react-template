@@ -26,6 +26,7 @@
 //   leaves, when focus moves outside, or on Escape
 // - Anchors: #home, #workshops, #syllabus, #mentors, and "Student Portal"
 //   -> #portal (HiArrowRight)
+// - Its mega menu panel is LiveStudioCalendarMegaMenu in MegaMenus/learning/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

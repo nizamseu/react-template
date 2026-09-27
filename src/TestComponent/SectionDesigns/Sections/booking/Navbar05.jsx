@@ -26,6 +26,7 @@
 //   "ENDS IN 14H" is static text
 // - Anchors: wordmark → #home, #deals, #unbooked (Secret Season), #drives,
 //   "BOOK →" → #instant-book
+// - Its mega menu panel is WeekendEscapesMegaMenu in MegaMenus/booking/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

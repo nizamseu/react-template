@@ -29,6 +29,7 @@
 //   width, and shows a black high-contrast gazette menu of story lists
 // - Plain anchor links: `#home`, `#patron`, `#culture`, `#architecture`,
 //   `#philosophy`, `#critical-reading`
+// - Its mega menu panel is HighContrastGazetteMegaMenu in MegaMenus/media/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

@@ -24,6 +24,7 @@
 // - Its panel (portalled, fixed just below this header) presents two investment
 //   strategies and an "Accredited Investor Room" LP portal card
 // - Anchors: #home, #portfolio, #criteria (labelled "Mandate"), #team, #lp-login
+// - Its mega menu panel is PrivateCapitalMegaMenu in MegaMenus/corporate/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

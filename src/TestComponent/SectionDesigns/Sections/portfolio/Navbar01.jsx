@@ -25,6 +25,7 @@
 //   while hovered, closes 160ms after the pointer leaves, on blur or on Escape,
 //   and portals a dark case-study panel (four selected works) below the header.
 // - Anchors: brand → #home, #about, #awards, #notes; CTA → #contact.
+// - Its mega menu panel is SelectedWorksMegaMenu in MegaMenus/portfolio/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

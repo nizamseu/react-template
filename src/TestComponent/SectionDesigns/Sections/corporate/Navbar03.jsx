@@ -27,6 +27,7 @@
 // - Its panel (portalled, fixed just below this header) lists three mapped client outcome
 //   cards (e.g. $140M opex saved, 99.999% availability, -42% carbon intensity)
 // - Anchors: #home, #briefing, #energy, #private-equity, #sovereign, #esg
+// - Its mega menu panel is QuantifiedClientImpactMegaMenu in MegaMenus/corporate/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

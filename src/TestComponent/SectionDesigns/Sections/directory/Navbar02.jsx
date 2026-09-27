@@ -25,6 +25,7 @@
 //   click; Escape closes it, as does leaving it with the pointer (~160ms delay)
 // - Links: brand → #home, Specialty Coffee → #coffee, Independent Books →
 //   #books, Ateliers → #ateliers, "Filter Matrix" → #filter-matrix
+// - Its mega menu panel is PowerSearchMegaMenu in MegaMenus/directory/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

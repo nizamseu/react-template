@@ -27,6 +27,7 @@
 //   it closes on mouse-leave/blur after 160ms or on Escape
 // - Anchors: wordmark → #home, #membership, #mid-century, #wilderness,
 //   #bastions, #overwater
+// - Its mega menu panel is StaysByTypologyMegaMenu in MegaMenus/booking/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

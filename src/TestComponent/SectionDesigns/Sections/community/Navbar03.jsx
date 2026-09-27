@@ -26,6 +26,7 @@
 //   document.body below this header and closes on Escape, on blur or shortly after the pointer leaves
 // - No own props or state; anchors: wordmark → #home, charter → #manifesto, #ethics, #indie, #oss,
 //   #local
+// - Its mega menu panel is TopicRadarLeaderboardMegaMenu in MegaMenus/community/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

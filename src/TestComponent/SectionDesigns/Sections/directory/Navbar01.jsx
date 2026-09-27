@@ -25,6 +25,7 @@
 //   click; Escape closes it, as does leaving it with the pointer (~160ms delay)
 // - Links: brand → #home, Neighborhoods → #neighborhoods, Field Guides →
 //   #guides, Map Index → #map, "Suggest Place" → #suggest
+// - Its mega menu panel is LocalGuildsMegaMenu in MegaMenus/directory/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

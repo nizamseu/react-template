@@ -29,6 +29,7 @@
 //   "Enterprise Compliance & Guarantees" panel below the header.
 // - Anchors: brand → #home, #api-keys, #idempotency, #rate-limits, #webhooks and
 //   #benchmarks.
+// - Its mega menu panel is TrustSecurityMegaMenu in MegaMenus/knowledge/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

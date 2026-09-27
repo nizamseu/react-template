@@ -25,6 +25,7 @@
 //   pointer leave (160ms), blur or Escape, and portals a "WebGL / WebGPU
 //   Sandbox" panel of experiments below the header.
 // - Anchors: brand → #home, #experiments, #shaders, #source; CTA → #reel.
+// - Its mega menu panel is ShaderLaboratoryMegaMenu in MegaMenus/portfolio/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

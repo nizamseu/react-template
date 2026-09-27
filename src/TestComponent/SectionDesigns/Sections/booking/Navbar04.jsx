@@ -26,6 +26,7 @@
 //   160ms or on Escape
 // - Anchors: wordmark → #home, #workshops, #foraging, #hosts;
 //   "Host a Stay" (HiArrowRight) → #host-stay
+// - Its mega menu panel is HostExperiencesMegaMenu in MegaMenus/booking/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

@@ -27,6 +27,7 @@
 //   shows a haute-couture panel (numbered collections, personal styling) below the header.
 // - Anchors #home, #living, #wear, #ceramics, #archive; search and bag are buttons with
 //   aria-labels but no handlers. No content props, no local state.
+// - Its mega menu panel is MaisonHauteCoutureAtelierMegaMenu in MegaMenus/ecommerce/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

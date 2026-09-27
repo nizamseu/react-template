@@ -26,6 +26,7 @@
 //   hours panel in a portal fixed below the header; it closes 160 ms after the
 //   pointer leaves, when focus moves outside, or on Escape
 // - Anchors: #home, #roster, #guest, #outcomes, and "APPLY" -> #apply-residency
+// - Its mega menu panel is MentorshipResidencyMegaMenu in MegaMenus/learning/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

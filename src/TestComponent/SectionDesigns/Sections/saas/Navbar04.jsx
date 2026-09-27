@@ -27,6 +27,7 @@
 //   header and closes on mouse leave (160 ms delay), blur or Escape.
 // - Anchors: `#home`, `#models`, `#evals`, `#agents`, CTA `#sandbox`. No content props or
 //   local state.
+// - Its mega menu panel is AICommandCenterMegaMenu in MegaMenus/saas/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

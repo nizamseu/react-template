@@ -30,6 +30,7 @@
 //   to document.body aligned to this header's width.
 // - Anchors: brand → #home, #quickstarts, #sdks, #api. The search pill is a
 //   static div (not an input) and ⌘K has no keyboard handler.
+// - Its mega menu panel is APISDKDocsMegaMenu in MegaMenus/knowledge/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

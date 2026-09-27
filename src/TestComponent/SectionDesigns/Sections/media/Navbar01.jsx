@@ -31,6 +31,7 @@
 // - Plain anchor links: `#home`, `#longform`, `#dialogues`, `#dispatch`,
 //   `#archive`; the search button (aria-label "Search articles") has no
 //   click handler
+// - Its mega menu panel is SundayBroadsheetMegaMenu in MegaMenus/media/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

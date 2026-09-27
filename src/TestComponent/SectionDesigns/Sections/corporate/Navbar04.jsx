@@ -26,6 +26,7 @@
 //   peer-reviewed papers with dates, citations and preprint links
 // - Anchors: #home, #macro, #geopolitics, #quarterly (labelled "Whitepapers") and the CTA
 //   #subscribe-research (with HiArrowRight)
+// - Its mega menu panel is ResearchInstituteMegaMenu in MegaMenus/corporate/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

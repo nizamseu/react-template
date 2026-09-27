@@ -29,6 +29,7 @@
 // - Anchors: brand `#workspace`, `#solutions`, `#changelog`, `#pricing`, CTA
 //   `#deploy`. The uptime dot uses animate-pulse. The navbar has no content props or
 //   local state of its own.
+// - Its mega menu panel is EnterprisePlatformSuiteMegaMenu in MegaMenus/saas/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

@@ -28,6 +28,7 @@
 //   when focus moves outside, or on Escape
 // - Anchors: #home (wordmark), #cohorts, #faculty, #tuition, and "Apply Now"
 //   -> #apply (HiArrowRight)
+// - Its mega menu panel is AcademyCurriculumTracksMegaMenu in MegaMenus/learning/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

@@ -24,6 +24,7 @@
 //   click; Escape closes it, as does leaving it with the pointer (~160ms delay)
 // - Links: brand → #home, Shimokitazawa → #shibuya, Kreuzberg → #kreuzberg,
 //   Le Marais → #marais, "EXPLORE →" → #all-walks
+// - Its mega menu panel is DistrictWalksMegaMenu in MegaMenus/directory/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

@@ -28,6 +28,7 @@
 //   webcast card; the header ticker itself is static text, not live data
 // - Anchors: #home, #earnings, #governance, #filings and the CTA #annual-report (with
 //   HiArrowRight)
+// - Its mega menu panel is InvestorRelationsHubMegaMenu in MegaMenus/corporate/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

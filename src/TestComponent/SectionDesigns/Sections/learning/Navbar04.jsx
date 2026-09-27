@@ -26,6 +26,7 @@
 //   when focus moves outside, or on Escape
 // - Anchors: #home, #sandbox, #challenges, #shaders, and "Enroll (4 Left)"
 //   -> #enroll (HiArrowRight)
+// - Its mega menu panel is CreativeExperimentLabMegaMenu in MegaMenus/learning/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

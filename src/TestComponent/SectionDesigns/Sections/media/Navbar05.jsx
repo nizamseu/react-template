@@ -27,6 +27,7 @@
 //   width, and shows a dark art-book menu of photographic folios
 // - Plain anchor links: `#home`, `#photography`, `#documentary`,
 //   `#interviews`, `#order-print`
+// - Its mega menu panel is ArtBookMonographMegaMenu in MegaMenus/media/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

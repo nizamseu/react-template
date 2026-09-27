@@ -28,6 +28,7 @@
 //   leave (160 ms delay), blur or Escape.
 // - Anchors: `#home`, `#docs`, `#benchmarks`, `#status`, `#console`. No content props or
 //   local state.
+// - Its mega menu panel is DeveloperAPIHubMegaMenu in MegaMenus/saas/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

@@ -28,6 +28,7 @@
 //   the pointer leaves, when focus moves outside, or on Escape
 // - Anchors: #home, #scholarship, #design-systems, #creative-coding,
 //   #typography, #alumni
+// - Its mega menu panel is CareerRoadmapSkillsMatrixMegaMenu in MegaMenus/learning/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

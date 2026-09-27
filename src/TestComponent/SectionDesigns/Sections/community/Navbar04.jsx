@@ -23,6 +23,7 @@
 //   #ffccad): the trigger toggles on click and opens on keyboard focus; the panel is portaled to
 //   document.body below this header and closes on Escape, on blur or shortly after the pointer leaves
 // - No own props or state; anchors: brand → #home, #unanswered, #bounties, #karma, CTA → #ask
+// - Its mega menu panel is PeerQAMegaMenu in MegaMenus/community/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

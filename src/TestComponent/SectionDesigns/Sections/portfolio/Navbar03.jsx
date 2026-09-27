@@ -26,6 +26,7 @@
 //   panel (manifesto quote, keynotes list, CV download link) below the header.
 // - Anchors: masthead → #home, #manifesto, #monographs, #typefaces, #spatial,
 //   #archive ("Archive (2016–2026)").
+// - Its mega menu panel is DesignManifestoMegaMenu in MegaMenus/portfolio/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

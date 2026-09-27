@@ -29,6 +29,7 @@
 //   Transformation, ESG & Energy Transition) and an Executive Briefing download card
 // - Anchors: #home, #capabilities, #case-studies, #partners, #portal and the CTA
 //   #consultation (with HiArrowRight)
+// - Its mega menu panel is GlobalAdvisoryPracticesMegaMenu in MegaMenus/corporate/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

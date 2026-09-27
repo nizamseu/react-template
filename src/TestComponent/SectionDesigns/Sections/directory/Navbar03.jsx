@@ -26,6 +26,7 @@
 // - Links: masthead → #home, gem link → #submit-gem, Artisan Roasters →
 //   #roasters, Listening Bars → #vinyl, Sourdough Bakeries → #bakeries,
 //   Rare Books → #bookshops
+// - Its mega menu panel is CuratedGuidesMegaMenu in MegaMenus/directory/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

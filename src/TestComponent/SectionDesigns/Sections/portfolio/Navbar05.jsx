@@ -25,6 +25,7 @@
 //   Typography" photo contact-sheet panel below the header.
 // - Anchors: brand → #home, #systems, #interactive, #exhibitions;
 //   "INQUIRE →" → #inquire.
+// - Its mega menu panel is VisualNotesMegaMenu in MegaMenus/portfolio/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

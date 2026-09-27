@@ -24,6 +24,7 @@
 //   #ffccad): the trigger toggles on click and opens on keyboard focus; the panel is portaled to
 //   document.body below this header and closes on Escape, on blur or shortly after the pointer leaves
 // - No own props or state; anchors: logo → #home, #voice, #study, #collabs, "DISCORD →" → #join-discord
+// - Its mega menu panel is DiscordCollectiveMegaMenu in MegaMenus/community/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

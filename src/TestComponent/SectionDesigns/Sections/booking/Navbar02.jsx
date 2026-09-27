@@ -25,6 +25,7 @@
 //   160ms or on Escape
 // - Anchors: wordmark → #home, #typology, #experiences, #private-key;
 //   "Reserve Villa" (HiArrowRight) → #reserve
+// - Its mega menu panel is DestinationFinderMegaMenu in MegaMenus/booking/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

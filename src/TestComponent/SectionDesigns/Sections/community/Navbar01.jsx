@@ -24,6 +24,7 @@
 //   #a34c38): the trigger toggles on click and opens on keyboard focus; the panel is portaled to
 //   document.body below this header and closes on Escape, on blur or shortly after the pointer leaves
 // - No own props or state; anchors: logo → #home, #spaces, #directory, #manifesto, CTA → #join
+// - Its mega menu panel is GuildsSpacesMegaMenu in MegaMenus/community/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

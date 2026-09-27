@@ -25,6 +25,7 @@
 //   neo-brutalist archive panel portalled below the header.
 // - Anchors #home, #shop, #circular, #studio and #bag (aria-label "Open shopping bag").
 //   No content props, no local state.
+// - Its mega menu panel is NeoBrutalistDepartmentArchiveMegaMenu in MegaMenus/ecommerce/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

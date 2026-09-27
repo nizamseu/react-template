@@ -25,6 +25,7 @@
 //   with the SLA guarantee, office hours and an urgent incident ticket card.
 // - The "OPERATIONAL" status is hard-coded, not fetched. Anchors: brand → #docs,
 //   #error-codes, #diagnostics, #pagerduty, and "P1 PAGER →" → #escalate.
+// - Its mega menu panel is SupportSLAMegaMenu in MegaMenus/knowledge/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

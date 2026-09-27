@@ -29,6 +29,7 @@
 //   blur or Escape.
 // - Anchors: `#home`, `#kafka`, `#postgres`, `#otel`. "CONSOLE →" points to
 //   `#docs`. The status dot uses animate-pulse. No content props or local state.
+// - Its mega menu panel is IntegrationsEcosystemMegaMenu in MegaMenus/saas/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

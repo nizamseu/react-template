@@ -27,6 +27,7 @@
 //   header at its width, and shows a light breaking-news wire feed menu
 // - The dot uses Tailwind's `animate-ping`; plain anchor links: `#home`,
 //   `#breaking` (Dispatches), `#fieldnotes`, `#dossiers`, `#rss`
+// - Its mega menu panel is BreakingNewsWireMegaMenu in MegaMenus/media/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

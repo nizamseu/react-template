@@ -25,6 +25,7 @@
 //   Collaborate" services panel below the header.
 // - Anchors: brand → #home, #selected, #retainers, "Monographs" → #press;
 //   CTA → #book-call.
+// - Its mega menu panel is ServicesRetainersMegaMenu in MegaMenus/portfolio/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

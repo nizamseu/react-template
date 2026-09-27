@@ -24,6 +24,7 @@
 //   Escape, and shows the Sunday Supply artisan market panel below the header.
 // - Anchors #home, #provisions (labelled "Ceramics"), #woodwork, #textiles and #checkout;
 //   the cart count is static text. No content props, no local state.
+// - Its mega menu panel is SundaySupplyArtisanProvisionsMegaMenu in MegaMenus/ecommerce/MegaMenu05.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

@@ -26,6 +26,7 @@
 //   this header.
 // - Anchors #home, #new, #objects, #makers, #journal; Search, Account and Bag are buttons
 //   with aria-labels but no handlers. No content props, no local state.
+// - Its mega menu panel is EditorialLookbookDropMegaMenu in MegaMenus/ecommerce/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

@@ -23,6 +23,7 @@
 //   #a34c38): the trigger toggles on click and opens on keyboard focus; the panel is portaled to
 //   document.body below this header and closes on Escape, on blur or shortly after the pointer leaves
 // - No own props or state; anchors: logo → #home, #meetups, #host, #grants, CTA → #rsvp
+// - Its mega menu panel is CityChaptersMegaMenu in MegaMenus/community/MegaMenu02.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

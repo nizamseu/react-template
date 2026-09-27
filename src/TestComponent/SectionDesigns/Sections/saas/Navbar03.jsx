@@ -30,6 +30,7 @@
 //   blur or Escape.
 // - Anchors: `#home`, `#talk-architect`, `#pipelines`, `#security`, `#serverless`,
 //   `#sla`. No content props or local state.
+// - Its mega menu panel is SolutionsMatrixMegaMenu in MegaMenus/saas/MegaMenu03.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

@@ -27,6 +27,7 @@
 //   and closes on mouse-leave/blur (160ms delay) or Escape
 // - Anchors: logo → #home, #sanctuaries, #journal, #membership;
 //   "Check Availability" (HiArrowRight) → #availability
+// - Its mega menu panel is ArchitecturalStaysMegaMenu in MegaMenus/booking/MegaMenu01.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

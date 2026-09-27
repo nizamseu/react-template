@@ -26,6 +26,7 @@
 //   "1-Click Deployable Production Architectures" panel below the header.
 // - Anchors: brand → #home, #standards, #onboarding, #ci-cd, and the "Clone
 //   Template" CTA (HiOutlineCode icon) → #git-clone.
+// - Its mega menu panel is CookbookRecipesMegaMenu in MegaMenus/knowledge/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

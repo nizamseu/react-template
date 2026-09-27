@@ -25,6 +25,7 @@
 //   flush under the header.
 // - Anchors #home, #drops, #trade, #verified, #cart; the search button has an aria-label
 //   but no handler. No content props, no local state.
+// - Its mega menu panel is CircularPreLovedMarketMegaMenu in MegaMenus/ecommerce/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)

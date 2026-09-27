@@ -25,6 +25,7 @@
 //   click; Escape closes it, as does leaving it with the pointer (~160ms delay)
 // - Links: brand → #home, Design Agencies → #agencies, Architects →
 //   #architects, Craft Guilds → #workshops, "Studio Index" → #agency-index
+// - Its mega menu panel is VerifiedStudiosMegaMenu in MegaMenus/directory/MegaMenu04.jsx.
 
 // Props:
 // - variant: "primary" (the only design; exposed as data-variant)
