@@ -1,4 +1,10 @@
-// GiftEditSplitHero
+'use client'
+
+import { HiArrowRight } from 'react-icons/hi'
+import { cn } from '@/design-system/lib/cn'
+
+
+// Gift Edit Split Hero
 
 // Hero05 · E-commerce & Marketplaces › Hero sections
 
@@ -31,21 +37,16 @@
 
 // Usage example:
 // ```jsx
-// import GiftEditSplitHero from '@/TestComponent/SectionDesigns/Sections/ecommerce/Hero05';
+// import Hero05 from '@/TestComponent/SectionDesigns/Sections/ecommerce/Hero05'
 
 // const LandingPage = () => (
 //     <main className="space-y-6">
-//         <GiftEditSplitHero />
+//         <Hero05 />
 //     </main>
 // )
 // ```
 
-'use client'
-
-import { HiArrowRight } from 'react-icons/hi';
-import { cn } from '@/design-system/lib/cn';
-
-export function GiftEditSplitHero({
+export function Hero05({
     variant = 'primary',
     size = 'md',
     disabled = false,
@@ -100,4 +101,4 @@ export function GiftEditSplitHero({
     )
 }
 
-export default GiftEditSplitHero
+export default Hero05
