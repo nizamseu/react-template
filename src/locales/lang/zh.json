@@ -74,7 +74,9 @@
             "formComponents": "表单组件",
             "formComponentsDesc": "表单组件变体工作室",
             "feedbackComponents": "反馈组件",
-            "feedbackComponentsDesc": "反馈组件变体工作室"
+            "feedbackComponentsDesc": "反馈组件变体工作室",
+            "navigationComponents": "导航组件",
+            "navigationComponentsDesc": "导航组件变体工作室"
         },
         "uiComponentsFeedback": {
             "feedback": "反馈",

@@ -44,6 +44,17 @@ const unrestrictedRoutes = [
             pageContainerType: 'contained',
         },
     },
+    {
+        key: 'uiComponent.common.navigationComponents',
+        path: '/navigation-components',
+        component: lazy(
+            () => import('@/views/ui-components/common/NavigationComponents'),
+        ),
+        meta: {
+            pageBackgroundType: 'plain',
+            pageContainerType: 'contained',
+        },
+    },
 ]
 
 export default unrestrictedRoutes

@@ -74,7 +74,9 @@
             "formComponents": "Form Components",
             "formComponentsDesc": "Form component variant studio",
             "feedbackComponents": "Feedback Components",
-            "feedbackComponentsDesc": "Feedback component variant studio"
+            "feedbackComponentsDesc": "Feedback component variant studio",
+            "navigationComponents": "Navigation Components",
+            "navigationComponentsDesc": "Navigation component variant studio"
         },
         "uiComponentsFeedback": {
             "feedback": "Feedback",

@@ -172,6 +172,23 @@ const uiComponentNavigationConfig = [
                         },
                         subMenu: [],
                     },
+                    {
+                        key: 'uiComponent.common.navigationComponents',
+                        path: '/navigation-components',
+                        title: 'Navigation Components',
+                        translateKey: 'nav.uiComponentsCommon.navigationComponents',
+                        icon: 'navigation',
+                        type: NAV_ITEM_TYPE_ITEM,
+                        authority: [ADMIN, USER],
+                        meta: {
+                            description: {
+                                translateKey:
+                                    'nav.uiComponentsCommon.navigationComponentsDesc',
+                                label: 'Navigation component variant studio',
+                            },
+                        },
+                        subMenu: [],
+                    },
                 ],
             },
             {

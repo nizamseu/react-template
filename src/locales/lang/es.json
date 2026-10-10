@@ -74,7 +74,9 @@
             "formComponents": "Componentes de formulario",
             "formComponentsDesc": "Estudio de variantes de componentes de formulario",
             "feedbackComponents": "Componentes de retroalimentación",
-            "feedbackComponentsDesc": "Estudio de variantes de componentes de retroalimentación"
+            "feedbackComponentsDesc": "Estudio de variantes de componentes de retroalimentación",
+            "navigationComponents": "Componentes de navegación",
+            "navigationComponentsDesc": "Estudio de variantes de componentes de navegación"
         },
         "uiComponentsFeedback": {
             "feedback": "Retroalimentación",
