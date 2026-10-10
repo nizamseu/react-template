@@ -72,7 +72,9 @@
             "pageSections": "Secciones de página",
             "pageSectionsDesc": "Biblioteca de secciones de página",
             "formComponents": "Componentes de formulario",
-            "formComponentsDesc": "Estudio de variantes de componentes de formulario"
+            "formComponentsDesc": "Estudio de variantes de componentes de formulario",
+            "feedbackComponents": "Componentes de retroalimentación",
+            "feedbackComponentsDesc": "Estudio de variantes de componentes de retroalimentación"
         },
         "uiComponentsFeedback": {
             "feedback": "Retroalimentación",

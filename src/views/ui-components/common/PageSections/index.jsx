@@ -184,6 +184,12 @@ const PageSections = () => {
                         >
                             Form components
                         </Link>
+                        <Link
+                            to="/feedback-components"
+                            className="rounded px-3 py-1.5 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
+                        >
+                            Feedback components
+                        </Link>
                     </nav>
                 </div>
                 <label className="flex flex-col gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300">

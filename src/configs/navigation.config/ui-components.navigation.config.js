@@ -155,6 +155,23 @@ const uiComponentNavigationConfig = [
                         },
                         subMenu: [],
                     },
+                    {
+                        key: 'uiComponent.common.feedbackComponents',
+                        path: '/feedback-components',
+                        title: 'Feedback Components',
+                        translateKey: 'nav.uiComponentsCommon.feedbackComponents',
+                        icon: 'feedback',
+                        type: NAV_ITEM_TYPE_ITEM,
+                        authority: [ADMIN, USER],
+                        meta: {
+                            description: {
+                                translateKey:
+                                    'nav.uiComponentsCommon.feedbackComponentsDesc',
+                                label: 'Feedback component variant studio',
+                            },
+                        },
+                        subMenu: [],
+                    },
                 ],
             },
             {

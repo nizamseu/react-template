@@ -72,7 +72,9 @@
             "pageSections": "أقسام الصفحات",
             "pageSectionsDesc": "مكتبة أقسام الصفحات",
             "formComponents": "مكونات النماذج",
-            "formComponentsDesc": "استوديو متغيرات مكونات النماذج"
+            "formComponentsDesc": "استوديو متغيرات مكونات النماذج",
+            "feedbackComponents": "مكونات التعليقات والتنبيهات",
+            "feedbackComponentsDesc": "استوديو متغيرات مكونات التنبيهات والتعليقات"
         },
         "uiComponentsFeedback": {
             "feedback": "التعليقات",

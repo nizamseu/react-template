@@ -33,6 +33,17 @@ const unrestrictedRoutes = [
             pageContainerType: 'contained',
         },
     },
+    {
+        key: 'uiComponent.common.feedbackComponents',
+        path: '/feedback-components',
+        component: lazy(
+            () => import('@/views/ui-components/common/FeedbackComponents'),
+        ),
+        meta: {
+            pageBackgroundType: 'plain',
+            pageContainerType: 'contained',
+        },
+    },
 ]
 
 export default unrestrictedRoutes

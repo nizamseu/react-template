@@ -72,7 +72,9 @@
             "pageSections": "页面分区",
             "pageSectionsDesc": "页面分区组件库",
             "formComponents": "表单组件",
-            "formComponentsDesc": "表单组件变体工作室"
+            "formComponentsDesc": "表单组件变体工作室",
+            "feedbackComponents": "反馈组件",
+            "feedbackComponentsDesc": "反馈组件变体工作室"
         },
         "uiComponentsFeedback": {
             "feedback": "反馈",

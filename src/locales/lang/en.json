@@ -72,7 +72,9 @@
             "pageSections": "Page Sections",
             "pageSectionsDesc": "Page section library",
             "formComponents": "Form Components",
-            "formComponentsDesc": "Form component variant studio"
+            "formComponentsDesc": "Form component variant studio",
+            "feedbackComponents": "Feedback Components",
+            "feedbackComponentsDesc": "Feedback component variant studio"
         },
         "uiComponentsFeedback": {
             "feedback": "Feedback",
