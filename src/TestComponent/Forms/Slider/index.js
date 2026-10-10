@@ -1,0 +1,8 @@
+export { default as BasicSlider } from './BasicSlider'
+export { default as ControlledSlider } from './ControlledSlider'
+export { default as StepSlider } from './StepSlider'
+export { default as MarksSlider } from './MarksSlider'
+export { default as RangeSlider } from './RangeSlider'
+export { default as TooltipSlider } from './TooltipSlider'
+export { default as DisabledSlider } from './DisabledSlider'
+export { default as CustomColorSlider } from './CustomColorSlider'

@@ -70,7 +70,9 @@
             "sectionDesigns": "تصاميم الأقسام",
             "sectionDesignsDesc": "استوديو تصميم أقسام المواقع",
             "pageSections": "أقسام الصفحات",
-            "pageSectionsDesc": "مكتبة أقسام الصفحات"
+            "pageSectionsDesc": "مكتبة أقسام الصفحات",
+            "formComponents": "مكونات النماذج",
+            "formComponentsDesc": "استوديو متغيرات مكونات النماذج"
         },
         "uiComponentsFeedback": {
             "feedback": "التعليقات",

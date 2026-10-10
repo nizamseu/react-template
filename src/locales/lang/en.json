@@ -70,7 +70,9 @@
             "sectionDesigns": "Section Designs",
             "sectionDesignsDesc": "Website section design studio",
             "pageSections": "Page Sections",
-            "pageSectionsDesc": "Page section library"
+            "pageSectionsDesc": "Page section library",
+            "formComponents": "Form Components",
+            "formComponentsDesc": "Form component variant studio"
         },
         "uiComponentsFeedback": {
             "feedback": "Feedback",

@@ -70,7 +70,9 @@
             "sectionDesigns": "Diseños de secciones",
             "sectionDesignsDesc": "Estudio de diseño de secciones web",
             "pageSections": "Secciones de página",
-            "pageSectionsDesc": "Biblioteca de secciones de página"
+            "pageSectionsDesc": "Biblioteca de secciones de página",
+            "formComponents": "Componentes de formulario",
+            "formComponentsDesc": "Estudio de variantes de componentes de formulario"
         },
         "uiComponentsFeedback": {
             "feedback": "Retroalimentación",

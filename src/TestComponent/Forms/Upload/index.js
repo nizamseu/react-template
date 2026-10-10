@@ -1,0 +1,5 @@
+export { default as BasicUpload } from './BasicUpload'
+export { default as DragAndDropUpload } from './DragAndDropUpload'
+export { default as AvatarUpload } from './AvatarUpload'
+export { default as CustomizeUpload } from './CustomizeUpload'
+export { default as DisabledUpload } from './DisabledUpload'

@@ -138,6 +138,23 @@ const uiComponentNavigationConfig = [
                         },
                         subMenu: [],
                     },
+                    {
+                        key: 'uiComponent.common.formComponents',
+                        path: '/form-components',
+                        title: 'Form Components',
+                        translateKey: 'nav.uiComponentsCommon.formComponents',
+                        icon: 'forms',
+                        type: NAV_ITEM_TYPE_ITEM,
+                        authority: [ADMIN, USER],
+                        meta: {
+                            description: {
+                                translateKey:
+                                    'nav.uiComponentsCommon.formComponentsDesc',
+                                label: 'Form component variant studio',
+                            },
+                        },
+                        subMenu: [],
+                    },
                 ],
             },
             {

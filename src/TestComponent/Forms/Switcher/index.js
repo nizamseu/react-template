@@ -1,0 +1,6 @@
+export { default as BasicSwitcher } from './BasicSwitcher'
+export { default as ContentSwitcher } from './ContentSwitcher'
+export { default as DisabledSwitcher } from './DisabledSwitcher'
+export { default as LoadingSwitcher } from './LoadingSwitcher'
+export { default as ColorsSwitcher } from './ColorsSwitcher'
+export { default as ControlledSwitcher } from './ControlledSwitcher'

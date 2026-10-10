@@ -22,6 +22,17 @@ const unrestrictedRoutes = [
             pageContainerType: 'contained',
         },
     },
+    {
+        key: 'uiComponent.common.formComponents',
+        path: '/form-components',
+        component: lazy(
+            () => import('@/views/ui-components/common/FormComponents'),
+        ),
+        meta: {
+            pageBackgroundType: 'plain',
+            pageContainerType: 'contained',
+        },
+    },
 ]
 
 export default unrestrictedRoutes
