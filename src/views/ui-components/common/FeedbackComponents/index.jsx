@@ -153,6 +153,12 @@ const FeedbackComponents = () => {
                         >
                             Navigation components
                         </Link>
+                        <Link
+                            className="rounded px-3 py-1.5 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
+                            to="/data-display-components"
+                        >
+                            Data display components
+                        </Link>
                     </nav>
                 </div>
 

@@ -55,6 +55,17 @@ const unrestrictedRoutes = [
             pageContainerType: 'contained',
         },
     },
+    {
+        key: 'uiComponent.common.dataDisplayComponents',
+        path: '/data-display-components',
+        component: lazy(
+            () => import('@/views/ui-components/common/DataDisplayComponents'),
+        ),
+        meta: {
+            pageBackgroundType: 'plain',
+            pageContainerType: 'contained',
+        },
+    },
 ]
 
 export default unrestrictedRoutes

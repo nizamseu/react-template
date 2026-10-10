@@ -189,6 +189,23 @@ const uiComponentNavigationConfig = [
                         },
                         subMenu: [],
                     },
+                    {
+                        key: 'uiComponent.common.dataDisplayComponents',
+                        path: '/data-display-components',
+                        title: 'Data Display Components',
+                        translateKey: 'nav.uiComponentsCommon.dataDisplayComponents',
+                        icon: 'dataDisplay',
+                        type: NAV_ITEM_TYPE_ITEM,
+                        authority: [ADMIN, USER],
+                        meta: {
+                            description: {
+                                translateKey:
+                                    'nav.uiComponentsCommon.dataDisplayComponentsDesc',
+                                label: 'Data display component variant studio',
+                            },
+                        },
+                        subMenu: [],
+                    },
                 ],
             },
             {

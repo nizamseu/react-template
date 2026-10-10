@@ -76,7 +76,9 @@
             "feedbackComponents": "Feedback Components",
             "feedbackComponentsDesc": "Feedback component variant studio",
             "navigationComponents": "Navigation Components",
-            "navigationComponentsDesc": "Navigation component variant studio"
+            "navigationComponentsDesc": "Navigation component variant studio",
+            "dataDisplayComponents": "Data Display Components",
+            "dataDisplayComponentsDesc": "Data display component variant studio"
         },
         "uiComponentsFeedback": {
             "feedback": "Feedback",

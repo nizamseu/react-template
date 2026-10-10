@@ -76,7 +76,9 @@
             "feedbackComponents": "Componentes de retroalimentación",
             "feedbackComponentsDesc": "Estudio de variantes de componentes de retroalimentación",
             "navigationComponents": "Componentes de navegación",
-            "navigationComponentsDesc": "Estudio de variantes de componentes de navegación"
+            "navigationComponentsDesc": "Estudio de variantes de componentes de navegación",
+            "dataDisplayComponents": "Componentes de visualización de datos",
+            "dataDisplayComponentsDesc": "Estudio de variantes de componentes de visualización de datos"
         },
         "uiComponentsFeedback": {
             "feedback": "Retroalimentación",

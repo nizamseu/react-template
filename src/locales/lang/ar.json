@@ -76,7 +76,9 @@
             "feedbackComponents": "مكونات التعليقات والتنبيهات",
             "feedbackComponentsDesc": "استوديو متغيرات مكونات التنبيهات والتعليقات",
             "navigationComponents": "مكونات التنقل",
-            "navigationComponentsDesc": "استوديو متغيرات مكونات التنقل"
+            "navigationComponentsDesc": "استوديو متغيرات مكونات التنقل",
+            "dataDisplayComponents": "مكونات عرض البيانات",
+            "dataDisplayComponentsDesc": "استوديو متغيرات مكونات عرض البيانات"
         },
         "uiComponentsFeedback": {
             "feedback": "التعليقات",
